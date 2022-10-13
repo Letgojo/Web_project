@@ -6,7 +6,7 @@ const TemplateLogin  = styled.div`
     max-height : 569px;
     border : 1px solid black;
     background-color : white;
-    margin : 50% auto;   
+    margin : 5% auto;   
     border-radius : 30px;
 `
 const ID = styled.div`

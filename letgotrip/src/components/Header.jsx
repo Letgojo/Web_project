@@ -10,6 +10,7 @@ const Template = styled.div`
     justify-content: space-between;
     margin : 0 auto;
     
+    
 `
 const Logo = styled.div`
     font-size:45px;
