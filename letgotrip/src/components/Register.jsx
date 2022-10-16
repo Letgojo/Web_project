@@ -72,7 +72,7 @@ const Button2 = styled.button`
     cursor : pointer;
 `
 const Register = () => {
-    const [selectedYear, setSelectedYear] = useState(2000);
+const [selectedYear, setSelectedYear] = useState(2000);
 const [selectedMonth, setSelectedMonth] = useState(1);
 const [selectedDay, setSelectedDay] = useState(1)
 const handleSelectYear = (e) => {

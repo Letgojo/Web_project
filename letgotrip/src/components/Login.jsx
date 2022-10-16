@@ -1,6 +1,6 @@
 import React from 'react';
 import  styled from 'styled-components';
-
+import { Link } from 'react-router-dom';
 const TemplateLogin  = styled.div`
     width : 699px;
     max-height : 569px;
@@ -77,8 +77,8 @@ const Login = () => {
             <InputPwd type="password" placeholder='비밀번호'/>
         </PWD>
         <Registerdiv>
-            <Register>회원가입</Register>
-            <FindID>아이디 · 비밀번호 찾기</FindID>
+            <Link to="/Login/Register"><Register>회원가입</Register></Link>
+            <Link to="/Login/Idfine"><FindID>아이디 · 비밀번호 찾기</FindID></Link>
         </Registerdiv>
         <LoginBtn>
             <Btntext>로그인</Btntext>

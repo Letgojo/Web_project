@@ -42,6 +42,7 @@ margin-top : 20px;
 const Email = styled.input`
     height : 30px;
     width : 200px;
+    margin : 0px 10px 0 10px;   
 `
 const Okbutton = styled.div`
     width : 501px;
@@ -55,7 +56,7 @@ const Okbutton = styled.div`
     font-size : 30px;
     padding : 40px 0;
 `
-const Idfind = () => {
+const Pwdfind = () => {
     const [selectedYear, setSelectedYear] = useState(2000);
     const [selectedMonth, setSelectedMonth] = useState(1);
     const [selectedDay, setSelectedDay] = useState(1)
@@ -92,13 +93,15 @@ const Idfind = () => {
     };
     return (
         <Template>
-            <IdPwdFind>
-                <IdText>아이디찾기</IdText>
-                <Link to="/Login/Pwdfind"><PWDText>비밀번호찾기</PWDText></Link>
+                <IdPwdFind>
+                <Link to="/Login/Idfine"><IdText>아이디찾기</IdText></Link>
+                <PWDText>비밀번호찾기</PWDText>
             </IdPwdFind>
-            <hr />  
+            <hr />
             <Contentform>
-                <p>이름 : <Name type="text" /></p>생년월일 :
+            <p>아이디 : <Name type="text" /></p>
+            <p>이름 : <Name type="text" /></p>
+            생년월일 :
                     <Year value={selectedYear} onChange={handleSelectYear}>
                         {year()}
                     </Year>년 
@@ -118,4 +121,4 @@ const Idfind = () => {
     );
 };
 
-export default Idfind;
+export default Pwdfind;

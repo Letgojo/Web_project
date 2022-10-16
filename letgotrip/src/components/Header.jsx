@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import MainLogo from '../img/logo.png';
+// import MainLogo from '../img/logo.png';
 import { Link } from 'react-router-dom';
 const Template = styled.div`
     width: 1440px;
@@ -19,6 +19,8 @@ const Logo = styled.div`
     margin : 40px 0 0 60px;
     cursor:pointer;
     background : white;
+    text-decoration : none;
+    color : black;
 `
 const HeaderUl = styled.div`
     display : flex;
@@ -37,6 +39,8 @@ const Login = styled.div`
     font-size:20px;
     cursor:pointer;
     background : white;
+    text-decoration : none;
+    color: black;
 `
 
 
@@ -50,7 +54,7 @@ const Header = ({chlidren}) => {
             <Category>지역축제소개</Category>
             <Category>커뮤니티</Category>
         </HeaderUl>
-        <Login>로그인</Login>
+        <Link to="/Login"><Login>로그인</Login></Link>
         </Template>
     );
 };
