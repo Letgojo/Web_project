@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import MainLogo from '../img/logo.png';
+import { Link } from 'react-router-dom';
 const Template = styled.div`
     width: 1440px;
     height : 160px;
@@ -39,10 +40,10 @@ const Login = styled.div`
 `
 
 
-const Header = () => {
+const Header = ({chlidren}) => {
     return (
         <Template>
-        <Logo>Logo</Logo>
+        <Link to="/"><Logo>Logo</Logo></Link>
         <HeaderUl>
             <Category>여행계획</Category>
             <Category>기록</Category>
