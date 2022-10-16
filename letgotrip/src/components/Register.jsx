@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import  styled from 'styled-components';
 const TemplateLogin  = styled.div`
     width : 699px;
@@ -71,6 +72,7 @@ const Button2 = styled.button`
     border : 0px;
     cursor : pointer;
 `
+
 const Register = () => {
 const [selectedYear, setSelectedYear] = useState(2000);
 const [selectedMonth, setSelectedMonth] = useState(1);
@@ -106,6 +108,10 @@ const day = () => {
     }
     return result;
 };
+const navigate = useNavigate();
+const goback = () => { 
+    navigate(-1);
+}
 
     return (
         <TemplateLogin>
@@ -145,7 +151,7 @@ const day = () => {
                     </Skip>
                     <ButtonSkip>
                     <Button1 type='submit'>회원가입</Button1>
-                    <Button2 type='button'>뒤로가기</Button2>
+                    <Button2 type='button' onClick={goback}>뒤로가기</Button2>
                     </ButtonSkip>
             </form>
         </TemplateLogin>

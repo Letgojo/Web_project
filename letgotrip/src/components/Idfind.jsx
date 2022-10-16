@@ -17,6 +17,7 @@ const IdText = styled.div`
     cursor : pointer;
     margin : 40px 0 40px 100px;
     font-size : 25px;
+    border-bottom : 3px solid black;
 `
 const PWDText = styled.div`
     cursor : pointer;  
@@ -94,9 +95,8 @@ const Idfind = () => {
         <Template>
             <IdPwdFind>
                 <IdText>아이디찾기</IdText>
-                <Link to="/Login/Pwdfind"><PWDText>비밀번호찾기</PWDText></Link>
+                <Link to="/Login/Pwdfind" style={{ textDecoration: "none" ,color:"black"}}><PWDText>비밀번호찾기</PWDText></Link>
             </IdPwdFind>
-            <hr />  
             <Contentform>
                 <p>이름 : <Name type="text" /></p>생년월일 :
                     <Year value={selectedYear} onChange={handleSelectYear}>

@@ -1,22 +1,24 @@
 import React from 'react';
 import styled from 'styled-components'
-// import MainLogo from '../img/logo.png';
+import MainLogo from '../img/logo.png';
 import { Link } from 'react-router-dom';
 const Template = styled.div`
     width: 1440px;
-    height : 160px;
+    height : 130px;
     background : white;
     display:flex;   
     flex-direction: row;    
     justify-content: space-between;
     margin : 0 auto;
-    
-    
+`
+const MainLogo1 = styled.img`
+    width:204px;
+    height :100px;
 `
 const Logo = styled.div`
     font-size:45px;
     display:flex;
-    margin : 40px 0 0 60px;
+    margin : 10px 0 0 40px;
     cursor:pointer;
     background : white;
     text-decoration : none;
@@ -47,14 +49,14 @@ const Login = styled.div`
 const Header = ({chlidren}) => {
     return (
         <Template>
-        <Link to="/"><Logo>Logo</Logo></Link>
+        <Link to="/"style={{ textDecoration: "none" ,color:"black"}}><Logo><MainLogo1 src={MainLogo} alt="Logo" /></Logo></Link>
         <HeaderUl>
             <Category>여행계획</Category>
             <Category>기록</Category>
             <Category>지역축제소개</Category>
             <Category>커뮤니티</Category>
         </HeaderUl>
-        <Link to="/Login"><Login>로그인</Login></Link>
+        <Link to="/Login"style={{ textDecoration: "none",color:"black"}}><Login>로그인</Login></Link>
         </Template>
     );
 };
