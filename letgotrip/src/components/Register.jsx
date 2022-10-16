@@ -61,6 +61,7 @@ const Button1 = styled.button`
     border-radius : 30px;
     background : #8ED2ED;
     border : 0px;
+    cursor : pointer;
 `
 const Button2 = styled.button`
     width: 130px;
@@ -68,6 +69,7 @@ const Button2 = styled.button`
     margin-left : 30px;   
     border-radius : 30px;
     border : 0px;
+    cursor : pointer;
 `
 const Register = () => {
     const [selectedYear, setSelectedYear] = useState(2000);
