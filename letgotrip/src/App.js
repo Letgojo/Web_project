@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import Header from './components/Header.jsx';
 // import Login from './components/Login.jsx';
 import Register from './components/Register.jsx';
@@ -8,7 +8,12 @@ import Idfind from './components/Idfind.jsx';
 import { Route,Routes } from 'react-router-dom';
 import Main from './components/Main.jsx';
 import Pwdfind from './components/Pwdfind.jsx';
+import firebase from './firebase';
 const App = () => {
+  useEffect(()=> { 
+    console.log(firebase);
+  });
+
   return (
     <div>
       <Header />
