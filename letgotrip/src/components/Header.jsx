@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import MainLogo from '../img/logo.png';
 import { Link } from 'react-router-dom';
+
 const Template = styled.div`
     width: 1440px;
     height : 130px;
@@ -54,7 +55,7 @@ const Header = ({chlidren}) => {
             <Category>여행계획</Category>
             <Category>기록</Category>
             <Category>지역축제소개</Category>
-            <Category>커뮤니티</Category>
+            <Link to="/Community"style={{textDecoration:"none", color:"black"}}><Category>커뮤니티</Category></Link>
         </HeaderUl>
         <Link to="/Login"style={{ textDecoration: "none",color:"black"}}><Login>로그인</Login></Link>
         </Template>
