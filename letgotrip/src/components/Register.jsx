@@ -1,9 +1,12 @@
 import React,{useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import  styled from 'styled-components';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { firestore } from '../firebase.js'
+
 const TemplateLogin  = styled.div`
     width : 699px;
-    height : 569px;
+    height : 600px;
     border : 1px solid black;
     background-color : white;
     margin : 5% auto;   
@@ -27,31 +30,37 @@ const Overlap = styled.div`
 `
 const Pwd =styled.div`
     display:block;
-    margin : 10px 0 0 130px;
+    margin : 5px 0 0 130px;
 `
 const InputPwd= styled.input`
-    margin-top : 20px;
+    margin-top : 10px;
     width : 400px;
     height : 35px;
 `
 const Name = styled.input`
-    margin : 30px 0 0 130px;
+    margin : 15px 0 0 130px;
     width : 295px;
     height : 35px;
 `
 const YMD = styled.div`
-margin : 40px 0 0 120px;
+margin : 20px 0 0 120px;
 width : 400px;
 height : 35px;
 `
 const Year = styled.select`
     margin-left : 15px;
+    margin-top : 10px;
 `
 const Skip = styled.div`
     margin :15px 0 0 130px;
 `
 const Telepone = styled.input`
-    width:80px;
+    width:300px;
+    height : 30px;
+`
+const Email = styled.input`
+    width:300px;
+    height : 30px;
 `
 const ButtonSkip = styled.div`
     margin :20px 0 0 180px;
@@ -61,17 +70,25 @@ const Button1 = styled.button`
     height :37px;
     border-radius : 30px;
     background : #8ED2ED;
+    margin-top : 30px;
     border : 0px;
     cursor : pointer;
 `
 const Button2 = styled.button`
     width: 130px;
     height :37px;
+    margin-top : 30px;
     margin-left : 30px;   
     border-radius : 30px;
     border : 0px;
     cursor : pointer;
 `
+const P = styled.p`
+    margin : 0px;
+`
+
+
+
 
 const Register = () => {
 const [selectedYear, setSelectedYear] = useState(2000);
@@ -113,44 +130,75 @@ const goback = () => {
     navigate(-1);
 }
 
+
+const refrash = (e) => { 
+    e.preventDefault();
+    const Id = document.getElementById("Id").value
+    const Password = document.getElementById("Password").value
+    const email1 = document.getElementById("email1").value
+    const Name = document.getElementById("Name").value
+    const selfpone = document.getElementById("tel1").value 
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth,email1,Password)
+        .then((userCredential) => {
+            // Signed in
+            console.log(userCredential);
+            const user = userCredential.user;
+            // ...
+          })
+          .catch((error) => {
+            console.log('error');
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+          });
+          
+    const bucket = firestore.collection("회원관리");
+    bucket.doc("회원").set({ "아이디": Id, "패스워드" : Password, "이메일" : email1,"전화번호":selfpone  });
+    
+}
+
+
+
+
+
     return (
         <TemplateLogin>
             <form>
                 <ID>
-                <InputID type="text" placeholder='아이디' />
+                <InputID type="text" placeholder='아이디' id='Id'/>
                 <Overlap>ID중복확인</Overlap>
                 </ID>
                 <Pwd>
-                    <InputPwd type="text" placeholder='비밀번호'/>
+                    <InputPwd type="text" placeholder='비밀번호' id='Password'/>
                     <InputPwd type="text" placeholder='비밀번호확인'/>
                 </Pwd>
-                <Name type="text" placeholder="이름" />
+                <Name type="text" placeholder="이름" id='Name' />
                 <YMD>
-                    <p>생년월일</p>
-                    <Year value={selectedYear} onChange={handleSelectYear}>
+                    <P>생년월일</P>
+                    <Year id='year' value={selectedYear} onChange={handleSelectYear}>
                         {year()}
                     </Year>년 
-                    <Year value={selectedMonth} onChange={handleSelectMonth}>
+                    <Year id='month' value={selectedMonth} onChange={handleSelectMonth}>
                         {month()}
                     </Year>월 
-                    <Year value={selectedDay} onChange={handleSelectDay}>
+                    <Year id='day' value={selectedDay} onChange={handleSelectDay}>
                         {day()}
                     </Year>일 
                     </YMD>
                     <br /> 
                     <Skip>
-                    <input type="radio"/>남
-                    <input type="radio"/>여
+                    <input type="radio"id='M'/>남
+                    <input type="radio"id='W'/>여
                     </Skip> 
                     <Skip>
-                    <Telepone type="text"/>-< Telepone type="text"/>-<Telepone type="text"/>
+                    <Telepone type="text"id='tel1' placeholder='전화번호를 입력해주세요'/>
                     </Skip>
                     <Skip>
-                    <input type="text" placeholder='이메일을 입력해주세요' />@
-                    <input type="text" placeholder='직접 입력' />
+                    <Email type="text" placeholder='이메일을 입력해주세요' id='email1' />
                     </Skip>
                     <ButtonSkip>
-                    <Button1 type='submit'>회원가입</Button1>
+                    <Button1 type='submit' onClick={refrash}>회원가입</Button1>
                     <Button2 type='button' onClick={goback}>뒤로가기</Button2>
                     </ButtonSkip>
             </form>
