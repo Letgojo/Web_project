@@ -50,14 +50,14 @@ const Login = styled.div`
 const Header = ({chlidren}) => {
     return (
         <Template>
-        <Link to="/"style={{ textDecoration: "none" ,color:"black"}}><Logo><MainLogo1 src={MainLogo} alt="Logo" /></Logo></Link>
+        <Link to="/"style={{ textDecoration:"none",color:"black"}}><Logo><MainLogo1 src={MainLogo} alt="Logo" /></Logo></Link>
         <HeaderUl>
             <Category>여행계획</Category>
             <Category>기록</Category>
-            <Category>지역축제소개</Category>
-            <Link to="/Community"style={{textDecoration:"none", color:"black"}}><Category>커뮤니티</Category></Link>
+            <Link to="/localfestival" style={{textDecoration:"none",color:"black"}}><Category>지역축제소개</Category></Link>
+            <Link to="/Community"style={{textDecoration:"none",color:"black"}}><Category>커뮤니티</Category></Link>
         </HeaderUl>
-        <Link to="/Login"style={{ textDecoration: "none",color:"black"}}><Login>로그인</Login></Link>
+        <Link to="/Login"style={{textDecoration:"none",color:"black"}}><Login>로그인</Login></Link>
         </Template>
     );
 };

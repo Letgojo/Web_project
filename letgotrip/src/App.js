@@ -9,6 +9,7 @@ import Main from './components/Main.jsx';
 import Pwdfind from './components/Pwdfind.jsx';
 import Communityform from './components/Communityform.jsx';
 import { firestore } from "./firebase";
+import Localfestival from './components/Localfestival';
 const App = () => {
   useEffect(()=> { 
     console.log(firestore);
@@ -25,6 +26,7 @@ const App = () => {
       <Route path="/Login/Idfine" element={<Idfind />} />
       <Route path="/Login/Pwdfind" element={<Pwdfind />} />
       <Route path="/Community" element={<Communityform />} />
+      <Route path="/localfestival" element={<Localfestival />} />
       </Routes>
     </div>
   );

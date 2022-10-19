@@ -42,7 +42,7 @@ margin-top : 20px;
 `
 const Email = styled.input`
     height : 30px;
-    width : 200px;
+    width : 400px;
     margin : 0px 10px 0 10px;   
 `
 const Okbutton = styled.div`
@@ -112,8 +112,7 @@ const Pwdfind = () => {
                         {day()}
                     </Year>일 
                     <Emailform>
-                    이메일 : <Email type="text" placeholder='이메일을 입력해주세요' />@
-                    <Email type="text" placeholder='직접 입력' />
+                    이메일 : <Email type="text" placeholder='이메일을 입력해주세요' />
                     </Emailform>
                     <Okbutton >찾기</Okbutton>
             </Contentform>
