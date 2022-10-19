@@ -144,17 +144,19 @@ const refrash = (e) => {
             // Signed in
             console.log(userCredential);
             const user = userCredential.user;
+            alert(`${Name}님 회원가입 완료하였습니다`);
             // ...
           })
           .catch((error) => {
             console.log('error');
             const errorCode = error.code;
             const errorMessage = error.message;
+            alert("회원 실패하셨습니다.")
             // ..
           });
           
     const bucket = firestore.collection("회원관리");
-    bucket.doc("회원").set({ "아이디": Id, "패스워드" : Password, "이메일" : email1,"전화번호":selfpone  });
+    bucket.doc(Name).set({ "이름": Name,"아이디" : Id ,"패스워드" : Password, "이메일" : email1,"전화번호":selfpone  });
     
 }
 

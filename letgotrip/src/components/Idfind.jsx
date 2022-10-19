@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { firestore } from '../firebase.js'
 const Template  = styled.div`
     width : 699px;
     height : 569px;
@@ -42,9 +43,9 @@ margin-top : 20px;
 `
 const Email = styled.input`
     height : 30px;
-    width : 200px;
+    width : 450px;
 `
-const Okbutton = styled.div`
+const Okbutton = styled.button`
     width : 501px;
     background-color:black;
     color : white;
@@ -91,6 +92,20 @@ const Idfind = () => {
         }
         return result;
     };
+    const IDserch =()=>{
+        const Name = document.getElementById("value_name").value
+         const Email = document.getElementById("value_Email").value
+        const db = firestore.collection("회원관리");
+        db.doc(Name).get().then((doc)=>{
+            let person = doc.data();
+            if(Name === person.이름 && Email === person.이메일){
+                alert(`${person.이름}  귀화의 아이디는 ${person.아이디}입니다.`)
+            }
+            else{
+                alert("없는 정보입니다.")
+            }
+        })
+    }
     return (
         <Template>
             <IdPwdFind>
@@ -98,8 +113,8 @@ const Idfind = () => {
                 <Link to="/Login/Pwdfind" style={{ textDecoration: "none" ,color:"black"}}><PWDText>비밀번호찾기</PWDText></Link>
             </IdPwdFind>
             <Contentform>
-                <p>이름 : <Name type="text" /></p>생년월일 :
-                    <Year value={selectedYear} onChange={handleSelectYear}>
+                <p>이름 : <Name type="text" id='value_name'/></p>생년월일 :
+                    <Year value={selectedYear} onChange={handleSelectYear} >
                         {year()}
                     </Year>년 
                     <Year value={selectedMonth} onChange={handleSelectMonth}>
@@ -109,10 +124,9 @@ const Idfind = () => {
                         {day()}
                     </Year>일 
                     <Emailform>
-                    이메일 : <Email type="text" placeholder='이메일을 입력해주세요' />@
-                    <Email type="text" placeholder='직접 입력' />
+                    이메일 : <Email type="text" placeholder='이메일을 입력해주세요' id='value_Email'/>
                     </Emailform>
-                    <Okbutton >찾기</Okbutton>
+                    <Okbutton text="submit" onClick={IDserch}>찾기</Okbutton>
             </Contentform>
         </Template>
     );
