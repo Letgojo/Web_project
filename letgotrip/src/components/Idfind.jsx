@@ -94,9 +94,9 @@ const Idfind = () => {
     };
     const IDserch =()=>{
         const Name = document.getElementById("value_name").value
-         const Email = document.getElementById("value_Email").value
+        const Email = document.getElementById("value_Email").value
         const db = firestore.collection("회원관리");
-        db.doc(Name).get().then((doc)=>{
+        db.doc(Email).get().then((doc)=>{
             let person = doc.data();
             if(Name === person.이름 && Email === person.이메일){
                 alert(`${person.이름}  귀화의 아이디는 ${person.아이디}입니다.`)

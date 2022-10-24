@@ -1,6 +1,7 @@
 import React from 'react';
 import  styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { firestore } from '../firebase.js'
 const TemplateLogin  = styled.div`
     width : 699px;
     max-height : 569px;
@@ -52,7 +53,7 @@ const FindID = styled.div`
     cursor:pointer; 
     text-decoration-line: underline;
 `
-const LoginBtn = styled.div`
+const LoginBtn = styled.button`
     cursor : pointer;
     width : 501px;
     height : 86px;
@@ -67,21 +68,36 @@ const Btntext = styled.div`
     margin : 29px auto;
 `
 const Login = () => {
+    const LoginSub = (e) => {
+        e.preventDefault();
+        const ID = document.getElementById("value_id");
+        const PWD = document.getElementById("value_password")
+        const db = firestore.collection("회원관리");
+        db.doc(ID).get().then((doc)=>{
+            let person = doc.data();
+            if(ID === person.아이디 && PWD === person.비밀번호){
+                alert(`${person.이름} 환영합니다.`)
+            }
+            else{
+                alert("없는 정보입니다.")
+            }
+        })
+    }
     return (
         <TemplateLogin>
         <form>
         <ID>
-            <InputID  placeholder="아이디" name="usename"/>
+            <InputID  placeholder="아이디" name="usename" id="value_id"/>
         </ID>
         <PWD>
-            <InputPwd type="password" placeholder='비밀번호'/>
+            <InputPwd type="password" placeholder='비밀번호' id='value_password'/>
         </PWD>
         <Registerdiv>
             <Link to="/Login/Register"style={{ textDecoration: "none" ,color:"black"}}><Register>회원가입</Register></Link>
             <Link to="/Login/Idfine"style={{ textDecoration: "none" ,color:"black"}}><FindID>아이디 · 비밀번호 찾기</FindID></Link>
         </Registerdiv>
-        <LoginBtn>
-            <Btntext>로그인</Btntext>
+        <LoginBtn type='submit' onClick={LoginSub}>
+            <Btntext>로그인</Btntext>   
         </LoginBtn>
         </form>
         </TemplateLogin>

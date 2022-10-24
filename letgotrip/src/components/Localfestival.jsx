@@ -59,7 +59,7 @@ const localfestival = () => {
         <Template>
             <Period>
                 <Periodform>
-                기간 검색 <PLDay type="text" id='firstDay'/> <CalendarOutlined /><span> ~ </span> <PLDay type="text" id='LastDay' /><CalendarOutlined />
+                기간 검색 <PLDay type="text" id='firstDay'/>  <CalendarOutlined /><span> ~ </span> <PLDay type="text" id='LastDay' /><CalendarOutlined />
                 </Periodform>
             </Period>
             <Local>

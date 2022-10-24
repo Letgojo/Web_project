@@ -139,6 +139,7 @@ const refrash = (e) => {
     const Name = document.getElementById("Name").value
     const selfpone = document.getElementById("tel1").value 
     const auth = getAuth();
+
     createUserWithEmailAndPassword(auth,email1,Password)
         .then((userCredential) => {
             // Signed in
@@ -154,9 +155,16 @@ const refrash = (e) => {
             alert("회원 실패하셨습니다.")
             // ..
           });
-          
-    const bucket = firestore.collection("회원관리");
-    bucket.doc(Name).set({ "이름": Name,"아이디" : Id ,"패스워드" : Password, "이메일" : email1,"전화번호":selfpone  });
+    const bucket = firestore.collection("회원관리").doc(email1||Id);
+    
+    bucket.set(
+        { 
+        "이름": Name,
+        "아이디" : Id ,
+        "패스워드" : Password, 
+        "이메일" : email1,
+        "전화번호":selfpone,
+      });
     
 }
 
