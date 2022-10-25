@@ -1,5 +1,6 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import styled from 'styled-components'
+import Calender from 'react-calendar'
 import {CalendarOutlined ,SearchOutlined} from "@ant-design/icons"
 const Template  = styled.div`
     width : 1300px;
@@ -15,7 +16,7 @@ const Period  = styled.div`
     height : 42px; 
     border : 1px solid black;
     border-radius: 30px;    
-    margin : 30px 0 0 30px;
+    margin : 30px 0 0 750px;
     padding-left : 40px;    
 `
 const Periodform = styled.div`
@@ -34,7 +35,7 @@ const Local =  styled.div`
     width : 450px;
     height : 42px;
     border-radius : 30px;
-    margin : 20px 0 0 30px;
+    margin : 20px 0 0 750px;
     padding-left : 40px; 
 `
 const Localform = styled.div`
@@ -54,12 +55,16 @@ const SearchCity = styled.input`
     border-radius: 30px;
 `
 
-const localfestival = () => {
+const Localfestival = () => {
+    const [value, onChange] = useState(new Date());
+    const FirstDay = () => { 
+        <Calender onChange={onChange} value={value} />
+    }
     return (
         <Template>
             <Period>
                 <Periodform>
-                기간 검색 <PLDay type="text" id='firstDay'/>  <CalendarOutlined /><span> ~ </span> <PLDay type="text" id='LastDay' /><CalendarOutlined />
+                기간 검색 <PLDay type="text" id='firstDay'/>  <CalendarOutlined onClick={FirstDay} style={{cursor:"pointer"}}/><span> ~ </span> <PLDay type="text" id='LastDay' /><CalendarOutlined  style={{cursor:"pointer"}}/>
                 </Periodform>
             </Period>
             <Local>
@@ -77,4 +82,4 @@ const localfestival = () => {
     );
 };
 
-export default localfestival;
+export default Localfestival;

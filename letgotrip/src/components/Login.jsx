@@ -59,8 +59,9 @@ const LoginBtn = styled.button`
     height : 86px;
     border : 1px solid black;
     border-radius : 30px;
-    margin : 40px auto;
+    margin : 40px 95px;
     background-color : black;
+    font-size : 20px; 
 `
 const Btntext = styled.div`
     text-align:center;

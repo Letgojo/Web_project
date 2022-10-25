@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import  styled from 'styled-components';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { firestore } from '../firebase.js'
-
+/* 템플릿  */
 const TemplateLogin  = styled.div`
     width : 699px;
     height : 600px;
@@ -12,6 +12,8 @@ const TemplateLogin  = styled.div`
     margin : 5% auto;   
     border-radius : 30px;
 `
+
+/* 아이디, 아이디 중복  */
 const ID = styled.div`
     margin : 40px 0 0 130px;
     text-align : center;
@@ -21,7 +23,7 @@ const InputID = styled.input`
     width : 295px;
     height : 35px;
 `
-const Overlap = styled.div`
+const Overlap = styled.button`
     width : 133px;
     height : 33px;
     background-color: #EAEAEA;
@@ -167,17 +169,26 @@ const refrash = (e) => {
       });
     
 }
-
-
-
-
-
+    const ID_overlap = (e) => { 
+        e.preventDefault();
+        const Id = document.getElementById("Id").value
+        const db = firestore.collection("회원관리");
+            db.doc(Id).get().then((doc)=>{
+                let person = doc.data();
+                if(Id === person.아이디){
+                    alert("아이디가 중복됩니다. 다른 아이디를 입력해주세요")
+                }
+                else{
+                    alert("사용가능합니다.")
+                }
+        })
+    }
     return (
         <TemplateLogin>
             <form>
                 <ID>
                 <InputID type="text" placeholder='아이디' id='Id'/>
-                <Overlap>ID중복확인</Overlap>
+                <Overlap type="button" onClick={ID_overlap}>ID중복확인</Overlap>
                 </ID>
                 <Pwd>
                     <InputPwd type="text" placeholder='비밀번호' id='Password'/>
