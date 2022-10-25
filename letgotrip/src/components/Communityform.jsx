@@ -32,14 +32,17 @@ const SearchInput = styled.input`
     border-radius : 30px;
     border : 0px;   
     `
-
+const Write = styled.div`
+    cursor : pointer;
+    font-size : 30px;
+`
 const Communityform = () => {
     return (
         <Template>
             <Writeform>
-                <p>글쓰기</p>
+                <Write>글쓰기</Write>
                 <Search>
-                <SearchInput type="text" /><SearchOutlined /> 검색
+                <SearchInput type="text" /><span><SearchOutlined /> 검색</span>
                 </Search>
             </Writeform>
         </Template>
