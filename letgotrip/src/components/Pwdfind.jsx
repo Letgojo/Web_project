@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { firestore } from '../firebase';
 const Template  = styled.div`
     width : 699px;
     height : 569px;
@@ -45,7 +46,7 @@ const Email = styled.input`
     width : 400px;
     margin : 0px 10px 0 10px;   
 `
-const Okbutton = styled.div`
+const Okbutton = styled.button`
     width : 501px;
     background-color:black;
     color : white;
@@ -92,6 +93,22 @@ const Pwdfind = () => {
         }
         return result;
     };
+    const Click_PWD = () =>
+    {
+        const ID = document.getElementById("value_ID").value
+        const Name = document.getElementById("value_name").value
+        const Email = document.getElementById("value_Email").value
+        const db = firestore.collection("회원관리");
+        db.doc(Email).get().then((doc)=>{
+            let person = doc.data();
+            if(Name === person.이름 && Email === person.이메일 && ID === person.아이디){
+                alert(`${person.이름}  귀화의 비밀번호는 ${person.패스워드}입니다.`)
+            }
+            else{
+                alert("없는 정보입니다.")
+            }
+        })    
+    }
     return (
         <Template>
                 <IdPwdFind>
@@ -99,8 +116,8 @@ const Pwdfind = () => {
                 <PWDText>비밀번호찾기</PWDText>
             </IdPwdFind>
             <Contentform>
-            <p>아이디 : <Name type="text" /></p>
-            <p>이름 : <Name type="text" /></p>
+            <p>아이디 : <Name type="text" id='value_ID' /></p>
+            <p>이름 : <Name type="text" id='value_name'/></p>
             생년월일 :
                     <Year value={selectedYear} onChange={handleSelectYear}>
                         {year()}
@@ -112,9 +129,9 @@ const Pwdfind = () => {
                         {day()}
                     </Year>일 
                     <Emailform>
-                    이메일 : <Email type="text" placeholder='이메일을 입력해주세요' />
+                    이메일 : <Email type="text" placeholder='이메일을 입력해주세요' id='value_Email'/>
                     </Emailform>
-                    <Okbutton >찾기</Okbutton>
+                    <Okbutton type="submit" onClick={Click_PWD} >찾기</Okbutton>
             </Contentform>
         </Template>
     );

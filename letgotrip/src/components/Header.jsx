@@ -52,7 +52,7 @@ const Header = ({chlidren}) => {
         <Template>
         <Link to="/"style={{ textDecoration:"none",color:"black"}}><Logo><MainLogo1 src={MainLogo} alt="Logo" /></Logo></Link>
         <HeaderUl>
-            <Category>여행계획</Category>
+            <Link to="/TripPlan" style={{textDecoration:"none",color:"black"}}><Category>여행계획</Category></Link>
             <Category>기록</Category>
             <Link to="/localfestival" style={{textDecoration:"none",color:"black"}}><Category>지역축제소개</Category></Link>
             <Link to="/Community"style={{textDecoration:"none",color:"black"}}><Category>커뮤니티</Category></Link>
