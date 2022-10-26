@@ -45,6 +45,16 @@
         border : 1px solid black;
         border-radius : 30px;
     `
+    const Next = styled.div`
+        width : 187px;
+        height : 58px;
+        border : 1px solid black;
+        border-radius : 30px;
+        background-color : #B9D6F9;
+        font-size : 40px;
+        text-align : center;
+        margin-top: 40px;
+    `
     const TripPlan_Yes1 = () => {
         return (
             <>
@@ -66,6 +76,7 @@
                     <StartorFinshDay></StartorFinshDay>
                     <StartorFinshDay></StartorFinshDay>
                     </GoDay>
+                    <Next>Next</Next> 
                 </TripPlancalrndar>
             </>
         );

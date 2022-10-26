@@ -1,5 +1,6 @@
 import React from 'react';
 import  styled  from 'styled-components';
+import {Link} from 'react-router-dom'
 import {SearchOutlined}  from "@ant-design/icons"
 const Template  = styled.div`
     width : 1300px;
@@ -40,7 +41,7 @@ const Communityform = () => {
     return (
         <Template>
             <Writeform>
-                <Write>글쓰기</Write>
+                <Link to="/Community/Write" style={{ textDecoration:"none",color:"black"}}><Write>글쓰기</Write></Link>
                 <Search>
                 <SearchInput type="text" /><span><SearchOutlined /> 검색</span>
                 </Search>

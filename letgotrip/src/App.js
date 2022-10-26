@@ -13,6 +13,7 @@ import Localfestival from './components/Localfestival';
 import TripPlan from './components/TripPlan.jsx';
 import TripPlanYes1 from './components/TripPlanYes1.jsx';
 import TripPlanNo1 from './components/TripPlanNo1.jsx';
+import CommunityWrite from './components/CommunityWrite';
 const App = () => {
   useEffect(()=> { 
     console.log(firestore);
@@ -29,6 +30,7 @@ const App = () => {
       <Route path="/Login/Idfine" element={<Idfind />} />
       <Route path="/Login/Pwdfind" element={<Pwdfind />} />
       <Route path="/Community" element={<Communityform />} />
+      <Route path="/Community/Write" element={<CommunityWrite />}/>
       <Route path="/localfestival" element={<Localfestival />} />
       <Route path='/TripPlan' element={<TripPlan />}/>
       <Route path='/TripPlan/Yes1' element={<TripPlanYes1 />}/>
