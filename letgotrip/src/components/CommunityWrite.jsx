@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState} from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import text from '../img/text.png';
@@ -28,6 +28,7 @@ const WriteTitle = styled.input`
     border : 1px solid #108057;
     font-size : 20px;
     margin-top : 30px;
+    padding-left : 20px;
 `
 const WriteContent = styled.div`
     width : 654px;
@@ -88,13 +89,28 @@ const SortCenter = styled.img`
     margin : 11px 0 0 40px;
     cursor : pointer;
 `
-
+const TextSize = styled.select`
+    margin : 6px 0 0 30px;
+    widht:24px;
+    height :40px;
+`
 
 const CommunityWrite = () => { 
     const navigate = useNavigate();
     const Goback = () => { 
         navigate(-1);
     }
+    const [SelectText,setSelectText] = useState(10);
+    const handleSelectText = (e) => {
+        setSelectText(e.target.value);
+    };
+    const Textsize = () => {
+        const result = [];
+        for (let i = 2; i < 100; i++) {
+            result.push(<option value={i}>{i}</option>);
+        }
+        return result;
+    };
     return (
         <Template>
            <WriteLogo>글쓰기</WriteLogo> 
@@ -107,6 +123,9 @@ const CommunityWrite = () => {
             <SortCenter src={nomal} atl="일반" />
             <SortCenter src={sortLeft} atl="왼쪽정렬" />
             <SortCenter src={sortRight} atl="오른쪽정렬" />
+            <TextSize value={SelectText} onChange={handleSelectText}>
+                {Textsize()}
+            </TextSize>
            </WriteContent>
            <WriteMain name="" id="" cols="130" rows="30" placeholder='여기에 입력해주세요'>
            </WriteMain>
