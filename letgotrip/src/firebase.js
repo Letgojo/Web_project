@@ -19,9 +19,6 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
-
-
-
 // // firebaseConfig 정보로 firebase 시작
 // firebase.initializeApp(firebaseConfig);
 
