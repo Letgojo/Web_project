@@ -3,9 +3,10 @@ import styled from 'styled-components'
 import Calender from 'react-calendar'
 import {CalendarOutlined ,SearchOutlined} from "@ant-design/icons"
 import { firestore } from '../firebase';
+import PostListmap from './PostListmap';
 const Template  = styled.div`
     width : 1300px;
-    height : 1200px;
+    height : 3000px;
     border : 1px solid black;
     background-color : white;
     margin : 5% auto;   
@@ -63,14 +64,15 @@ const Search = styled.div`
     cursor : pointer;   
 `
 const Localfestival = () => {
-
+    const preson = [];
     const [value, onChange] = useState(new Date());
+    const [postList, setPostList] = useState([]);
     const FirstDay = () => { 
-        <Calender onChange={onChange} value={value} />
+        
     }
-    
-    const SearchContent =()=> {
-        var preson = [];
+
+
+    const SearchContent = ()=> {
     const City = document.getElementById("City").value
     const db = firestore.collection("축제").doc("지역축제");
     db.collection(City).get().then((결과)=>{
@@ -78,16 +80,16 @@ const Localfestival = () => {
          let result = doc.data();
          preson.push(result);
         });    
-      console.log(preson[0]);
     });
-    // // db.doc().get().then((doc)=>{
-    // //     let person = doc.data();
-    // //     console.log(person)
-    // })
-}
-// const citiesRef = db.collection('cities');
-
-
+    preson.map((element)=>(
+    setPostList((postList) => [
+        ...postList,
+        { id: 4, title: element.축제이름, content : element.축제소개, state: element.장소 },
+    ])));
+    // setPostList = preson.map((element)=>([
+    //     {name : element.축제이름 , content : element.축제소개 , state : element.장소 }
+    // ]))
+};
     return (
         <Template>
             <Period>
@@ -95,6 +97,9 @@ const Localfestival = () => {
                 기간 검색 <PLDay type="text" id='firstDay'/>  <CalendarOutlined onClick={FirstDay} style={{cursor:"pointer"}}/><span> ~ </span> <PLDay type="text" id='LastDay' /><CalendarOutlined  style={{cursor:"pointer"}}/>
                 </Periodform>
             </Period>
+
+            <Calender onChange={onChange} value={value} />
+
             <Local>
                 <Localform>
                 <span>지역</span>
@@ -104,12 +109,22 @@ const Localfestival = () => {
                     <option value="경상남도">경상남도</option>
                     <option value="부산광역시">부산광역시</option>
                 </City>
-                <Search onClick={SearchContent} ><span>검색</span> <SearchCity type="text" /><SearchOutlined /></Search> 
+                <span>검색</span> <SearchCity type="text" /><Search onClick={SearchContent}><SearchOutlined /></Search> 
                 </Localform>
             </Local>
             <FestivalContent>
-
-
+                <div>
+                    <ul>
+                        {postList.map((element) => (
+                    <PostListmap
+                        key={element.id}
+                        title={element.title}
+                        content={element.content}
+                        state={element.state}
+                />
+              ))}
+                    </ul>
+                </div>
             </FestivalContent>
         </Template>
     );
