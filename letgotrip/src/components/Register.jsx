@@ -191,8 +191,8 @@ const refrash = (e) => {
                 <Overlap type="button" onClick={ID_overlap}>ID중복확인</Overlap>
                 </ID>
                 <Pwd>
-                    <InputPwd type="text" placeholder='비밀번호' id='Password'/>
-                    <InputPwd type="text" placeholder='비밀번호확인'/>
+                    <InputPwd type="password" placeholder='비밀번호' id='Password'/>
+                    <InputPwd type="password" placeholder='비밀번호확인'/>
                 </Pwd>
                 <Name type="text" placeholder="이름" id='Name' />
                 <YMD>
