@@ -1,6 +1,10 @@
     import React from 'react';
     import styled from 'styled-components';
     import {SearchOutlined,ArrowRightOutlined} from "@ant-design/icons"
+    import Carimg from '../img/car.png'
+    import Trainimg from '../img/train.png'
+    import Calenderimg from '../img/calender.png'
+
     const Transportation = styled.div`
         background-color : white;
         margin : 50px auto;
@@ -8,6 +12,11 @@
         height : 158px; 
         display : flex;
         border-radius : 30px;
+        justify-content : space-between;
+        padding : 0 20px;
+    `
+    const Traffic = styled.img`
+        height : 100px;
     `
     const TripPlancalrndar = styled.div`
         background-color : white;
@@ -44,7 +53,18 @@
         height :140px;
         border : 1px solid black;
         border-radius : 30px;
+        display: flex;
     `
+    const Carlenderimg = styled.img`
+        width :62px;
+        height : 68px;
+        margin : 30px;
+        cursor : pointer;
+    `
+    const CarlenderData = styled.div`
+        font-size : 20px;
+        margin : 20px 0 0 0;
+        `
     const Next = styled.div`
         width : 187px;
         height : 58px;
@@ -59,7 +79,11 @@
         return (
             <>
                 <Transportation>
-                    1111
+                    <div style={{fontSize:"30px"}}>
+                    <Traffic src={Carimg} alt="자동차" style={{marginLeft :'50px'}}/>
+                    </div>
+                    <div style={{borderLeft :"1px solid black"}}></div>
+                    <Traffic src={Trainimg} alt="기차"  style={{marginRight :'50px'}}/>
                 </Transportation>
                 <TripPlancalrndar >
                     <Location>
@@ -72,8 +96,22 @@
                     </LocationStartorFinsh>
                     </Location>
                     <GoDay>
-                    <StartorFinshDay></StartorFinshDay>
-                    <StartorFinshDay></StartorFinshDay>
+                    <StartorFinshDay>
+                        <Carlenderimg src={Calenderimg} alt="출발캘린더" />
+                        <CarlenderData>
+                            <span>출발</span>
+                            <div style={{border : "1px solid black" , width:"150px" ,marginTop:"10px"}}></div>
+                            <div></div>
+                        </CarlenderData>
+                    </StartorFinshDay>
+                    <StartorFinshDay>
+                    <Carlenderimg src={Calenderimg} alt="도착캘린더" />
+                        <CarlenderData>
+                            <span>도착</span>
+                            <div style={{border : "1px solid black" , width:"150px" ,marginTop:"10px"}}></div>
+                            <div></div>
+                        </CarlenderData>
+                    </StartorFinshDay>
                     <StartorFinshDay></StartorFinshDay>
                     </GoDay>
                     <Next>Next</Next> 
