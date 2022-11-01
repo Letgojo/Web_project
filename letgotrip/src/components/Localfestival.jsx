@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React,{ useEffect,useState } from 'react';
 import styled from 'styled-components'
 // import Calender from 'react-calendar'
 import {SearchOutlined} from "@ant-design/icons"
@@ -85,25 +85,33 @@ const Localfestival = () => {
     //   };
     // const [value, onChange] = useState(new Date());
     const [postList, setPostList] = useState([]);
-
-
-    const SearchContent = ()=> {
+    useEffect(()=> { 
+        console.log("랜더링됨")
+    },[postList])
+    
+    const SearchContent = async()=> {
+    var i = 1;
     const first = document.getElementById("firstDay").value
     const last = document.getElementById("LastDay").value
-    const City = document.getElementById("City").value
-    const db = firestore.collection("축제").doc("지역축제");
-    console.log(first, last)
-    db.collection(City).get().then((결과)=>{
+    const City   = document.getElementById("City").value
+    try{
+    const db =  firestore.collection("축제").doc("지역축제");
+    await db.collection(City).get().then((결과)=>{
     결과.forEach((doc) => {
          let result = doc.data();
          preson.push(result);
         });    
     });
-    preson.map((element)=>(
+     preson.map((element)=>(
     setPostList((postList) => [
         ...postList,
-        { id: 4,url:element.축제사진URL ,title: element.축제이름, content : element.축제소개, state: element.장소 },
-    ])));
+        { url:element.축제사진URL ,title: element.축제이름, content : element.축제소개, state: element.장소 },
+    ])));  
+    
+}
+catch(error){
+    console.log(error)
+}
     // setPostList = preson.map((element)=>([
     //     {name : element.축제이름 , content : element.축제소개 , state : element.장소 }
     // ]))
@@ -142,9 +150,9 @@ const Localfestival = () => {
             <FestivalContent>
                 <div>
                     <ul>
-                        {postList.map((element) => (
+                        {postList.map((element,index) => (
                     <PostListmap
-                        key={element.id}
+                        key={index}
                         url={element.url}
                         title={element.title}
                         content={element.content}

@@ -9,6 +9,8 @@
     import Trainimg from '../img/train.png'
     import Calenderimg from '../img/calender.png'
     import Groupimg from '../img/group.png'
+    import plusimg from '../img/plus.png'
+    import minus from '../img/minus.png'
     const Transportation = styled.div`
         background-color : white;
         margin : 50px auto;
@@ -18,9 +20,17 @@
         border-radius : 30px;
         justify-content : space-between;
         padding : 0 20px;
+        
+    `
+    const CalendarValue = styled.div`
+        margin-top : 20px;
     `
     const Traffic = styled.img`
         height : 100px;
+        cursor : pointer;
+        &:hover{
+        border: 1px solid red;
+    }   
     `
     const TripPlancalrndar = styled.div`
         background-color : white;
@@ -68,6 +78,7 @@
     const CarlenderData = styled.div`
         font-size : 20px;
         margin : 20px 0 0 0;
+        z-index : 10;
         `
     const Next = styled.div`
         width : 187px;
@@ -83,23 +94,51 @@
     const CalenderTamplate = styled.div`
     width : 500px;
     height : 200px;
-    border : 1px solid black;
-    border-radius : 30px;
     background-color : white;
     margin-top : 10px;
-    z-index : 1;
+    
 `
+
+    const Plusbtn = styled.img`
+        width : 22px;
+        height : 21px;
+        cursor : pointer;
+        margin-right  : 10px;
+    `
+    const Minusbtn = styled.img`
+        width : 22px;
+        height : 21px;
+        cursor : pointer;
+        margin-left : 10px; 
+    `
+    const Human = styled.div`
+        margin : 20px;
+    `
+    
+
     const TripPlan_Yes1 = () => {
         const [CalendarOn1 , setCalendar1] = useState(false)
+        const [CalendarOn2 , setCalendar2] = useState(false)
         const [value, onChange] = useState(new Date());
-        const toggleCalendar = () => {
+        const [value1, onChange1] = useState(new Date());
+        const [people, setPeople] = useState(1);
+        const handlePlus = () => { 
+            setPeople(people + 1);
+        }
+        const handleMinus = () => {
+            setPeople(people-1);
+        }
+        const toggleCalendar1 = () => {
             setCalendar1((CalendarOn1) => !CalendarOn1);console.log(CalendarOn1)
+          };
+          const toggleCalendar2 = () => {
+            setCalendar2((CalendarOn2) => !CalendarOn2);console.log(CalendarOn2)
           };
         return (
             <>
                 <Transportation>
                     <div style={{fontSize:"30px"}}>
-                    <Traffic src={Carimg} alt="자동차" style={{marginLeft :'50px'}}/>
+                    <div><Traffic src={Carimg} alt="자동차" style={{marginLeft :'50px'}}/></div>
                     </div>
                     <div style={{borderLeft :"1px solid black"}}></div>
                     <Traffic src={Trainimg} alt="기차"  style={{marginRight :'50px'}}/>
@@ -116,26 +155,33 @@
                     </Location>
                     <GoDay>
                     <StartorFinshDay>
-                        <Carlenderimg src={Calenderimg} alt="출발캘린더" />
+                        <Carlenderimg src={Calenderimg} alt="출발캘린더" onClick={toggleCalendar1} />
                         <CarlenderData>
                             <span>출발</span>
-                            <div style={{border : "1px solid black" , width:"150px" ,marginTop:"10px"}}></div>
-                            <div></div>
-                        </CarlenderData>
-                    </StartorFinshDay>
-                    <StartorFinshDay>
-                    <Carlenderimg src={Calenderimg} alt="도착캘린더" onClick={toggleCalendar}/>
-                        <CarlenderData>
-                            <span>도착</span>
                             <div style={{border : "1px solid black" , width:"150px" ,marginTop:"10px"}}></div>
                             <div>
                             {CalendarOn1 ? (
                             <CalenderTamplate>
-                            <Calender onChange={onChange} value={value} />
+                            <Calender onChange={onChange} value={value}/>
                             </CalenderTamplate>
                     )  : ""} 
                             </div>
-                            <div className="text-gray-500 mt-4">{moment(value).format("YYYY년 MM월 DD일")}</div>
+                            <CalendarValue>{moment(value).format("YYYY년 MM월 DD일")}</CalendarValue>
+                        </CarlenderData>
+                    </StartorFinshDay>
+                    <StartorFinshDay>
+                    <Carlenderimg src={Calenderimg} alt="도착캘린더" onClick={toggleCalendar2}/>
+                        <CarlenderData>
+                            <span>도착</span>
+                            <div style={{border : "1px solid black" , width:"150px" ,marginTop:"10px"}}></div>
+                            <div>
+                            {CalendarOn2 ? (
+                            <CalenderTamplate>
+                            <Calender onChange={onChange1} value={value1} />
+                            </CalenderTamplate>
+                    )  : ""} 
+                            </div>
+                            <CalendarValue>{moment(value1).format("YYYY년 MM월 DD일")}</CalendarValue>
                         </CarlenderData>
                     </StartorFinshDay>
                     <StartorFinshDay>
@@ -143,7 +189,11 @@
                     <CarlenderData>
                             <span>인원</span>
                             <div style={{border : "1px solid black" , width:"150px" ,marginTop:"10px"}}></div>
-                            <div className="text-gray-500 mt-4"></div>
+                            <Human>
+                                <Plusbtn src={plusimg} alt="플러스" onClick={handlePlus} />
+                                <span style={{fontSize : "30px"}}>{people}</span>
+                                <Minusbtn src={minus} alt="마이너스" onClick={handleMinus}/>
+                            </Human>
                         </CarlenderData>
                     </StartorFinshDay>
                     </GoDay>

@@ -7,12 +7,17 @@ const Template1 = styled.div`
 const Festival = styled.img`
     width : 154px;
     height : 177px;
+    margin-right : 40px;
+`
+const PostConcent = styled.div`
+    width : 1500px;
+    height : 300px;
 `
 const PostListmap = ({url,title,content,state}) => {
     return (
         <Template1>
         <Festival src={url} alt="" />
-        <div>
+        <PostConcent>
             <span>{title}</span>
             <br /><br />
             <span>{content}</span>
@@ -21,7 +26,7 @@ const PostListmap = ({url,title,content,state}) => {
             <br /><br />
             <br /><br />
             <hr />  
-        </div>
+        </PostConcent>
         </Template1>
     );
 };

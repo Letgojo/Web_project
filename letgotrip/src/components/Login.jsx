@@ -71,12 +71,14 @@ const Btntext = styled.div`
 const Login = () => {
     const LoginSub = (e) => {
         e.preventDefault();
-        const ID = document.getElementById("value_id");
-        const PWD = document.getElementById("value_password")
+        const ID = document.getElementById("value_id").value;
+        const PWD = document.getElementById("value_password").value;
         const db = firestore.collection("회원관리");
+        console.log(ID)
         db.doc(ID).get().then((doc)=>{
             let person = doc.data();
-            if(ID === person.아이디 && PWD === person.비밀번호){
+            console.log(person)
+            if(ID === person.아이디 && PWD === person.패스워드){
                 alert(`${person.이름} 환영합니다.`)
             }
             else{
@@ -88,7 +90,7 @@ const Login = () => {
         <TemplateLogin>
         <form>
         <ID>
-            <InputID  placeholder="아이디" name="usename" id="value_id"/>
+            <InputID type="text" placeholder="아이디" name="usename" id="value_id"/>
         </ID>
         <PWD>
             <InputPwd type="password" placeholder='비밀번호' id='value_password'/>

@@ -8,7 +8,7 @@ import sortCenter from '../img/sortCenter.png';
 import nomal from '../img/nomal.png';
 import sortLeft from '../img/left.png';
 import sortRight from '../img/right.png';
-
+import post from '../img/imgpost.png';
 
 const Template  = styled.div`
     width : 1300px;
@@ -41,7 +41,7 @@ const WriteContent = styled.div`
 const WriteMain = styled.textarea`
     margin-top : 30px;  
     font-size : 15px;
-    border : 1px solid #108057; 
+    border : 0px;
     `
 const Success = styled.button`
     cursor : pointer;
@@ -94,7 +94,10 @@ const TextSize = styled.select`
     widht:24px;
     height :40px;
 `
-
+const PostImg = styled.img`
+    width : 178px;
+    height : 189px;
+`
 const CommunityWrite = () => { 
     const navigate = useNavigate();
     const Goback = () => { 
@@ -127,8 +130,11 @@ const CommunityWrite = () => {
                 {Textsize()}
             </TextSize>
            </WriteContent>
-           <WriteMain name="" id="" cols="130" rows="30" placeholder='여기에 입력해주세요'>
+            <div style={{ marginTop : "10px",border : " 1px solid #108057"}}>
+           <WriteMain name="" id="" cols="130" rows="20" placeholder='여기에 입력해주세요'>
            </WriteMain>
+            <PostImg src={post} alt="이미지" /><input type="file"/>
+            </div>
            <Buttondiv>
            <Success type='submit'>저장</Success>
            <Cancel type='button' onClick={Goback}>취소</Cancel>

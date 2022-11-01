@@ -157,7 +157,7 @@ const refrash = (e) => {
             alert("회원 실패하셨습니다.")
             // ..
           });
-    const bucket = firestore.collection("회원관리").doc(email1||Id);
+    const bucket = firestore.collection("회원관리").doc(Id||email1);
     
     bucket.set(
         { 

@@ -93,18 +93,29 @@ const Idfind = () => {
         return result;
     };
     const IDserch =()=>{
+        const user = [];
         const Name = document.getElementById("value_name").value
         const Email = document.getElementById("value_Email").value
         const db = firestore.collection("회원관리");
-        db.doc(Email).get().then((doc)=>{
-            let person = doc.data();
-            if(Name === person.이름 && Email === person.이메일){
-                alert(`${person.이름}  귀화의 아이디는 ${person.아이디}입니다.`)
-            }
-            else{
-                alert("없는 정보입니다.")
+        db.get().then((result)=>{
+            result.forEach((allDoc)=>{
+                user.push(allDoc.data())
+            })
+            for(let i =0; i<user.length; i++) { 
+                if(user[i].이름===Name && user[i].이메일===Email)
+                    alert(user[i].아이디)
             }
         })
+        
+        // db.doc(Email).get().then((doc)=>{
+        //     let person = doc.data();
+        //     console.log(person)
+            // if(Name === person.이름 && Email === person.이메일){
+            //     alert(`${person.이름}  귀화의 아이디는 ${person.아이디}입니다.`)
+            // }
+            // else{
+            //     alert("없는 정보입니다.")
+            // }
     }
     return (
         <Template>

@@ -99,7 +99,7 @@ const Pwdfind = () => {
         const Name = document.getElementById("value_name").value
         const Email = document.getElementById("value_Email").value
         const db = firestore.collection("회원관리");
-        db.doc(Email).get().then((doc)=>{
+        db.doc(ID).get().then((doc)=>{
             let person = doc.data();
             if(Name === person.이름 && Email === person.이메일 && ID === person.아이디){
                 alert(`${person.이름}  귀화의 비밀번호는 ${person.패스워드}입니다.`)
