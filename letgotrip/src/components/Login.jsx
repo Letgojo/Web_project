@@ -1,6 +1,6 @@
 import React from 'react';
 import  styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate } from 'react-router-dom';
 import { firestore } from '../firebase.js'
 const TemplateLogin  = styled.div`
     width : 699px;
@@ -69,8 +69,10 @@ const Btntext = styled.div`
     margin : 29px auto;
 `
 const Login = () => {
+    const navigate = useNavigate();
     const LoginSub = (e) => {
         e.preventDefault();
+        let sessionStorage = window.sessionStorage;
         const ID = document.getElementById("value_id").value;
         const PWD = document.getElementById("value_password").value;
         const db = firestore.collection("회원관리");
@@ -79,7 +81,12 @@ const Login = () => {
             let person = doc.data();
             console.log(person)
             if(ID === person.아이디 && PWD === person.패스워드){
+                sessionStorage.setItem("loginId", ID);
+                sessionStorage.setItem("loginPassword", PWD);
+                sessionStorage.setItem("name",person.이름)
                 alert(`${person.이름} 환영합니다.`)
+                navigate('/');
+                window.location.replace("/")
             }
             else{
                 alert("없는 정보입니다.")
@@ -103,6 +110,7 @@ const Login = () => {
             <Btntext>로그인</Btntext>   
         </LoginBtn>
         </form>
+        { JSON.stringify(sessionStorage) }
         </TemplateLogin>
     );
 };

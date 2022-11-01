@@ -1,7 +1,8 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import styled from 'styled-components'
 import MainLogo from '../img/logo.png';
 import { Link } from 'react-router-dom';
+import { firestore } from '../firebase.js'
 
 const Template = styled.div`
     width: 1440px;
@@ -45,9 +46,34 @@ const Login = styled.div`
     text-decoration : none;
     color: black;
 `
-
+const Onlinename = styled.div`
+    margin-top :  40px;
+    display : flex;
+`
+const Logout = styled.div`
+    margin-left : 30px;
+    margin-right : 60px;
+    cursor : pointer
+    
+`
 
 const Header = ({chlidren}) => {
+    let sessionStorage = window.sessionStorage;
+    const [user, setuser] = useState(false)
+    const name = sessionStorage.getItem("name")
+
+    const logout = () => { 
+        sessionStorage.clear();
+        window.location.replace("/")
+        }
+    useEffect(()=>{ 
+        if(sessionStorage.getItem('loginId') === null){
+            console.log('isLogin ?? :: ', user)
+        }else{
+            setuser(true)
+            console.log('isLogin ?? :: ', user)
+        }
+    })
     return (
         <Template>
         <Link to="/"style={{ textDecoration:"none",color:"black"}}><Logo><MainLogo1 src={MainLogo} alt="Logo" /></Logo></Link>
@@ -57,7 +83,13 @@ const Header = ({chlidren}) => {
             <Link to="/localfestival" style={{textDecoration:"none",color:"black"}}><Category>지역축제소개</Category></Link>
             <Link to="/Community"style={{textDecoration:"none",color:"black"}}><Category>커뮤니티</Category></Link>
         </HeaderUl>
-        <Link to="/Login"style={{textDecoration:"none",color:"black"}}><Login>로그인</Login></Link>
+        {user?(
+            <>
+            <Onlinename style={{fontSize:"15px"}}>{name}환영합니다.<Logout onClick={logout}>로그아웃</Logout></Onlinename>
+            </>
+            ):(
+        <Link to="/Login"style={{textDecoration:"none",color:"black"}}><Login>로그인</Login></Link>    
+        )}
         </Template>
     );
 };
