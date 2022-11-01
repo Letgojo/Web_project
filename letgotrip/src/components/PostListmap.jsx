@@ -1,7 +1,17 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const PostListmap = ({title,content,state}) => {
+const Template1 = styled.div`
+    display:flex;
+`
+const Festival = styled.img`
+    width : 154px;
+    height : 177px;
+`
+const PostListmap = ({url,title,content,state}) => {
     return (
+        <Template1>
+        <Festival src={url} alt="" />
         <div>
             <span>{title}</span>
             <br /><br />
@@ -10,8 +20,9 @@ const PostListmap = ({title,content,state}) => {
             <span>{state}</span>
             <br /><br />
             <br /><br />
-            <hr />
+            <hr />  
         </div>
+        </Template1>
     );
 };
 

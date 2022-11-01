@@ -12,6 +12,7 @@ import { firestore } from "./firebase";
 import Localfestival from './components/Localfestival';
 import TripPlan from './components/TripPlan.jsx';
 import TripPlanYes1 from './components/TripPlanYes1.jsx';
+import TripPlanYes2 from './components/TripPlanYes2.jsx';
 import TripPlanNo1 from './components/TripPlanNo1.jsx';
 import CommunityWrite from './components/CommunityWrite';
 const App = () => {
@@ -34,7 +35,9 @@ const App = () => {
       <Route path="/localfestival" element={<Localfestival />} />
       <Route path='/TripPlan' element={<TripPlan />}/>
       <Route path='/TripPlan/Yes1' element={<TripPlanYes1 />}/>
+      <Route path='/TripPlan/Yes2' element={<TripPlanYes2 />}/>
       <Route path='/TripPlan/No1' element={<TripPlanNo1 />}/>
+
       </Routes>
     </div>
   );

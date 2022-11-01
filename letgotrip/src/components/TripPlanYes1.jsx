@@ -1,10 +1,14 @@
-    import React from 'react';
+    import React,{useState} from 'react';
     import styled from 'styled-components';
+    import {Link} from 'react-router-dom'
     import {SearchOutlined,ArrowRightOutlined} from "@ant-design/icons"
+    import Calender from 'react-calendar'
+    import moment from "moment";
+    import 'react-calendar/dist/Calendar.css';
     import Carimg from '../img/car.png'
     import Trainimg from '../img/train.png'
     import Calenderimg from '../img/calender.png'
-
+    import Groupimg from '../img/group.png'
     const Transportation = styled.div`
         background-color : white;
         margin : 50px auto;
@@ -74,8 +78,23 @@
         font-size : 40px;
         text-align : center;
         margin-top: 40px;
+        cursor : pointer;
     `
+    const CalenderTamplate = styled.div`
+    width : 500px;
+    height : 200px;
+    border : 1px solid black;
+    border-radius : 30px;
+    background-color : white;
+    margin-top : 10px;
+    z-index : 1;
+`
     const TripPlan_Yes1 = () => {
+        const [CalendarOn1 , setCalendar1] = useState(false)
+        const [value, onChange] = useState(new Date());
+        const toggleCalendar = () => {
+            setCalendar1((CalendarOn1) => !CalendarOn1);console.log(CalendarOn1)
+          };
         return (
             <>
                 <Transportation>
@@ -105,16 +124,30 @@
                         </CarlenderData>
                     </StartorFinshDay>
                     <StartorFinshDay>
-                    <Carlenderimg src={Calenderimg} alt="도착캘린더" />
+                    <Carlenderimg src={Calenderimg} alt="도착캘린더" onClick={toggleCalendar}/>
                         <CarlenderData>
                             <span>도착</span>
                             <div style={{border : "1px solid black" , width:"150px" ,marginTop:"10px"}}></div>
-                            <div></div>
+                            <div>
+                            {CalendarOn1 ? (
+                            <CalenderTamplate>
+                            <Calender onChange={onChange} value={value} />
+                            </CalenderTamplate>
+                    )  : ""} 
+                            </div>
+                            <div className="text-gray-500 mt-4">{moment(value).format("YYYY년 MM월 DD일")}</div>
                         </CarlenderData>
                     </StartorFinshDay>
-                    <StartorFinshDay></StartorFinshDay>
+                    <StartorFinshDay>
+                    <Carlenderimg src={Groupimg} alt="그룹" />
+                    <CarlenderData>
+                            <span>인원</span>
+                            <div style={{border : "1px solid black" , width:"150px" ,marginTop:"10px"}}></div>
+                            <div className="text-gray-500 mt-4"></div>
+                        </CarlenderData>
+                    </StartorFinshDay>
                     </GoDay>
-                    <Next>Next</Next> 
+                    <Next><Link to="/TripPlan/Yes2" style={{textDecoration:"none",color:"black"}}>Next</Link></Next>
                 </TripPlancalrndar>
             </>
         );
