@@ -127,9 +127,17 @@
     const TripPlan_Yes1 = () => {
         const [CalendarOn1 , setCalendar1] = useState(false)
         const [CalendarOn2 , setCalendar2] = useState(false)
-        const [value, onChange] = useState(new Date());
+        const [value, onChange3] = useState(new Date());
         const [value1, onChange1] = useState(new Date());
         const [people, setPeople] = useState(1);
+        const handleOnChange1 = (e) => {
+            onChange3(e);console.log(value)
+            setCalendar1((CalendarOn1) => !CalendarOn1);
+          };
+          const handleOnChange2 = (e) => {
+            onChange1(e);console.log(value1)
+            setCalendar2((CalendarOn2) => !CalendarOn2);
+          };
         const handlePlus = () => { 
             setPeople(people + 1);
         }
@@ -161,14 +169,14 @@
                     </Location>
                     <GoDay>
                     <StartorFinshDay>
-                        <Carlenderimg src={Calenderimg} alt="출발캘린더" onClick={toggleCalendar1} />
+                        <Carlenderimg src={Calenderimg} alt="출발캘린더" onClick={toggleCalendar1}/>
                         <CarlenderData>
                             <span>출발</span>
                             <div style={{border : "1px solid black" , width:"150px" ,marginTop:"10px"}}></div>
                             <div>
                             {CalendarOn1 ? (
                             <CalenderTamplate>
-                            <Calender onChange={onChange} value={value}/>
+                            <Calender onChange={onChange3} value={value}onClickDay={handleOnChange1} />
                             </CalenderTamplate>
                     )  : ""} 
                             </div>
@@ -183,7 +191,7 @@
                             <div>
                             {CalendarOn2 ? (
                             <CalenderTamplate>
-                            <Calender onChange={onChange1} value={value1} />
+                            <Calender onChange={onChange1} value={value1}  onClickDay={handleOnChange2}/>
                             </CalenderTamplate>
                     )  : ""} 
                             </div>

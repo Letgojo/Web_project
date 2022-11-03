@@ -85,11 +85,10 @@ const Localfestival = () => {
     //   };
     // const [value, onChange] = useState(new Date());
     const [postList, setPostList] = useState([]);
-    const check = () => { 
-        console.log(postList)
-    }
     useEffect(()=> { 
+        setTimeout(()=>{
         console.log("랜더링됨")
+    },1000)
     },[postList])
     const SearchContent = async()=> {
     setPostList([])
@@ -152,7 +151,6 @@ catch(error){
             </Local>
             <FestivalContent>
                 <div>
-                    <button onClick={check}>클릭</button>
                     <ul>
                     <hr />
                         {postList.map((element,index) => (                      
