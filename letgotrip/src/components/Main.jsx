@@ -1,15 +1,13 @@
 import React from 'react';
 import  styled  from 'styled-components';
+import '../font/fontstyle.css';
 const Maintext = styled.div`
-    font-size : 100px;
+    font-size : 130px;
     margin : 10% auto;
     color : white;
     text-align : center;
-    @font-face {
-        font-family: 'KOTRA_BOLD-Bold';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
+    font-family: 'establishRoomNo703OTF';
+    font-width : 22px;
     }
 `
 

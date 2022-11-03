@@ -11,23 +11,25 @@ const Festival = styled.img`
 `
 const PostConcent = styled.div`
     width : 1500px;
-    height : 300px;
+    height : 230px;
 `
 const PostListmap = ({url,title,content,state}) => {
     return (
+        <>
         <Template1>
         <Festival src={url} alt="" />
         <PostConcent>
-            <span>{title}</span>
+            <span>제목 : {title}</span>
             <br /><br />
-            <span>{content}</span>
+            <span>본문 : {content}</span>
             <br /><br />
-            <span>{state}</span>
+            <span>장소 : {state}</span>
             <br /><br />
-            <br /><br />
-            <hr />  
+            <br /><br/>
         </PostConcent>
         </Template1>
+        <hr />
+        </>
     );
 };
 

@@ -150,7 +150,9 @@ catch(error){
             <FestivalContent>
                 <div>
                     <ul>
+                    <hr />
                         {postList.map((element,index) => (
+                            
                     <PostListmap
                         key={index}
                         url={element.url}

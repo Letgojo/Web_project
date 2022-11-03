@@ -148,6 +148,12 @@ const refrash = (e) => {
             console.log(userCredential);
             const user = userCredential.user;
             alert(`${Name}님 회원가입 완료하였습니다`);
+            navigate('/');
+            window.location.replace("/")
+            sessionStorage.setItem("loginId", ID);
+            sessionStorage.setItem("loginPassword", Password);
+            sessionStorage.setItem("name",Name)
+
             // ...
           })
           .catch((error) => {
