@@ -33,9 +33,16 @@ const TripPlanYes2 = () => {
             <Transportationfrom>
             <input type="radio" name='check'/>기차 <input type="radio" name='check' />버스
             <table border="1" style={{marginTop : "30px"}}>
+                <thead>
                 <tr>
                     <Transportationth>출발시간</Transportationth><Transportationth>도착시간</Transportationth><Transportationth>좌석</Transportationth><Transportationth>금액</Transportationth><Transportationth>소요시간</Transportationth>
                 </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>
+                </tr>
+                </tbody>
             </table>
             </Transportationfrom>
             <Next><Link to="/TripPlan3" style={{textDecoration:"none",color:"black"}}>Next</Link></Next>

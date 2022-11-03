@@ -1,7 +1,8 @@
 import React,{ useEffect,useState } from 'react';
 import styled from 'styled-components'
-// import Calender from 'react-calendar'
-import {SearchOutlined} from "@ant-design/icons"
+import Calender from 'react-calendar'
+import moment from 'moment'
+import {SearchOutlined,CalendarOutlined} from "@ant-design/icons"
 import { firestore } from '../firebase';
 import PostListmap from './PostListmap';
 const Template  = styled.div`
@@ -25,6 +26,7 @@ const Periodform = styled.div`
     margin-top: 7x;
     font-size:20px;
     position:relative;
+    display : flex;
 `
 const PLDay = styled.input`
     margin-left : 10px;
@@ -65,26 +67,37 @@ const Search = styled.div`
     cursor : pointer;   
 `
 const CalenderTamplate = styled.div`
-    width : 500px;
-    height : 200px;
+    width : 350px;
+    height : 258px;
     border : 1px solid black;
-    border-radius : 30px;
     background-color : white;
     margin-top : 10px;
     z-index : 1;
+    display : content;
 `
 const Localfestival = () => {
     const preson = [];
-    // const [CalendarOn1 , setCalendar1] = useState(false)
-    // const toggleCalendar = () => {
-    //     setCalendar1((CalendarOn1) => !CalendarOn1);console.log(CalendarOn1)
-    //   };
-    // const [CalendarOn2 , setCalendar2] = useState(false)
-    // const toggleCalendar2 = () => {
-    //     setCalendar2((CalendarOn2) => !CalendarOn2);console.log(CalendarOn2)
-    //   };
-    // const [value, onChange] = useState(new Date());
+    const [value, onChange] = useState(new Date());
+    const [values, onChanges] = useState(new Date());
     const [postList, setPostList] = useState([]);
+    const [CalendarOn1 , setCalendar1] = useState(false)
+    const toggleCalendar = () => {
+        setCalendar1((CalendarOn1) => !CalendarOn1);console.log(CalendarOn1)
+      };
+    const [CalendarOn2 , setCalendar2] = useState(false)
+    const toggleCalendar2 = () => {
+        setCalendar2((CalendarOn2) => !CalendarOn2);console.log(CalendarOn2)
+      };
+    const handleOnChange1 = (e) => { 
+        onChange(e);console.log(value)
+        setCalendar1((CalendarOn1)=> !CalendarOn1);
+    }
+    const handleOnChange2 = (e) => { 
+        onChanges(e);console.log(values)
+        setCalendar2((CalendarOn2)=> !CalendarOn2);
+    }
+    
+
     useEffect(()=> { 
         setTimeout(()=>{
         console.log("랜더링됨")
@@ -114,27 +127,26 @@ const Localfestival = () => {
 catch(error){
     console.log(error)
 }
-    // setPostList = preson.map((element)=>([
-    //     {name : element.축제이름 , content : element.축제소개 , state : element.장소 }
-    // ]))
 };
     return (
         <Template>
             <Period>
                 <Periodform>
-                기간 검색 <PLDay type="date" id='firstDay'/>
-                {/* <CalendarOutlined  style={{cursor:"pointer"}} onClick={toggleCalendar}/>
+                기간 검색 <PLDay type="test" id='firstDay' value={moment(value).format("YYYY년 MM월 DD일")}/>
+                <CalendarOutlined  style={{cursor:"pointer"}} onClick={toggleCalendar}/>
                 {CalendarOn1 ? (
                     <CalenderTamplate>
-                    <Calender onChange={onChange} value={value} />
+                    <Calender onChange={onChange} value={value} onClickDay={handleOnChange1} />
                     </CalenderTamplate>
-                )  : ""}  */}
+                )  : ""} 
                 <span> ~ </span> 
-                <PLDay type="date" id='LastDay' />
-                {/* <CalendarOutlined  style={{cursor:"pointer"}} onClick={toggleCalendar2}/>
+                <PLDay type="test" id='LastDay' value={moment(values).format("YYYY년 MM월 DD일")} />
+                <CalendarOutlined  style={{cursor:"pointer"}} onClick={toggleCalendar2}/>
                 {CalendarOn2 ? (
-                    <Calender onChange={onChange} value={value} />
-                )  : ""}  */}
+                    <CalenderTamplate>
+                    <Calender onChange={onChanges} value={values} onClickDay={handleOnChange2}  />
+                    </CalenderTamplate>
+                )  : ""} 
                 </Periodform>
             </Period>
             <Local>
@@ -146,7 +158,7 @@ catch(error){
                     <option value="경상남도">경상남도</option>
                     <option value="부산광역시">부산광역시</option>
                 </City>
-                <span>검색</span> <SearchCity type="text" /><Search onClick={SearchContent}><SearchOutlined /></Search> 
+                `<span>검색</span> <SearchCity type="text" /><Search onClick={SearchContent}><SearchOutlined /></Search> 
                 </Localform>
             </Local>
             <FestivalContent>
