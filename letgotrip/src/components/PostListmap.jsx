@@ -33,4 +33,4 @@ const PostListmap = ({url,title,content,state}) => {
     );
 };
 
-export default PostListmap;
+export default React.memo(PostListmap);

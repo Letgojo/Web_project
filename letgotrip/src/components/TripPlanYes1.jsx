@@ -14,22 +14,30 @@
     const Transportation = styled.div`
         background-color : white;
         margin : 50px auto;
-        width : 537px;
+        width : 400px;
         height : 158px; 
         display : flex;
         border-radius : 30px;
-        justify-content : space-between;
         padding : 0 20px;
         
+    `
+    const TrafficSpan = styled.span`
+        margin : 30px;
     `
     const CalendarValue = styled.div`
         margin-top : 20px;
     `
+    const Trafficdiv = styled.div`
+        flex-wrap: wrap;
+        width : 120px; 
+        margin-left : 65px;
+        &:hover{
+            border: 1px solid red;
+    `
     const Traffic = styled.img`
         height : 100px;
         cursor : pointer;
-        &:hover{
-        border: 1px solid red;
+        margin-left: 5px;
     }   
     `
     const TripPlancalrndar = styled.div`
@@ -137,11 +145,9 @@
         return (
             <>
                 <Transportation>
-                    <div style={{fontSize:"30px"}}>
-                    <div><Traffic src={Carimg} alt="자동차" style={{marginLeft :'50px'}}/></div>
-                    </div>
-                    <div style={{borderLeft :"1px solid black"}}></div>
-                    <Traffic src={Trainimg} alt="기차"  style={{marginRight :'50px'}}/>
+                    <Trafficdiv><Traffic src={Carimg} alt="자동차"/><TrafficSpan>자차</TrafficSpan></Trafficdiv>
+                    <Trafficdiv>
+                    <Traffic src={Trainimg} alt="기차"/><TrafficSpan>대중교통</TrafficSpan></Trafficdiv>
                 </Transportation>
                 <TripPlancalrndar >
                     <Location>
