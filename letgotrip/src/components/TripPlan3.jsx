@@ -71,7 +71,7 @@ cursor : pointer;
 const TripPlan3 = () => {
     return (
         <>
-        <Template>
+        <Template   >
             <h1>체험</h1>
             <MainContent>                       
             <Content><Contentdiv>스키<br /><Contentspan>스키장, 눈썰매</Contentspan></Contentdiv><Category src={Skiimg} alt="스키"/></Content>
@@ -99,7 +99,7 @@ const TripPlan3 = () => {
             <Content><Contentdiv>양식</Contentdiv><Category src={americafood} alt="양식"/></Content>
             <Content><Contentdiv>지역음식</Contentdiv><Category src={localfood} alt="지역음식"/></Content>
             </MainContent>
-            <Next><Link to="" style={{textDecoration:"none",color:"black"}}>Next</Link></Next>  
+            <Next><Link to='/TripPlan4' style={{textDecoration:"none",color:"black"}}>Next</Link></Next>  
         </Template>
         </>
     );

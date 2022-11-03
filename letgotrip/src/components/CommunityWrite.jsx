@@ -1,4 +1,4 @@
-import React , {useState} from 'react';
+import React , {useState ,useEffect} from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import text from '../img/text.png';
@@ -40,7 +40,6 @@ const WriteContent = styled.div`
 `
 const WriteMain = styled.textarea`
     margin-top : 30px;  
-    font-size : 15px;
     border : 0px;
     `
 const Success = styled.button`
@@ -99,18 +98,44 @@ const PostImg = styled.img`
     height : 189px;
 `
 const CommunityWrite = () => { 
+    
     const navigate = useNavigate();
     const Goback = () => { 
         navigate(-1);
     }
-    const [SelectText,setSelectText] = useState(10);
+    const [SelectText,setSelectText] = useState(20);
+    const [Italic,setItalic ] = useState(true);
+    const [value,Change] = useState("italic")
+    const [widht,setwidht]=useState("bold")
+    const [truewidth,trueChange] = useState(true)
+    const [textdeco,settextdeco] = useState("underline");
+    const [true1,settrue1] = useState(true)
+
+    const handleSelectdeco = (e) => { 
+        true1===false? settextdeco("none"):settextdeco("underline")
+        settrue1((true1)=>!true1)
+    }
+
+    const handleSelectwidht = (e) =>{
+        truewidth === false? setwidht("bold"):setwidht("normal");
+        trueChange((truewidth) => !truewidth);
+    }
+
+    const handleSelectItalic =  (e) =>{
+        Italic === false?Change("italic"):Change("normal");
+        setItalic((Italic) => !Italic);
+    }
+    useEffect(()=>{
+        console.log("랜더링됨")
+        console.log(value)
+    },[value])
     const handleSelectText = (e) => {
         setSelectText(e.target.value);
     };
     const Textsize = () => {
         const result = [];
         for (let i = 2; i < 100; i++) {
-            result.push(<option value={i}>{i}</option>);
+            result.push(<option key={i}value={i}>{i}</option>);
         }
         return result;
     };
@@ -119,9 +144,9 @@ const CommunityWrite = () => {
            <WriteLogo>글쓰기</WriteLogo> 
            <WriteTitle type="text" placeholder='제목' />
            <WriteContent>
-            <Text src={text} alt="굵기"/>
-            <GIUM src={Gium} atl="기울기"/>
-            <Decoration src={decoration} atl="밑줄" />
+            <Text src={text} alt="굵기" onClick={handleSelectwidht}/>
+            <GIUM src={Gium} atl="기울기" onClick={handleSelectItalic}/>
+            <Decoration src={decoration} atl="밑줄" onClick={handleSelectdeco} />
             <SortCenter src={sortCenter} atl="중앙" />
             <SortCenter src={nomal} atl="일반" />
             <SortCenter src={sortLeft} atl="왼쪽정렬" />
@@ -131,7 +156,8 @@ const CommunityWrite = () => {
             </TextSize>
            </WriteContent>
             <div style={{ marginTop : "10px",border : " 1px solid #108057"}}>
-           <WriteMain name="" id="" cols="130" rows="20" placeholder='여기에 입력해주세요'>
+           <WriteMain  style={{fontSize:`${SelectText}px`,fontStyle:`${value}`,fontWeight:`${widht}`,textDecoration:`${textdeco}`}}cols="50" rows="20" placeholder='여기에 입력해주세요'>
+            
            </WriteMain>
             <PostImg src={post} alt="이미지" /><input type="file"/>
             </div>
