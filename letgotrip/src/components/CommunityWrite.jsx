@@ -95,6 +95,7 @@ const TextSize = styled.select`
 const PostImg = styled.img`
     width : 178px;
     height : 189px;
+    cursor : pointer;
 `
 const CommunityWrite = () => { 
     
@@ -149,6 +150,10 @@ const CommunityWrite = () => {
         }
         return result;
     };
+    const fileInput = React.useRef(null);
+    const handleSelectBtn =()=>{
+        fileInput.current.click();
+    }
     return (
         <Template>
            <WriteLogo>글쓰기</WriteLogo> 
@@ -169,7 +174,7 @@ const CommunityWrite = () => {
            <WriteMain  style={{fontSize:`${SelectText}px`,fontStyle:`${value}`,fontWeight:`${widht}`,textDecoration:`${textdeco}`,textAlign:`${Center}`}}cols="106" rows="20" placeholder='여기에 입력해주세요'>
             
            </WriteMain>
-            <PostImg src={post} alt="이미지" /><input type="file"/>
+            <PostImg src={post} alt="이미지" onClick={handleSelectBtn}/><input type="file" ref={fileInput} style={{ display: "none" }} />
             </div>
            <Buttondiv>
            <Success type='submit'>저장</Success>
