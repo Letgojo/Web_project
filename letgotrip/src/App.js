@@ -16,6 +16,7 @@ import TripPlanYes2 from './components/TripPlanYes2.jsx';
 import TripPlanNo1 from './components/TripPlanNo1.jsx';
 import CommunityWrite from './components/CommunityWrite';
 import TripPlan3 from './components/TripPlan3.jsx';
+import TripPlan4 from './components/TripPlan4.jsx';
 const App = () => {
   useEffect(()=> { 
     console.log(firestore);
@@ -39,7 +40,7 @@ const App = () => {
       <Route path='/TripPlan/Yes2' element={<TripPlanYes2 />}/>
       <Route path='/TripPlan/No1' element={<TripPlanNo1 />}/>
       <Route path='/TripPlan3' element={<TripPlan3 />}/>
-
+      <Route path='/TripPlan4' element={<TripPlan4 />}/>
       </Routes>
     </div>
   );
