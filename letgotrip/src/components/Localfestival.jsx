@@ -1,5 +1,5 @@
 import React,{ useEffect,useState } from 'react';
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import Calender from 'react-calendar'
 import moment from 'moment'
 import {SearchOutlined,CalendarOutlined} from "@ant-design/icons"
@@ -82,15 +82,15 @@ const Localfestival = () => {
     const [postList, setPostList] = useState([]);
     const [CalendarOn1 , setCalendar1] = useState(false)
     const toggleCalendar = () => {
-        setCalendar1((CalendarOn1) => !CalendarOn1);console.log(CalendarOn1)
+        setCalendar1((CalendarOn1) => !CalendarOn1);    
       };
     const [CalendarOn2 , setCalendar2] = useState(false)
     const toggleCalendar2 = () => {
-        setCalendar2((CalendarOn2) => !CalendarOn2);console.log(CalendarOn2)
+        setCalendar2((CalendarOn2) => !CalendarOn2);
       };
     const handleOnChange1 = (e) => { 
-        onChange(e);console.log(value)
-        setCalendar1((CalendarOn1)=> !CalendarOn1);
+        onChange(e);
+        setCalendar1((CalendarOn1)=> !CalendarOn1);  //CalendarOn1
     }
     const handleOnChange2 = (e) => { 
         onChanges(e);console.log(values)
@@ -108,19 +108,26 @@ const Localfestival = () => {
     try{
     const first = document.getElementById("firstDay").value
     const last = document.getElementById("LastDay").value
-    const City   = document.getElementById("City").value
-    
+    const City = document.getElementById("City").value
+    const Search = document.getElementById("search").value
     const db =  firestore.collection("축제").doc("지역축제");
     await db.collection(City).get().then((결과)=>{
     결과.forEach((doc) => {
          let result = doc.data();
+         if(result.축제이름.includes(Search)){
+            console.log(result.축제이름)
+            preson.push(result);
+        }
+        else if(Search===""){
          preson.push(result);
+        }
         });    
     });
+    
     preson.map((element)=>(
     setPostList((postList) =>[
         ...postList,
-        { url:element.축제사진URL ,title: element.축제이름, content : element.축제소개, state: element.장소 },
+        { url:element.축제사진URL ,title: element.축제이름, content : element.축제소개, state: element.장소,first:element.축제시작기간,finish:element.축제마감기간},
     ])));
     
 }
@@ -158,7 +165,7 @@ catch(error){
                     <option value="경상남도">경상남도</option>
                     <option value="부산광역시">부산광역시</option>
                 </City>
-                `<span>검색</span> <SearchCity type="text" /><Search onClick={SearchContent}><SearchOutlined /></Search> 
+                <span>검색</span> <SearchCity type="text" id='search' /><Search onClick={SearchContent}><SearchOutlined /></Search> 
                 </Localform>
             </Local>
             <FestivalContent>
@@ -172,6 +179,8 @@ catch(error){
                         title={element.title}
                         content={element.content}
                         state={element.state}
+                        first={element.first}
+                        finish={element.finish}
                 />
               ))
               
