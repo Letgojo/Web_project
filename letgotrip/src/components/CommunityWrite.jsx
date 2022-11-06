@@ -40,6 +40,8 @@ const WriteContent = styled.div`
 `
 const WriteMain = styled.textarea` 
     border : 0px;
+    max-width : 1290px; 
+    max-height : 500px; 
     `
 const Success = styled.button`
     cursor : pointer;
@@ -91,6 +93,11 @@ const TextSize = styled.select`
     margin : 6px 0 0 30px;
     widht:24px;
     height :40px;
+`
+const Textareadiv = styled.div`
+    margin-top : 20px;
+    max-width : 1300px;
+    border: 1px solid #108057
 `
 const PostImg = styled.img`
     width : 178px;
@@ -170,12 +177,11 @@ const CommunityWrite = () => {
                 {Textsize()}
             </TextSize>
            </WriteContent>
-            <div style={{ marginTop : "10px",border : " 1px solid #108057"}}>
-           <WriteMain  style={{fontSize:`${SelectText}px`,fontStyle:`${value}`,fontWeight:`${widht}`,textDecoration:`${textdeco}`,textAlign:`${Center}`}}cols="106" rows="20" placeholder='여기에 입력해주세요'>
-            
+            <Textareadiv>
+           <WriteMain  style={{fontSize:`${SelectText}px`,fontStyle:`${value}`,fontWeight:`${widht}`,textDecoration:`${textdeco}`,textAlign:`${Center}`}}cols="100" rows="20" placeholder='여기에 입력해주세요'>
            </WriteMain>
             <PostImg src={post} alt="이미지" onClick={handleSelectBtn}/><input type="file" ref={fileInput} style={{ display: "none" }} />
-            </div>
+            </Textareadiv>
            <Buttondiv>
            <Success type='submit'>저장</Success>
            <Cancel type='button' onClick={Goback}>취소</Cancel>
