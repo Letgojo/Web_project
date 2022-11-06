@@ -13,7 +13,7 @@ const PostConcent = styled.div`
     width : 1500px;
     height : 230px;
 `
-const PostListmap = ({url,title,content,state}) => {
+const PostListmap = ({url,title,content,state,first,finish}) => {
     return (
         <>
         <Template1>
@@ -21,10 +21,11 @@ const PostListmap = ({url,title,content,state}) => {
         <PostConcent>
             <span>제목 : {title}</span>
             <br /><br />
-            <span>본문 : {content}</span>
+            <span>본문 : {content.substring(0,200)+"..."}</span>
             <br /><br />
             <span>장소 : {state}</span>
             <br /><br />
+            <span>날짜 : {first} ~ {finish}</span>
             <br /><br/>
         </PostConcent>
         </Template1>
