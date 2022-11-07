@@ -130,13 +130,17 @@
         const [value, onChange3] = useState(new Date());
         const [value1, onChange1] = useState(new Date());
         const [people, setPeople] = useState(1);
+        const [firstDay, setfirst] = useState(false);
+        const [finish , setfinish] = useState(false);
         const handleOnChange1 = (e) => {
             onChange3(e);console.log(value)
             setCalendar1((CalendarOn1) => !CalendarOn1);
+            setfirst(true);
           };
           const handleOnChange2 = (e) => {
             onChange1(e);console.log(value1)
             setCalendar2((CalendarOn2) => !CalendarOn2);
+            setfinish(true);
           };
         const handlePlus = () => { 
             setPeople(people + 1);
@@ -145,10 +149,10 @@
             setPeople(people-1);
         }
         const toggleCalendar1 = () => {
-            setCalendar1((CalendarOn1) => !CalendarOn1);console.log(CalendarOn1)
+            setCalendar1((CalendarOn1) => !CalendarOn1);
           };
           const toggleCalendar2 = () => {
-            setCalendar2((CalendarOn2) => !CalendarOn2);console.log(CalendarOn2)
+            setCalendar2((CalendarOn2) => !CalendarOn2);
           };
         return (
             <>
@@ -180,7 +184,9 @@
                             </CalenderTamplate>
                     )  : ""} 
                             </div>
+                            {firstDay ?(
                             <CalendarValue>{moment(value).format("YYYY년 MM월 DD일")}</CalendarValue>
+                            )  : ""}
                         </CarlenderData>
                     </StartorFinshDay>
                     <StartorFinshDay>
@@ -195,7 +201,9 @@
                             </CalenderTamplate>
                     )  : ""} 
                             </div>
+                            {finish ? (
                             <CalendarValue>{moment(value1).format("YYYY년 MM월 DD일")}</CalendarValue>
+                            ): ""}
                         </CarlenderData>
                     </StartorFinshDay>
                     <StartorFinshDay>
