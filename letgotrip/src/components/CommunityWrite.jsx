@@ -100,10 +100,18 @@ const Textareadiv = styled.div`
     max-width : 1300px;
     border: 1px solid #108057
 `
+const Image = styled.img`
+width : 178px;
+height : 189px;
+`
 const PostImg = styled.img`
     width : 178px;
     height : 189px;
     cursor : pointer;
+`
+const ImageBox = styled.label`
+    width : 178px;
+    height : 189px;
 `
 const CommunityWrite = () => { 
     
@@ -119,6 +127,7 @@ const CommunityWrite = () => {
     const [textdeco,settextdeco] = useState("none");
     const [true1,settrue1] = useState(false)
     const [Center, setCenter] = useState("none");
+    const [Myimage, setMyimage] =useState([]);
 
     const handleSeletcenter = (e) => { 
         setCenter("center");
@@ -178,12 +187,27 @@ const CommunityWrite = () => {
             "내용" : textbox ,
             "작성자" : sessionStorage.getItem("name"), 
             "업로드 날짜" : dateString,
+            "이미지URL" : Myimage,
         })
         alert('게시물이 업로딩');
         navigate('/Community');
-
     }
-    return (
+
+    const addimage = e =>{
+        const nowSelectImageList = e.target.files; //한번에 받은 파일리스트(object임)
+        const nowImageURLList = [...Myimage]; //현재 Myimage 복사하고
+        for(let i=0;i<nowSelectImageList.length; i+=1){
+            // nowSelectImageList object를 i로 이용해서 돌린다
+        const nowImageUrl = URL.createObjectURL(nowSelectImageList[i]);
+        //미리보기 가능하게 변수화
+        nowImageURLList.push(nowImageUrl)
+        //복사한 myImage에 추가
+        }
+        setMyimage(nowImageURLList);
+        
+    };
+    console.log(Myimage)
+return (
         <Template>
            <WriteLogo>글쓰기</WriteLogo> 
            <WriteTitle type="text" placeholder='제목' id="title"/>
@@ -202,7 +226,12 @@ const CommunityWrite = () => {
             <Textareadiv>
            <WriteMain  style={{fontSize:`${SelectText}px`,fontStyle:`${value}`,fontWeight:`${widht}`,textDecoration:`${textdeco}`,textAlign:`${Center}`}}cols="100" rows="20" placeholder='여기에 입력해주세요' id='textbox'>
            </WriteMain>
-            <PostImg src={post} alt="이미지" onClick={handleSelectBtn}/><input type="file" ref={fileInput} style={{ display: "none" }} />
+           <ImageBox htmlFor="input-file" onChange={addimage} >
+           {Myimage.map((element,index)=> (
+            <Image src={element} alt={index} /> 
+                    ))}
+            <PostImg src={post} alt="이미지" onClick={handleSelectBtn}/><input type="file" ref={fileInput} id="input-file" style={{ display: "none" }} multiple="multiple" /></ImageBox>
+  
             </Textareadiv>
            <Buttondiv>
            <Success type='button' onClick={Upload}>저장</Success>
