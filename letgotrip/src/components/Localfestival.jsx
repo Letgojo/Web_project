@@ -1,10 +1,11 @@
 import React,{ useEffect,useState } from 'react';
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import Calender from 'react-calendar'
 import moment from 'moment'
 import {SearchOutlined,CalendarOutlined} from "@ant-design/icons"
 import { firestore } from '../firebase';
 import PostListmap from './PostListmap';
+import '../font/fontstyle.css';
 const Template  = styled.div`
     width : 1300px;
     height : 3000px;
@@ -12,6 +13,7 @@ const Template  = styled.div`
     background-color : white;
     margin : 5% auto;   
     border-radius : 30px;
+    font-family: 'HallymGothic-Regular';
 `
 const Period  = styled.div`
     display : flex;
@@ -20,20 +22,22 @@ const Period  = styled.div`
     border : 1px solid black;
     border-radius: 30px;    
     margin : 30px 0 0 750px;
-    padding-left : 40px;    
+    padding-left : 40px; 
 `
 const Periodform = styled.div`
-    margin-top: 7x;
-    font-size:20px;
+    margin-top: 30x;
+    font-size:15spx;
     position:relative;
     display : flex;
+    align-items: center;
+    text-align : center;
 `
 const PLDay = styled.input`
     margin-left : 10px;
     widht : 98px;
     height :27px; 
     border-radius : 30px;
-    margin-top : 8px; 
+    text-align : center;
 `
 const Local =  styled.div`
     border : 1px solid black;
@@ -75,12 +79,17 @@ const CalenderTamplate = styled.div`
     z-index : 1;
     display : content;
 `
+const LengthState = styled.div`
+    margin-left : 100px;
+`
 const Localfestival = () => {
     const preson = [];
     const [value, onChange] = useState(new Date());
     const [values, onChanges] = useState(new Date());
     const [postList, setPostList] = useState([]);
     const [CalendarOn1 , setCalendar1] = useState(false)
+    const [finish , setfinish ]= useState(false);
+    const [State , setState] = useState(0);
     const toggleCalendar = () => {
         setCalendar1((CalendarOn1) => !CalendarOn1);    
       };
@@ -91,13 +100,12 @@ const Localfestival = () => {
     const handleOnChange1 = (e) => { 
         onChange(e);
         setCalendar1((CalendarOn1)=> !CalendarOn1);  //CalendarOn1
+        setfinish(true);
     }
     const handleOnChange2 = (e) => { 
         onChanges(e);console.log(values)
         setCalendar2((CalendarOn2)=> !CalendarOn2);
     }
-    
-
     useEffect(()=> { 
         setTimeout(()=>{
         console.log("랜더링됨")
@@ -111,25 +119,34 @@ const Localfestival = () => {
     const City = document.getElementById("City").value
     const Search = document.getElementById("search").value
     const db =  firestore.collection("축제").doc("지역축제");
+    var firstmonth =first.split('-')[1]+first.split('-')[2]
+    var lastmonth =last.split('-')[1]+last.split('-')[2]
+    console.log(firstmonth)
+    console.log(lastmonth)
     await db.collection(City).get().then((결과)=>{
     결과.forEach((doc) => {
          let result = doc.data();
-         if(result.축제이름.includes(Search)){
-            console.log(result.축제이름)
-            preson.push(result);
+         for(let i= firstmonth;i<=lastmonth;i++){
+            let firstfestival = result.축제시작기간.split('.')[1]+result.축제시작기간.split('.')[2]
+            let lastfestival = result.축제마감기간.split('.')[1]+result.축제마감기간.split('.')[2]
+            if(i<=firstfestival && lastmonth >= lastfestival){
+                if(result.축제이름.includes(Search)){
+                    preson.push(result);
+                }else if(Search===""){
+                        preson.push(result);
+                       }  
+         }
         }
-        else if(Search===""){
-         preson.push(result);
-        }
-        });    
+        });     
     });
-    
-    preson.map((element)=>(
+    const set = new Set(preson);
+    const arr = [...set];
+    setState(arr.length)
+    arr.map((element)=>(
     setPostList((postList) =>[
         ...postList,
         { url:element.축제사진URL ,title: element.축제이름, content : element.축제소개, state: element.장소,first:element.축제시작기간,finish:element.축제마감기간},
     ])));
-    
 }
 catch(error){
     console.log(error)
@@ -139,16 +156,19 @@ catch(error){
         <Template>
             <Period>
                 <Periodform>
-                기간 검색 <PLDay type="test" id='firstDay' value={moment(value).format("YYYY년 MM월 DD일")}/>
+                기간 검색 <PLDay type="test" id='firstDay' value={moment(value).format("YYYY-MM-DD")}/>
                 <CalendarOutlined  style={{cursor:"pointer"}} onClick={toggleCalendar}/>
                 {CalendarOn1 ? (
                     <CalenderTamplate>
                     <Calender onChange={onChange} value={value} onClickDay={handleOnChange1} />
                     </CalenderTamplate>
-                )  : ""} 
+                )  : ""}
+                {finish ? (  
+                <>
                 <span> ~ </span> 
-                <PLDay type="test" id='LastDay' value={moment(values).format("YYYY년 MM월 DD일")} />
+                <PLDay type="test" id='LastDay' value={moment(values).format("YYYY-MM-DD")} />
                 <CalendarOutlined  style={{cursor:"pointer"}} onClick={toggleCalendar2}/>
+                </>):""}
                 {CalendarOn2 ? (
                     <CalenderTamplate>
                     <Calender onChange={onChanges} value={values} onClickDay={handleOnChange2}  />
@@ -168,11 +188,12 @@ catch(error){
                 <span>검색</span> <SearchCity type="text" id='search' /><Search onClick={SearchContent}><SearchOutlined /></Search> 
                 </Localform>
             </Local>
+            <LengthState>{State}의 몇건 입니다.</LengthState>
             <FestivalContent>
                 <div>
                     <ul>
                     <hr />
-                        {postList.map((element,index) => (                      
+                        {postList.map((element,index) => (                     
                     <PostListmap
                         key={index}
                         url={element.url}

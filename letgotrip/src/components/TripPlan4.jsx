@@ -6,6 +6,7 @@ import hotel from '../img/숙소사진/hotel.png'
 import motel from '../img/숙소사진/motel.png'
 import deleteBtn from '../img/숙소사진/x_button.png'
 import pension from '../img/숙소사진/island.png'
+import '../font/fontstyle.css';
 const Template = styled.div`
 width : 1300px;
 height : 1200px;
@@ -14,6 +15,7 @@ background-color : white;
 margin : 5% auto;   
 border-radius : 30px;
 padding-left : 40px;
+font-family: 'HallymGothic-Regular';
 `
 const Btnimg = styled.img`
     width : 98px;

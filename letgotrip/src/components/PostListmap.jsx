@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import '../font/fontstyle.css';
 const Template1 = styled.div`
     display:flex;
+    font-family: 'HallymGothic-Regular';
 `
 const Festival = styled.img`
     width : 154px;

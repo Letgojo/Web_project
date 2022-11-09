@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { firestore } from '../firebase.js'
+import '../font/fontstyle.css';
 const Template  = styled.div`
     width : 699px;
     height : 569px;
@@ -9,6 +10,7 @@ const Template  = styled.div`
     background-color : white;
     margin : 5% auto;   
     border-radius : 30px;
+    font-family: 'HallymGothic-Regular';
 `
 const IdPwdFind = styled.div`
     display : flex;

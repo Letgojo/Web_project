@@ -11,6 +11,7 @@
     import Groupimg from '../img/group.png'
     import plusimg from '../img/plus.png'
     import minus from '../img/minus.png'
+    import '../font/fontstyle.css';
     const Transportation = styled.div`
         background-color : white;
         margin : 50px auto;
@@ -19,10 +20,10 @@
         display : flex;
         border-radius : 30px;
         padding : 0 20px;
-        
+        font-family: 'HallymGothic-Regular';
     `
     const TrafficSpan = styled.span`
-        margin : 30px;
+        margin : 29px;
     `
     const CalendarValue = styled.div`
         margin-top : 20px;
@@ -66,7 +67,7 @@
         font-size : 23px;
     `
     const GoDay = styled.div`
-        margin-top: 100px;
+        margin-top: 50px;
         display : flex;
         justify-content: space-between;
     `
@@ -96,7 +97,6 @@
         background-color : #B9D6F9;
         font-size : 40px;
         text-align : center;
-        margin-top: 40px;
         cursor : pointer;
     `
     const CalenderTamplate = styled.div`
@@ -122,9 +122,19 @@
     const Human = styled.div`
         margin : 20px;
     `
-    
+    const Starttime = styled.div`
+    width : 288px;
+    height :70px;
+    border : 1px solid black;
+    border-radius : 30px;
+    `
+    const Threeline = styled.div`
+        display : flex;
+        justify-content: space-between;
+        margin-top : 40px;
+    `
 
-    const TripPlan_Yes1 = () => {
+    const TripPlanYes1 = () => {
         const [CalendarOn1 , setCalendar1] = useState(false)
         const [CalendarOn2 , setCalendar2] = useState(false)
         const [value, onChange3] = useState(new Date());
@@ -219,10 +229,13 @@
                         </CarlenderData>
                     </StartorFinshDay>
                     </GoDay>
+                    <Threeline>
+                    <Starttime></Starttime>
                     <Next><Link to="/TripPlan/Yes2" style={{textDecoration:"none",color:"black"}}>Next</Link></Next>
+                    </Threeline>
                 </TripPlancalrndar>
             </>
         );
     };
 
-    export default TripPlan_Yes1;
+    export default TripPlanYes1;

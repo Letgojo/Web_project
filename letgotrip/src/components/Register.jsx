@@ -11,6 +11,7 @@ const TemplateLogin  = styled.div`
     background-color : white;
     margin : 5% auto;   
     border-radius : 30px;
+    font-family: 'HallymGothic-Regular';
 `
 
 /* 아이디, 아이디 중복  */

@@ -9,6 +9,7 @@ const Template  = styled.div`
     background-color : white;
     margin : 5% auto;   
     border-radius : 30px;
+    font-family: 'HallymGothic-Regular';
 `
 const IdPwdFind = styled.div`
     display : flex;

@@ -2,6 +2,7 @@ import React from 'react';
 import  styled from 'styled-components';
 import { Link ,useNavigate } from 'react-router-dom';
 import { firestore } from '../firebase.js'
+import '../font/fontstyle.css';
 const TemplateLogin  = styled.div`
     width : 699px;
     max-height : 569px;

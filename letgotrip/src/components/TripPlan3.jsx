@@ -19,6 +19,7 @@ import japanfood from '../img/카테고리사진/japanfood.
 import koreafood from '../img/카테고리사진/koreafood.png'
 import localfood from '../img/카테고리사진/localfood.png'
 import chinesefood from '../img/카테고리사진/chinesefood.png'
+
 const Template  = styled.div`
     width : 1300px;
     height : 1200px;
@@ -27,6 +28,7 @@ const Template  = styled.div`
     margin : 5% auto;   
     border-radius : 30px;
     padding-left : 40px;
+    font-family: 'HallymGothic-Regular';
 `
 const MainContent = styled.div`
     display : flex;

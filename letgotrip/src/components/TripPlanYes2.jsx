@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import '../font/fontstyle.css';
 const Template  = styled.div`
     width : 900px;
     height : 569px;
@@ -8,6 +9,7 @@ const Template  = styled.div`
     background-color : white;
     margin : 5% auto;   
     border-radius : 30px;
+    font-family: 'HallymGothic-Regular';    
 `
 const Transportationfrom = styled.div`
     margin : 40px 70px;

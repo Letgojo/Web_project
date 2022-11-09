@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {RightOutlined} from "@ant-design/icons"
 import { Link } from 'react-router-dom';
-
+import '../font/fontstyle.css';
 
 const Triptitle = styled.div`
     background-color : white;
@@ -14,6 +14,7 @@ const Triptitle = styled.div`
     text-align : center;
     border-radius : 30px;
     padding-top : 20px;     
+    font-family: 'HallymGothic-Regular';
 `
 const TripYes = styled.div`
     background-color : white;
