@@ -9,6 +9,7 @@ import nomal from '../img/nomal.png';
 import sortLeft from '../img/left.png';
 import sortRight from '../img/right.png';
 import post from '../img/imgpost.png';
+import { firestore } from '../firebase.js'
 
 const Template  = styled.div`
     width : 1300px;
@@ -161,10 +162,31 @@ const CommunityWrite = () => {
     const handleSelectBtn =()=>{
         fileInput.current.click();
     }
+    const Upload = (e) => { 
+        let today = new Date();   
+        var year = today.getFullYear();
+        var month = ('0' + (today.getMonth() + 1)).slice(-2);
+        var day = ('0' + today.getDate()).slice(-2);
+        var dateString = year + '-' + month  + '-' + day;
+        let sessionStorage = window.sessionStorage;
+        e.preventDefault();
+        const title = document.getElementById("title").value;
+        const textbox = document.getElementById("textbox").value;
+        const bucket = firestore.collection("게시글").doc(title);
+        bucket.set({
+            "제목": title,
+            "내용" : textbox ,
+            "작성자" : sessionStorage.getItem("name"), 
+            "업로드 날짜" : dateString,
+        })
+        alert('게시물이 업로딩');
+        navigate('/Community');
+
+    }
     return (
         <Template>
            <WriteLogo>글쓰기</WriteLogo> 
-           <WriteTitle type="text" placeholder='제목' />
+           <WriteTitle type="text" placeholder='제목' id="title"/>
            <WriteContent>
             <Text src={text} alt="굵기" onClick={handleSelectwidht}/>
             <GIUM src={Gium} atl="기울기" onClick={handleSelectItalic}/>
@@ -178,12 +200,12 @@ const CommunityWrite = () => {
             </TextSize>
            </WriteContent>
             <Textareadiv>
-           <WriteMain  style={{fontSize:`${SelectText}px`,fontStyle:`${value}`,fontWeight:`${widht}`,textDecoration:`${textdeco}`,textAlign:`${Center}`}}cols="100" rows="20" placeholder='여기에 입력해주세요'>
+           <WriteMain  style={{fontSize:`${SelectText}px`,fontStyle:`${value}`,fontWeight:`${widht}`,textDecoration:`${textdeco}`,textAlign:`${Center}`}}cols="100" rows="20" placeholder='여기에 입력해주세요' id='textbox'>
            </WriteMain>
             <PostImg src={post} alt="이미지" onClick={handleSelectBtn}/><input type="file" ref={fileInput} style={{ display: "none" }} />
             </Textareadiv>
            <Buttondiv>
-           <Success type='submit'>저장</Success>
+           <Success type='button' onClick={Upload}>저장</Success>
            <Cancel type='button' onClick={Goback}>취소</Cancel>
            </Buttondiv>
         </Template>
