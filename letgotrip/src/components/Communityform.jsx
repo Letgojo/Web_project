@@ -1,7 +1,10 @@
-import React from 'react';
+import React ,{useState,useEffect}from 'react';
 import  styled  from 'styled-components';
 import {Link} from 'react-router-dom'
 import {SearchOutlined}  from "@ant-design/icons"
+import '../font/fontstyle.css';
+import { firestore } from '../firebase.js'
+import Postlistfrom from './Postlist';
 const Template  = styled.div`
     width : 1300px;
     height : 1200px;
@@ -9,6 +12,7 @@ const Template  = styled.div`
     background-color : white;
     margin : 5% auto;   
     border-radius : 30px;
+    font-family: 'HallymGothic-Regular';
 `
 const Writeform = styled.div`
     display : flex; 
@@ -38,6 +42,28 @@ const Write = styled.div`
     font-size : 30px;
 `
 const Communityform = () => {
+    const [Postlist, setPostList] = useState([]);
+    const user= [];
+    useEffect(()=>{
+        setTimeout(()=>{
+    const db = firestore.collection("게시글");
+    db.get().then((result)=>{
+        result.forEach((allDoc)=>{
+            user.push(allDoc.data())
+        })
+    })
+},500)
+},[])
+useEffect(()=>{
+    setTimeout(()=>{
+    user.map((element)=>(
+        setPostList((Postlist)=> [
+            ...Postlist,
+            {name:element.작성자, title:element.제목, content:element.내용}
+        ])))
+    },1000)
+})
+console.log(Postlist)
     return (
         <Template>
             <Writeform>
@@ -46,6 +72,19 @@ const Communityform = () => {
                 <SearchInput type="text" /><span><SearchOutlined /> 검색</span>
                 </Search>
             </Writeform>
+            <div>
+                <ul>
+                    {Postlist.map((element,index) => (                     
+                        <Postlistfrom
+                            key={index}
+                            name={element.name}
+                            title={element.title}
+                            content={element.content}
+                />
+              ))
+              }
+                </ul>
+            </div>
         </Template>
     );
 };
