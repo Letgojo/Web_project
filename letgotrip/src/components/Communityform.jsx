@@ -58,44 +58,44 @@ const Communityform = () => {
     })
 },500)
 },[])
-const Storage = storage;
-const StorageRef = ref(Storage, 'image/');
-const URL = [];
-listAll(StorageRef)
-  .then((res) => {
-    res.prefixes.forEach((folderRef) => {
-        console.log("1 : ",folderRef)
-      // All the prefixes under listRef.
-      // You may call listAll() recursively on them.
-    });
-    res.items.forEach((itemRef) => {
-        URL.push(itemRef.name);
-        const StorageRef1 = ref(Storage, 'image/'+itemRef.name);
-        console.log("나는스토리지",storage,"나는 스토리지 Ref",StorageRef);
-        uploadBytes(StorageRef1,itemRef.name).then((snapshot) => {
-            console.log(snapshot,'이건 스냅샷');
-            getDownloadURL(StorageRef1).then((url)=>{
-                console.log("나는 URL ",url)
-            })
-          });
+// const Storage = storage;
+// const StorageRef = ref(Storage, 'image/');
+// const URL = [];
+// listAll(StorageRef)
+//   .then((res) => {
+//     res.prefixes.forEach((folderRef) => {
+//         console.log("1 : ",folderRef)
+//       // All the prefixes under listRef.
+//       // You may call listAll() recursively on them.
+//     });
+//     res.items.forEach((itemRef) => {
+//         URL.push(itemRef.name);
+//         const StorageRef1 = ref(Storage, 'image/'+itemRef.name);
+//         console.log("나는스토리지",storage,"나는 스토리지 Ref",StorageRef);
+//         uploadBytes(StorageRef1,itemRef.name).then((snapshot) => {
+//             console.log(snapshot,'이건 스냅샷');
+//             getDownloadURL(StorageRef1).then((url)=>{
+//                 console.log("나는 URL ",url)
+//             })
+//           });
      
-    });
-  }).catch((error) => {
-    console.log(error);
-    // Uh-oh, an error occurred!
-  });
-  useEffect(()=>{
-  URL.map((element)=>(
-    console.log(element)
-  ))
-})
+//     });
+//   }).catch((error) => {
+//     console.log(error);
+//     // Uh-oh, an error occurred!
+//   });
+//   useEffect(()=>{
+//   URL.map((element)=>(
+//     console.log(element)
+//   ))
+// })
   
-//   const URLlink = 'image/'+URL
-//   console.log(URLlink)
-useEffect(()=>{
-    const storageRef = ref(storage, 'image/');
+// //   const URLlink = 'image/'+URL
+// //   console.log(URLlink)
+// useEffect(()=>{
+//     const storageRef = ref(storage, 'image/');
 
-},[])
+// },[])
 
 
 
