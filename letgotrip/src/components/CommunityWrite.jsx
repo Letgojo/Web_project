@@ -9,7 +9,7 @@ import nomal from '../img/nomal.png';
 import sortLeft from '../img/left.png';
 import sortRight from '../img/right.png';
 import post from '../img/imgpost.png';
-import { firestore } from '../firebase.js'
+import { firestore, storage } from '../firebase.js'
 
 const Template  = styled.div`
     width : 1300px;
@@ -181,16 +181,37 @@ const CommunityWrite = () => {
         e.preventDefault();
         const title = document.getElementById("title").value;
         const textbox = document.getElementById("textbox").value;
-        const bucket = firestore.collection("게시글").doc(title);
-        bucket.set({
-            "제목": title,
-            "내용" : textbox ,
-            "작성자" : sessionStorage.getItem("name"), 
-            "업로드 날짜" : dateString,
-            "이미지URL" : Myimage,
-        })
-        alert('게시물이 업로딩');
-        navigate('/Community');
+        const Storage = storage;
+
+        var file =  document.querySelector("#input-file").files[0];
+        var StorageRef = Storage.ref();
+        var 경로 = StorageRef.child('image/'+file.name) //경로정하는부분
+        var 업로드작업 = 경로.put(file)
+        업로드작업.on( 'state_changed', 
+        // 변화시 동작하는 함수 
+        null, 
+        //에러시 동작하는 함수
+        (error) => {
+          console.error('실패사유는', error);
+        }, 
+        // 성공시 동작하는 함수
+        () => {
+          업로드작업.snapshot.ref.getDownloadURL().then((url) => {
+            console.log('업로드된 경로는', url);
+            const bucket = firestore.collection("게시글").doc(title);
+            bucket.set({
+                "제목": title,
+                "내용" : textbox ,
+                "작성자" : sessionStorage.getItem("name"), 
+                "업로드 날짜" : dateString,
+                "이미지URL" : url,
+            })
+            alert('게시물이 업로딩');
+            navigate('/Community');
+          });
+        }
+    );
+
     }
 
     const addimage = e =>{
@@ -228,7 +249,7 @@ return (
            </WriteMain>
            <ImageBox htmlFor="input-file" onChange={addimage} >
            {Myimage.map((element,index)=> (
-            <Image src={element} alt={index} /> 
+            <Image src={element} alt={index} key={index} /> 
                     ))}
             <PostImg src={post} alt="이미지" onClick={handleSelectBtn}/><input type="file" ref={fileInput} id="input-file" style={{ display: "none" }} multiple="multiple" /></ImageBox>
   
