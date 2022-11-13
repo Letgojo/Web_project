@@ -17,7 +17,8 @@ import TripPlanNo1 from './components/TripPlanNo1.jsx';
 import CommunityWrite from './components/CommunityWrite';
 import TripPlan3 from './components/TripPlan3.jsx';
 import TripPlan4 from './components/TripPlan4.jsx';
-import Record from './components/Rcord1.jsx'
+import Record from './components/Rcord.jsx'
+import Map from './components/Map.jsx'
 const App = () => {
   useEffect(()=> { 
     console.log(firestore);

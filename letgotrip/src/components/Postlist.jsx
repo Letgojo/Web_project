@@ -10,6 +10,7 @@ const ListForm = styled.div`
     margin-bottom : 30px;
     font-family: 'HallymGothic-Regular';
     border : 1px solid black;
+    font-size: 20px;
 `
 const ListImg = styled.div`
     width :282px;
@@ -21,7 +22,6 @@ const Image = styled.img`
     height : 352px;
     `
 const ListText = styled.div`
-    text-align : left;
     margin-left : 40px;
 `
 const TrashImage = styled.img`
@@ -29,6 +29,15 @@ const TrashImage = styled.img`
     height : 30px;
     text-align : right;
     cursor : pointer;
+`
+const TitleText = styled.div`
+    margin-top : 30px;
+    width : 750px;
+    display : flex;
+    justify-content : space-between;
+`
+const CommunityContent = styled.div`
+    margin-top : 25px;
 `
 const Postlist = ({Url,name,title,content}) => {
     const navigate = useNavigate();
@@ -45,13 +54,18 @@ const Postlist = ({Url,name,title,content}) => {
                 <Image src={Url} alt="사진" />
             </ListImg>
             <ListText>
-            작성자 :  {name}
-            <br />
-            제목 : {title}
-            <br />
+            <TitleText>
+            <div>제목 : {title}</div>
+            <div><TrashImage onClick={handleDel} src={trash} alt="휴지통" /></div>
+            </TitleText>
+            <CommunityContent>
+            작성자 : {name}
+            </CommunityContent>
+            <CommunityContent>
             내용 : {content}
+            </CommunityContent>
             </ListText>
-            <TrashImage onClick={handleDel} src={trash} alt="" />
+
         </ListForm>
     );
 };

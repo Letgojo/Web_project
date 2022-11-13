@@ -106,7 +106,6 @@
     margin-top : 10px;
     
 `
-
     const Plusbtn = styled.img`
         width : 22px;
         height : 21px;
@@ -133,7 +132,18 @@
         justify-content: space-between;
         margin-top : 40px;
     `
-
+    const TimeSet = styled.div`
+        margin-top : 20px;
+        margin-left : 40px;
+        display:flex;
+        font-size:20px;
+    `
+    const TimeStart = styled.div`
+    
+    `
+    const Timetext= styled.select`
+        margin-left : 15px
+    `
     const TripPlanYes1 = () => {
         const [CalendarOn1 , setCalendar1] = useState(false)
         const [CalendarOn2 , setCalendar2] = useState(false)
@@ -142,6 +152,8 @@
         const [people, setPeople] = useState(1);
         const [firstDay, setfirst] = useState(false);
         const [finish , setfinish] = useState(false);
+        const [Oclock,setOclock] = useState(0);
+        const [minute,setminute] = useState(0);
         const handleOnChange1 = (e) => {
             onChange3(e);console.log(value)
             setCalendar1((CalendarOn1) => !CalendarOn1);
@@ -164,6 +176,27 @@
           const toggleCalendar2 = () => {
             setCalendar2((CalendarOn2) => !CalendarOn2);
           };
+        const Oclocktime = () => {
+            const result = [];
+            for(let i=0;i<=23;i++){
+                result.push(<option value={i}>{i}</option>);
+            }
+            return result
+        }
+        const minutetime = () => {
+            const result = [];
+            for(let i=0;i<=31;i=i+30){
+                result.push(<option value={i}>{i}</option>);
+            }
+            return result
+        }
+        const handleTime1 = (e) => {
+            setOclock(e.target.value);
+        };
+        const handleTime2 = (e) => {
+            setminute(e.target.value);
+        };
+
         return (
             <>
                 <Transportation>
@@ -230,7 +263,17 @@
                     </StartorFinshDay>
                     </GoDay>
                     <Threeline>
-                    <Starttime></Starttime>
+                    <Starttime>
+                        <TimeSet>
+                        <TimeStart>출발시간 :</TimeStart>
+                       <Timetext name="Ocolck" value={Oclock} onChange={handleTime1}>
+                        {Oclocktime()}
+                        </Timetext>시
+                        <Timetext name="" id="" value={minute} onChange={handleTime2}>
+                        {minutetime()}
+                        </Timetext>분
+                        </TimeSet>
+                    </Starttime>
                     <Next><Link to="/TripPlan/Yes2" style={{textDecoration:"none",color:"black"}}>Next</Link></Next>
                     </Threeline>
                 </TripPlancalrndar>

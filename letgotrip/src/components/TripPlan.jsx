@@ -44,16 +44,21 @@ const TripNo = styled.div`
     display : flex;
     justify-content: space-between;
 `
+const YesorNotext = styled.div`
+    margin-left 40px;
+`
 const TripPlan = () => {
     return (
         <>
             <Triptitle>여행지를 정하셨나요 ? </Triptitle>
-            <Link to="/TripPlan/Yes1" style={{ textDecoration:"none",color:"black"}}><TripYes>
-                <div>예</div> 
+            <Link to="/TripPlan/Yes1" style={{ textDecoration:"none",color:"black"}}>
+            <TripYes>
+                <YesorNotext>예</YesorNotext> 
                 <RightOutlined /> 
             </TripYes></Link>
-            <Link to="/TripPlan/No1" style={{ textDecoration:"none",color:"black"}}><TripNo>
-            <div>아니요</div> 
+            <Link to="/TripPlan/No1" style={{ textDecoration:"none",color:"black"}}>
+            <TripNo>
+            <YesorNotext>아니요</YesorNotext> 
             <RightOutlined />
             </TripNo></Link>
         </>
