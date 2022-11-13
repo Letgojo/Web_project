@@ -1,12 +1,12 @@
 import React,{useState}from 'react';
 import styled from 'styled-components';
 import '../font/fontstyle.css';
-import Carimg from '../img/car.png'
-import Trainimg from '../img/train.png'
-import Calenderimg from '../img/calender.png'
-import Groupimg from '../img/group.png'
-import plusimg from '../img/plus.png'
-import minus from '../img/minus.png'
+import Carimg from './../img/Car.png'
+import Trainimg from './../img/Train.png'
+import Calenderimg from '../img/Calender.png'
+import Groupimg from '../img/Group.png'
+import plusimg from '../img/Plus.png'
+import minus from '../img/Minus.png'
 import {SearchOutlined} from "@ant-design/icons"
 import Calender from 'react-calendar'
 import moment from "moment";

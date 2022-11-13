@@ -200,9 +200,9 @@
         return (
             <>
                 <Transportation>
-                    <Trafficdiv><Traffic src={Carimg} alt="자동차"/><TrafficSpan>자차</TrafficSpan></Trafficdiv>
+                    <Trafficdiv><Traffic src={'/img/car.png'} alt="자동차"/><TrafficSpan>자차</TrafficSpan></Trafficdiv>
                     <Trafficdiv>
-                    <Traffic src={Trainimg} alt="기차"/><TrafficSpan>대중교통</TrafficSpan></Trafficdiv>
+                    <Traffic src={'/img/train.png'} alt="기차"/><TrafficSpan>대중교통</TrafficSpan></Trafficdiv>
                 </Transportation>
                 <TripPlancalrndar >
                     <Location>
@@ -216,10 +216,10 @@
                     </Location>
                     <GoDay>
                     <StartorFinshDay>
-                        <Carlenderimg src={Calenderimg} alt="출발캘린더" onClick={toggleCalendar1}/>
+                        <Carlenderimg src={`${process.env.PUBLIC_URL}/img/car.png`} alt="출발캘린더" onClick={toggleCalendar1}/>
                         <CarlenderData>
                             <span>출발</span>
-                            <div style={{border : "1px solid black" , width:"150px" ,marginTop:"10px"}}></div>
+                            <div style={{border : "/img/calender.png" , width:"150px" ,marginTop:"10px"}}></div>
                             <div>
                             {CalendarOn1 ? (
                             <CalenderTamplate>
@@ -233,7 +233,7 @@
                         </CarlenderData>
                     </StartorFinshDay>
                     <StartorFinshDay>
-                    <Carlenderimg src={Calenderimg} alt="도착캘린더" onClick={toggleCalendar2}/>
+                    <Carlenderimg src={'/img/calender.png'} alt="도착캘린더" onClick={toggleCalendar2}/>
                         <CarlenderData>
                             <span>도착</span>
                             <div style={{border : "1px solid black" , width:"150px" ,marginTop:"10px"}}></div>
@@ -250,14 +250,14 @@
                         </CarlenderData>
                     </StartorFinshDay>
                     <StartorFinshDay>
-                    <Carlenderimg src={Groupimg} alt="그룹" />
+                    <Carlenderimg src={'/img/group.png'} alt="그룹" />
                     <CarlenderData>
                             <span>인원</span>
                             <div style={{border : "1px solid black" , width:"150px" ,marginTop:"10px"}}></div>
                             <Human>
-                                <Plusbtn src={plusimg} alt="플러스" onClick={handlePlus} />
+                                <Plusbtn src={'/img/plus.png'} alt="플러스" onClick={handlePlus} />
                                 <span style={{fontSize : "30px"}}>{people}</span>
-                                <Minusbtn src={minus} alt="마이너스" onClick={handleMinus}/>
+                                <Minusbtn src={'/img/minus.png'} alt="마이너스" onClick={handleMinus}/>
                             </Human>
                         </CarlenderData>
                     </StartorFinshDay>
