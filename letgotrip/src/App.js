@@ -17,6 +17,7 @@ import TripPlanNo1 from './components/TripPlanNo1.jsx';
 import CommunityWrite from './components/CommunityWrite';
 import TripPlan3 from './components/TripPlan3.jsx';
 import TripPlan4 from './components/TripPlan4.jsx';
+import Record from './components/Rcord1.jsx'
 const App = () => {
   useEffect(()=> { 
     console.log(firestore);
@@ -32,6 +33,7 @@ const App = () => {
       <Route path="/Login/Register" element={<Register />}/>
       <Route path="/Login/Idfine" element={<Idfind />} />
       <Route path="/Login/Pwdfind" element={<Pwdfind />} />
+      <Route path="/Rcord" element={<Record/>} />
       <Route path="/Community" element={<Communityform />} />
       <Route path="/Community/Write" element={<CommunityWrite />}/>
       <Route path="/localfestival" element={<Localfestival />} />

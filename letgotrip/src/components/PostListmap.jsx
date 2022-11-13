@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import '../font/fontstyle.css';
-import trash from '../img/bin.png'
+
 const Template1 = styled.div`
     display:flex;
     font-family: 'HallymGothic-Regular';
@@ -30,7 +30,7 @@ const PostListmap = ({url,title,content,state,first,finish}) => {
             <span>날짜 : {first} ~ {finish}</span>
             <br /><br/>
         </PostConcent>
-        <img src={trash} alt="" />
+
         </Template1>
         <hr />
         </>

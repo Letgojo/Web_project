@@ -54,6 +54,7 @@ const Communityform = () => {
     const fileInput =React.useRef();
     const [imageList, setImageList] = useState([]);
     const [Postlist, setPostList] = useState([]);
+
     const user= [];
     useEffect(()=>{
         setTimeout(()=>{
