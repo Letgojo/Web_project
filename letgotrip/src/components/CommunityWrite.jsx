@@ -203,7 +203,7 @@ const CommunityWrite = () => {
                 "제목": title,
                 "내용" : textbox ,
                 "작성자" : sessionStorage.getItem("name"), 
-                "업로드 날짜" : dateString,
+                "업로드날짜" : dateString,
                 "이미지URL" : url,
             })
             alert('게시물이 업로딩');
