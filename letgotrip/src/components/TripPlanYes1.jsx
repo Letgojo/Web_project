@@ -11,6 +11,7 @@
     import Groupimg from '../img/group.png'
     import plusimg from '../img/plus.png'
     import minus from '../img/minus.png'
+    import Checkimg from '../img/check.png'
     import '../font/fontstyle.css';
     const Transportation = styled.div`
         background-color : white;
@@ -154,6 +155,10 @@
         const [finish , setfinish] = useState(false);
         const [Oclock,setOclock] = useState(0);
         const [minute,setminute] = useState(0);
+        const [Check, setCheck] = useState(false);
+        const [Check1, setCheck1] = useState(false);
+        const [Car, setCar]= useState(true);
+        const [train ,settrain] = useState(true);
         const handleOnChange1 = (e) => {
             onChange3(e);console.log(value)
             setCalendar1((CalendarOn1) => !CalendarOn1);
@@ -196,13 +201,39 @@
         const handleTime2 = (e) => {
             setminute(e.target.value);
         };
-
+        const handleCheck = () => {
+            setCar((Car) => !Car)
+            setCheck((Check) => !Check);
+        }
+        const handleCheck1 = () =>{
+            settrain((train) => !train)
+            setCheck1((Check1) => !Check1);
+        }
+    
         return (
             <>
                 <Transportation>
-                    <Trafficdiv><Traffic src={Carimg} alt="자동차"/><TrafficSpan>자차</TrafficSpan></Trafficdiv>
-                    <Trafficdiv>
+                    {Car ? 
+                    <>
+                    <Trafficdiv  onClick={handleCheck}>
+                        <Traffic src={Carimg} alt="자동차"/><TrafficSpan>자차</TrafficSpan>
+                        </Trafficdiv>
+                        </> :<>
+                        
+                        {Check ? <Trafficdiv  onClick={handleCheck}>
+                            <Traffic src={Checkimg} alt="선택" />
+                            <TrafficSpan>자차</TrafficSpan></Trafficdiv> : "" }</>
+                    }
+                    {train ? 
+                    <>
+                    <Trafficdiv value={train} onClick={handleCheck1}>
                     <Traffic src={Trainimg} alt="기차"/><TrafficSpan>대중교통</TrafficSpan></Trafficdiv>
+                    </>
+                    :
+                        <>
+                        
+                        {Check1 ?  
+                        <Trafficdiv value={train} onClick={handleCheck1}><Traffic src={Checkimg} alt="선택" /><TrafficSpan>대중교통</TrafficSpan></Trafficdiv> : "" }</>}
                 </Transportation>
                 <TripPlancalrndar >
                     <Location>
@@ -219,7 +250,7 @@
                         <Carlenderimg src={Calenderimg} alt="출발캘린더" onClick={toggleCalendar1}/>
                         <CarlenderData>
                             <span>출발</span>
-                            <div style={{border : "/img/calender.png" , width:"150px" ,marginTop:"10px"}}></div>
+                            <div style={{border : "1px solid black;" , width:"150px" ,marginTop:"10px"}}></div>
                             <div>
                             {CalendarOn1 ? (
                             <CalenderTamplate>

@@ -79,12 +79,18 @@ const Header = ({chlidren}) => {
             console.log('isLogin ?? :: ', user)
         }
     })
+    const handleSelect = () => { 
+        if(!name){
+            alert("권한이 없습니다.")
+            window.location.replace("/")
+        }
+    }
     return (
         <Template>
         <Link to="/"style={{ textDecoration:"none",color:"black"}}><Logo><MainLogo1 src={MainLogo} alt="Logo" /></Logo></Link>
         <HeaderUl>
-            <Link to="/TripPlan" style={{textDecoration:"none",color:"black"}}><Category>여행계획</Category></Link>
-            <Link to="Rcord" style={{textDecoration:"none",color:"black"}}><Category>기록</Category></Link> 
+            <Link to="/TripPlan" style={{textDecoration:"none",color:"black"}} onClick={handleSelect}><Category>여행계획</Category></Link>
+            <Link to="Rcord" style={{textDecoration:"none",color:"black"}} onClick={handleSelect}><Category>기록</Category></Link> 
             <Link to="/localfestival" style={{textDecoration:"none",color:"black"}}><Category>지역축제소개</Category></Link>
             <Link to="/Community"style={{textDecoration:"none",color:"black"}}><Category>커뮤니티</Category></Link>
         </HeaderUl>

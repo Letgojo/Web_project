@@ -8,7 +8,7 @@ import PostListmap from './PostListmap';
 import '../font/fontstyle.css';
 const Template  = styled.div`
     width : 1300px;
-    height : 3000px;
+    max-height : 100%;
     border : 1px solid black;
     background-color : white;
     margin : 5% auto;   

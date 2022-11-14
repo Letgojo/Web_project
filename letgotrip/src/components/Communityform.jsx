@@ -66,6 +66,7 @@ const Communityform = () => {
     })
 },500)
 },[setPostList])
+console.log(Postlist)
 // const Storage = storage;
 // const StorageRef = ref(Storage, 'image/');
 // const URL = [];
@@ -115,7 +116,7 @@ useEffect(()=>{
     user.map((element)=>(
         setPostList((Postlist)=> [
             ...Postlist,
-            {name:element.작성자, title:element.제목, content:element.내용 ,Url:element.이미지URL}
+            {name:element.작성자, title:element.제목, content:element.내용 ,Url:element.이미지URL ,upload:element.업로드날짜}
         ])))
     },1000)
 },[setPostList])
@@ -136,6 +137,7 @@ useEffect(()=>{
                             name={element.name}
                             title={element.title}
                             content={element.content}
+                            upload={element.upload}
                 />
               ))
               }
