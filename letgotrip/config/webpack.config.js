@@ -51,7 +51,7 @@ const emitErrorsAsWarnings = process.env.ESLINT_NO_DEV_ERRORS === 'true';
 const disableESLintPlugin = process.env.DISABLE_ESLINT_PLUGIN === 'true';
 
 const imageInlineSizeLimit = parseInt(
-  process.env.IMAGE_INLINE_SIZE_LIMIT || '50000'
+  process.env.IMAGE_INLINE_SIZE_LIMIT || '70000'
 );
 
 // Check if TypeScript is setup
@@ -172,7 +172,6 @@ module.exports = function (webpackEnv) {
           options: {
             sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
             root: paths.appSrc,
-            limit : 3000,
           },
         },
         {
@@ -546,6 +545,7 @@ module.exports = function (webpackEnv) {
                 },
                 'sass-loader'
               ),
+              
             },
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.

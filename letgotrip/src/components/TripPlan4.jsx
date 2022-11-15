@@ -1,12 +1,12 @@
 import React,{useState,useEffect} from 'react';
 import styled from 'styled-components';
 import HotelList from './HotelList'
-import guesthouse from '../img/숙소사진/guesthouse.png'
-import hanok from '../img/숙소사진/hanok.png'
-import hotel from '../img/숙소사진/hotel.png'
-import motel from '../img/숙소사진/motel.png'
-import deleteBtn from '../img/숙소사진/x_button.png'
-import pension from '../img/숙소사진/island.png'
+import guesthouse from '../img/house/guesthouse.png'
+import hanok from '../img/house/hanok.png'
+import hotel from '../img/house/hotel.png'
+import motel from '../img/house/motel.png'
+import deleteBtn from '../img/house/x_button.png'
+import pension from '../img/house/island.png'
 import '../font/fontstyle.css';
 import { firestore} from '../firebase.js'
 const Template = styled.div`
