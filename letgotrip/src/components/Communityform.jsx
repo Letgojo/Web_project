@@ -50,7 +50,7 @@ const WriteImgage  = styled.img`
     height : 30px;
     margin-left:10px;
 `
-const Communityform = () => {
+const Communityform = ({form}) => {
     const [Postlist, setPostList] = useState([]);
 
     const user= [];
@@ -111,13 +111,14 @@ console.log(Postlist)
 
 useEffect(()=>{
     setTimeout(()=>{
-    user.map((element)=>(
+    user.map((element,index)=>(
         setPostList((Postlist)=> [
             ...Postlist,
-            {name:element.작성자, title:element.제목, content:element.내용 ,Url:element.이미지URL ,upload:element.업로드날짜}
+            {id:index,name:element.작성자, title:element.제목, content:element.내용 ,Url:element.이미지URL ,upload:element.업로드날짜},
         ])))
     },1000)
 },[setPostList])
+
     return (
         <Template>
             <Writeform>
@@ -129,7 +130,7 @@ useEffect(()=>{
             <div>
                 <ul>
                     {Postlist.map((element,index) => (                     
-                        <Link to={`/Community/detail/${index}`}style={{textDecoration:"none",color:"black"}}> 
+                        <Link to={`/Community/detail/${index}`}style={{textDecoration:"none",color:"black"}} state={{name:element.name,title:element.title,content:element.content,upload:element.upload,Url:element.Url}}> 
                         <Postlistfrom
                             key={index}
                             Url={element.Url}
