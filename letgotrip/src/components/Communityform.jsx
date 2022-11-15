@@ -3,10 +3,10 @@ import  styled  from 'styled-components';
 import {Link} from 'react-router-dom'
 import {SearchOutlined}  from "@ant-design/icons"
 import '../font/fontstyle.css';
-import { firestore,storage } from '../firebase.js'
+import { firestore } from '../firebase.js'
 import Postlistfrom from './Postlist';
-import {getStorage, ref, getMetadata,uploadBytes, listAll, getDownloadURL,} from "firebase/storage";
-import Writeimg from '../img/edit.png'
+import Writeimg from '../img/edit.png';
+import CommunityDetail from './CommunityDetail';
 
 const Template  = styled.div`
     width : 1300px;
@@ -51,8 +51,6 @@ const WriteImgage  = styled.img`
     margin-left:10px;
 `
 const Communityform = () => {
-    const fileInput =React.useRef();
-    const [imageList, setImageList] = useState([]);
     const [Postlist, setPostList] = useState([]);
 
     const user= [];
@@ -131,6 +129,7 @@ useEffect(()=>{
             <div>
                 <ul>
                     {Postlist.map((element,index) => (                     
+                        <Link to={`/Community/detail/${index}`}style={{textDecoration:"none",color:"black"}}> 
                         <Postlistfrom
                             key={index}
                             Url={element.Url}
@@ -139,6 +138,7 @@ useEffect(()=>{
                             content={element.content}
                             upload={element.upload}
                 />
+                </Link>
               ))
               }
               

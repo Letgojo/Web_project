@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import '../font/fontstyle.css';
 import trash from '../img/bin.png'
-import { firestore,storage } from '../firebase.js'
+import { firestore } from '../firebase.js'
 import { useNavigate } from 'react-router-dom';
+
 const ListForm = styled.div`
     display : flex;
     width : 1100px;
@@ -24,6 +25,7 @@ const Image = styled.img`
     `
 const ListText = styled.div`
     margin-left : 40px;
+
 `
 const TrashImage = styled.img`
     width : 20px;
@@ -48,7 +50,7 @@ const Postlist = ({Url,name,title,content,upload}) => {
         console.log(title,"삭제되었습니다")
         const db = firestore.collection("게시글").doc(title).delete()
         return db
-        
+    
     }
     return (
         <ListForm>
@@ -67,7 +69,6 @@ const Postlist = ({Url,name,title,content,upload}) => {
             내용 : {content}
             </CommunityContent>
             </ListText>
-
         </ListForm>
     );
 };

@@ -13,7 +13,7 @@ import { firestore, storage } from '../firebase.js'
 
 const Template  = styled.div`
     width : 1300px;
-    height : 900px;
+    height : 950px;
     border : 1px solid black;
     background-color : white;
     margin : 5% auto;   
@@ -101,8 +101,9 @@ const Textareadiv = styled.div`
     border: 1px solid #108057
 `
 const Image = styled.img`
-width : 178px;
-height : 189px;
+width : 168px;
+height : 175px;
+
 `
 const PostImg = styled.img`
     width : 178px;
@@ -112,6 +113,7 @@ const PostImg = styled.img`
 const ImageBox = styled.label`
     width : 178px;
     height : 189px;
+    margin-left : 30px;
 `
 const CommunityWrite = () => { 
     

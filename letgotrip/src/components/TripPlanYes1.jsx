@@ -33,8 +33,6 @@
         flex-wrap: wrap;
         width : 120px; 
         margin-left : 65px;
-        &:hover{
-            border: 1px solid red;
     `
     const Traffic = styled.img`
         height : 100px;
@@ -233,7 +231,7 @@
                         <>
                         
                         {Check1 ?  
-                        <Trafficdiv value={train} onClick={handleCheck1}><Traffic src={Checkimg} alt="선택" /><TrafficSpan>대중교통</TrafficSpan></Trafficdiv> : "" }</>}
+                        <Trafficdiv value={train} onClick={handleCheck1}><Traffic src={Checkimg} alt="선택" /><TrafficSpan>대중교통</TrafficSpan></Trafficdiv> : "" }</>}   
                 </Transportation>
                 <TripPlancalrndar >
                     <Location>
