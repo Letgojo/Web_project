@@ -55,16 +55,18 @@ const Communityform = ({form}) => {
 
     const user= [];
     useEffect(()=>{
-        setTimeout(()=>{
-    const db = firestore.collection("게시글");
-    db.get().then((result)=>{
-        result.forEach((allDoc)=>{
+        setTimeout(async()=>{
+    const db =  firestore.collection("게시글");
+    await db.get().then((result)=>{
+        result.forEach(async (allDoc)=>{
             user.push(allDoc.data())
         })
     })
+    console.log(user.length)
 },500)
 },[setPostList])
-console.log(Postlist)
+
+
 // const Storage = storage;
 // const StorageRef = ref(Storage, 'image/');
 // const URL = [];
@@ -114,7 +116,7 @@ useEffect(()=>{
     user.map((element,index)=>(
         setPostList((Postlist)=> [
             ...Postlist,
-            {id:index,name:element.작성자, title:element.제목, content:element.내용 ,Url:element.이미지URL ,upload:element.업로드날짜},
+            {id:element.번호,name:element.작성자, title:element.제목, content:element.내용 ,Url:element.이미지URL ,upload:element.업로드날짜},
         ])))
     },1000)
 },[setPostList])
@@ -130,7 +132,7 @@ useEffect(()=>{
             <div>
                 <ul>
                     {Postlist.map((element,index) => (                     
-                        <Link to={`/Community/detail/${index}`}style={{textDecoration:"none",color:"black"}} state={{name:element.name,title:element.title,content:element.content,upload:element.upload,Url:element.Url}}> 
+                        <Link to={`/Community/detail/${index}`}style={{textDecoration:"none",color:"black"}} state={{id:element.id,name:element.name,title:element.title,content:element.content,upload:element.upload,Url:element.Url}}> 
                         <Postlistfrom
                             key={index}
                             Url={element.Url}
