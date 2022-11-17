@@ -52,7 +52,7 @@ const WriteImgage  = styled.img`
 `
 const Communityform = ({form}) => {
     const [Postlist, setPostList] = useState([]);
-
+    
     const user= [];
     useEffect(()=>{
         setTimeout(async()=>{

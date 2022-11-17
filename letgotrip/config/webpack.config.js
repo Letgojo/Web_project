@@ -102,7 +102,7 @@ module.exports = function (webpackEnv) {
   const env = getClientEnvironment(paths.publicUrlOrPath.slice(0, -1));
 
   const shouldUseReactRefresh = env.raw.FAST_REFRESH;
-
+  
   // common function to get style loaders
   const getStyleLoaders = (cssOptions, preProcessor) => {
     const loaders = [
@@ -228,6 +228,12 @@ module.exports = function (webpackEnv) {
         : isEnvDevelopment &&
           (info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')),
     },
+    devServer: {
+      port: 3000,
+      contentBase: path.join(__dirname, 'dist'),
+      compress: true,
+      historyApiFallback: true, // 이부분..!!!
+      },
     cache: {
       type: 'filesystem',
       version: createEnvironmentHash(env.raw),
@@ -396,7 +402,7 @@ module.exports = function (webpackEnv) {
                   loader: require.resolve('file-loader'),
                   options: {
                     name: 'static/media/[name].[hash].[ext]',
-                    
+                  
                   },
                 },
               ],

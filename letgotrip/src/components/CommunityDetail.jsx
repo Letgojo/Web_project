@@ -78,9 +78,17 @@ const CommunityDetail =  () => {
     const [count , setCount]=useState("0")
     const location = useLocation();
     const State = location.state
-    console.log(State); 
     const handleheart = (e) => { 
         setheart((heart)=> !heart)
+        const db = firestore.collection("게시글")
+        if(heart===true){
+        db.doc(State.id).update({좋아요 : +1})
+        console.log("향상")
+    }
+        else if(heart===false){
+            db.doc(State.id).update({좋아요 : -1})
+            console.log("나락")
+        }
     }
     let user = [];
     try {
@@ -120,7 +128,6 @@ const Upload = async () => {
             })
             console.log("업로드 성공");
 }
-console.log(count)
     return (
         <Template>
             <HeaderDiv>
@@ -134,7 +141,7 @@ console.log(count)
             </SectionDiv>
             <br />
             <br />
-            <Contentdiv><ChatImg src={chat} alt="챗"/><ChatText>{count}</ChatText><div onClick={handleheart}>{heart ? <Heartimg src={heartimg} alt="하트" /> : <Heartimg src={binheartimg} alt="하트"/>}</div></Contentdiv>
+            <Contentdiv><ChatImg src={chat} alt="챗"/><ChatText>{count}</ChatText><div onClick={handleheart}>{heart ? <Heartimg src={binheartimg} alt="하트"/>: <Heartimg src={heartimg} alt="하트" />} </div></Contentdiv>
             <hr />
             <Comments><CommentInput type="text" placeholder='댓글을 입력하세요' id='com'/><CommentSpan onClick={Upload}>등록</CommentSpan></Comments>
             <Commentlist>
