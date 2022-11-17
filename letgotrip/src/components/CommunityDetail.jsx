@@ -4,6 +4,7 @@ import { useParams,useLocation } from "react-router"
 import Postlist from './Postlist';
 import { useState } from 'react';
 import User from '../img/user.png'
+import chat from '../img/chat.png'
 import { firestore } from '../firebase.js'
 import CommentsList from './CommentsList';
 const Template  = styled.div`
@@ -52,13 +53,18 @@ const Commentlist = styled.div`
     margin-top : 30x;
     margin-left: 70px
 `
+const ChatImg = styled.img`
+    margin-left : 70px;
+    width:30px;
+    height : 30px;
+`
 const CommunityDetail =  () => {
     const [PostList , setPostList] = useState([]);
     const location = useLocation();
     const State = location.state
     console.log(State); 
     let user = [];
-
+    var count =0;
     try {
     setTimeout(async()=>{
     const db = firestore.collection("게시글").doc(State.id).collection("댓글");
@@ -72,16 +78,15 @@ const CommunityDetail =  () => {
     catch{
         console.log("error")
     }
-
     useEffect(()=>{
         setTimeout(()=>{
-        user.map((element)=>(
+        user.map((element,index)=>(
             setPostList((Postlist)=> [
                 ...Postlist,
                 {name : element.작성자, content : element.내용},
             ])))
         },1000)
-    },[])
+    },[Postlist])
 const Upload = async () => { 
     var count =  user.length.toString();
     let sessionStorage = window.sessionStorage;
@@ -96,7 +101,7 @@ const Upload = async () => {
             })
             console.log("업로드 성공");
 }
-
+console.log(count)
     return (
         <Template>
             <HeaderDiv>
@@ -110,6 +115,7 @@ const Upload = async () => {
             </SectionDiv>
             <br />
             <br />
+            <ChatImg src={chat} alt="챗"/>{count}
             <hr />
             <Comments><CommentInput type="text" placeholder='댓글을 입력하세요' id='com'/><CommentSpan onClick={Upload}>등록</CommentSpan></Comments>
             <Commentlist>
