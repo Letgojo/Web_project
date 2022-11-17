@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import styled from 'styled-components';
 import '../font/fontstyle.css';
 import trash from '../img/bin.png'
 import { firestore } from '../firebase.js'
 import { useNavigate } from 'react-router-dom';
-
+import Chat from '../img/chat.png'
 const ListForm = styled.div`
     display : flex;
     width : 1100px;
@@ -43,16 +43,38 @@ const TitleText = styled.div`
 const CommunityContent = styled.div`
     margin-top : 25px;
 `
-const Postlist = ({Url,name,title,content,upload}) => {
+const Chatdiv = styled.div`
+    margin-top : 40px;
+`
+const Chatimg = styled.img`
+    width : 20px;
+    height : 20px;
+`
+const Postlist = ({id,Url,name,title,content,upload}) => {
+    const [count, setCount] = useState("0")
     const navigate = useNavigate();
     const handleDel = () => {
         navigate('/');
         console.log(title,"삭제되었습니다")
-        const db = firestore.collection("게시글").doc(title).delete()
+        const db = firestore.collection("게시글").doc({id}).delete()
         return db
-    
     }
+const user = [];
+    useEffect(()=>{
+        setTimeout(async()=>{
+            const db = firestore.collection("게시글").doc(`${id}`).collection("댓글")
+            await db.get().then((result)=>{
+                result.forEach(async (allDoc)=>{
+                    user.push(allDoc.data())
+                })
+            })
+            setCount(user.length)
+            console.log(user.length)
+    },500)
+},[setCount])
+
     return (
+        <>
         <ListForm>
             <ListImg>
                 <Image src={Url} alt="사진" />
@@ -68,8 +90,14 @@ const Postlist = ({Url,name,title,content,upload}) => {
             <CommunityContent>
             내용 : {content}
             </CommunityContent>
+            <Chatdiv>
+                <Chatimg src={Chat} alt="챗이미지" /><span>{count}</span>
+            </Chatdiv>
             </ListText>
+            
         </ListForm>
+
+        </>
     );
 };
 

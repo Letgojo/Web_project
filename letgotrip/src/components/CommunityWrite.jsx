@@ -173,12 +173,22 @@ const CommunityWrite = () => {
     const handleSelectBtn =()=>{
         fileInput.current.click();
     }
-    const Upload = (e) => { 
+    const Upload =async (e) => { 
         let today = new Date();   
         var year = today.getFullYear();
         var month = ('0' + (today.getMonth() + 1)).slice(-2);
         var day = ('0' + today.getDate()).slice(-2);
         var dateString = year + '-' + month  + '-' + day;
+        
+        var user = []
+        const db =  firestore.collection("게시글");
+        await db.get().then((result)=>{
+            result.forEach((allDoc)=>{
+                user.push(allDoc.data())
+            })
+        })
+        var count =  user.length.toString();
+
         let sessionStorage = window.sessionStorage;
         e.preventDefault();
         const title = document.getElementById("title").value;
@@ -200,8 +210,10 @@ const CommunityWrite = () => {
         () => {
           업로드작업.snapshot.ref.getDownloadURL().then((url) => {
             console.log('업로드된 경로는', url);
-            const bucket = firestore.collection("게시글").doc(title);
+
+            const bucket = firestore.collection("게시글").doc(count);
             bucket.set({
+                "번호" : count,
                 "제목": title,
                 "내용" : textbox ,
                 "작성자" : sessionStorage.getItem("name"), 

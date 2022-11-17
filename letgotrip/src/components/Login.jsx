@@ -80,7 +80,8 @@ const Login = () => {
         console.log(ID)
         db.doc(ID).get().then((doc)=>{
             let person = doc.data();
-            console.log(person)
+            console.log(person);
+            try{        
             if(ID === person.아이디 && PWD === person.패스워드){
                 sessionStorage.setItem("loginId", ID);
                 sessionStorage.setItem("loginPassword", PWD);
@@ -89,9 +90,11 @@ const Login = () => {
                 navigate('/');
                 window.location.replace("/")
             }
-            else{
-                alert("없는 정보입니다.")
-            }
+        }
+        catch{
+            alert("없는 정보입니다.")
+        }
+
         })
     }
     return (

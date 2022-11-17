@@ -108,7 +108,6 @@ const Idfind = () => {
                     alert(user[i].아이디)
             }
         })
-        
         // db.doc(Email).get().then((doc)=>{
         //     let person = doc.data();
         //     console.log(person)

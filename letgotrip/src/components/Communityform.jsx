@@ -135,6 +135,7 @@ useEffect(()=>{
                         <Link to={`/Community/detail/${index}`}style={{textDecoration:"none",color:"black"}} state={{id:element.id,name:element.name,title:element.title,content:element.content,upload:element.upload,Url:element.Url}}> 
                         <Postlistfrom
                             key={index}
+                            id={element.id}
                             Url={element.Url}
                             name={element.name}
                             title={element.title}

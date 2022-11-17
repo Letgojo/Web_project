@@ -7,6 +7,8 @@ import User from '../img/user.png'
 import chat from '../img/chat.png'
 import { firestore } from '../firebase.js'
 import CommentsList from './CommentsList';
+import heartimg from '../img/heart.png'
+import binheartimg from '../img/binheart.png'
 const Template  = styled.div`
     width : 1300px;
     height : 1200px;
@@ -58,13 +60,29 @@ const ChatImg = styled.img`
     width:30px;
     height : 30px;
 `
+const Heartimg = styled.img`
+    margin-left : 10px;
+    width : 35px;
+    height : 35px;
+`
+const ChatText = styled.span`
+    font-size : 25px;
+    margin-left : 10px
+`
+const Contentdiv = styled.div`
+    display : flex;
+`
 const CommunityDetail =  () => {
     const [PostList , setPostList] = useState([]);
+    const [heart ,setheart] =useState(false)
+    const [count , setCount]=useState("0")
     const location = useLocation();
     const State = location.state
     console.log(State); 
+    const handleheart = (e) => { 
+        setheart((heart)=> !heart)
+    }
     let user = [];
-    var count =0;
     try {
     setTimeout(async()=>{
     const db = firestore.collection("게시글").doc(State.id).collection("댓글");
@@ -73,7 +91,8 @@ const CommunityDetail =  () => {
             user.push(allDoc.data())
         })
     })
-})
+    setCount(user.length)
+},100)
     }
     catch{
         console.log("error")
@@ -115,7 +134,7 @@ console.log(count)
             </SectionDiv>
             <br />
             <br />
-            <ChatImg src={chat} alt="챗"/>{count}
+            <Contentdiv><ChatImg src={chat} alt="챗"/><ChatText>{count}</ChatText><div onClick={handleheart}>{heart ? <Heartimg src={heartimg} alt="하트" /> : <Heartimg src={binheartimg} alt="하트"/>}</div></Contentdiv>
             <hr />
             <Comments><CommentInput type="text" placeholder='댓글을 입력하세요' id='com'/><CommentSpan onClick={Upload}>등록</CommentSpan></Comments>
             <Commentlist>

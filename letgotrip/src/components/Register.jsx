@@ -30,6 +30,9 @@ const Overlap = styled.button`
     background-color: #EAEAEA;
     padding-top : 8px;
     cursor : pointer;
+    border-radius : 30px;
+    margin-top:4px;
+    margin-left: 10px;
 `
 const Pwd =styled.div`
     display:block;
@@ -176,20 +179,26 @@ const refrash = (e) => {
       });
     
 }
-    const ID_overlap = (e) => { 
+    const ID_overlap = async (e) => { 
         e.preventDefault();
         const Id = document.getElementById("Id").value
         const db = firestore.collection("회원관리");
-            db.doc(Id).get().then((doc)=>{
+        console.log("TEST")
+            try{
+            await db.doc(Id).get().then((doc)=>{
                 let person = doc.data();
                 if(Id === person.아이디){
                     alert("아이디가 중복됩니다. 다른 아이디를 입력해주세요")
                 }
-                else{
-                    alert("사용가능합니다.")
-                }
+
         })
     }
+    catch{
+            console.log("가능")
+            alert("사용가능합니다.")
+    }
+}
+
     return (
         <TemplateLogin>
             <form>
