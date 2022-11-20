@@ -8,6 +8,7 @@ import Chat from '../img/chat.png'
 const ListForm = styled.div`
     display : flex;
     width : 1100px;
+    height : 352px;
     margin-bottom : 30px;
     font-family: 'HallymGothic-Regular';
     border : 1px solid black;
@@ -16,7 +17,6 @@ const ListForm = styled.div`
 `
 const ListImg = styled.div`
     width :282px;
-    height : 352px;
     border : 1px solid black;
 `
 const Image = styled.img`
@@ -25,7 +25,6 @@ const Image = styled.img`
     `
 const ListText = styled.div`
     margin-left : 40px;
-
 `
 const TrashImage = styled.img`
     width : 20px;
@@ -49,6 +48,9 @@ const Chatdiv = styled.div`
 const Chatimg = styled.img`
     width : 20px;
     height : 20px;
+`
+const Contentform = styled.div`
+    height: 200px;
 `
 const Postlist = ({id,Url,name,title,content,upload}) => {
     const [count, setCount] = useState("0")
@@ -84,17 +86,18 @@ const user = [];
             <div>제목 : {title}</div>
             <div>{upload}<TrashImage onClick={handleDel} src={trash} alt="휴지통" /></div>
             </TitleText>
+            <Contentform>
             <CommunityContent>
             작성자 : {name}
             </CommunityContent>
             <CommunityContent>
             내용 : {content}
             </CommunityContent>
+            </Contentform>
             <Chatdiv>
                 <Chatimg src={Chat} alt="챗이미지" /><span>{count}</span>
             </Chatdiv>
             </ListText>
-            
         </ListForm>
 
         </>

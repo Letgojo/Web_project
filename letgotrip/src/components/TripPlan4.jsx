@@ -9,6 +9,7 @@ import deleteBtn from '../img/house/x_button.png'
 import pension from '../img/house/island.png'
 import '../font/fontstyle.css';
 import { firestore} from '../firebase.js'
+import { Link } from 'react-router-dom';
 const Template = styled.div`
 width : 1300px;
 max-height : 100%;
@@ -52,6 +53,21 @@ const Typeinput = styled.input`
     margin-left : 10px;
     margin-right: 20px
     
+`
+const CategoryDIV = styled.div`
+    display : flex;
+    justify-content : space-between;
+`
+const Next = styled.div`
+width : 187px;
+height : 58px;
+border : 1px solid black;
+border-radius : 30px;
+background-color : #B9D6F9;
+font-size : 40px;
+text-align : center;
+cursor : pointer;
+margin-right : 160px;
 `
 const TripPlan4 = () => {
     const [PostList, setPostList] = useState([]);
@@ -100,11 +116,14 @@ const TripPlan4 = () => {
             <Category onClick={handleChoiceKH}><Btnimg src={hanok} alt="한옥"/>한옥</Category>
             </CategoryConent>
             <hr />
+            <CategoryDIV>
             <CategoryType>
                 <TypeRadio><Typeinput type="radio" name="type" style={{width:"25px",height:"25px"}}/>인기</TypeRadio>
                 <TypeRadio><Typeinput type="radio" name="type" style={{width:"25px",height:"25px"}}/>가격</TypeRadio>
                 <TypeRadio><Typeinput type="radio" name="type" style={{width:"25px",height:"25px"}}/>특가</TypeRadio>
             </CategoryType>
+            <Next><Link to="/Map" style={{textDecoration:"none",color:"black"}}>Next</Link></Next>
+            </CategoryDIV>
             <div>
                 <ul> 
                     {PostList.map((element,index)=>(
