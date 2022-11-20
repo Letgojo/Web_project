@@ -229,11 +229,10 @@ module.exports = function (webpackEnv) {
           (info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')),
     },
     devServer: {
+      inline: true,
       port: 3000,
-      contentBase: path.join(__dirname, 'dist'),
-      compress: true,
-      historyApiFallback: true, // 이부분..!!!
-      },
+      historyApiFallback: true
+  },
     cache: {
       type: 'filesystem',
       version: createEnvironmentHash(env.raw),

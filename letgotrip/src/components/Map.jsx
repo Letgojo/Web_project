@@ -1,29 +1,64 @@
 import React,{useEffect ,useState}  from 'react';
 import styled from 'styled-components';
 import { firestore } from '../firebase.js'
+import { Spinner } from 'react-awesome-spinners'
 
 const Template  = styled.div`
     width : 1300px;
-    height : 1200px;
+    height : 700px;
     border : 1px solid black;
     background-color : white;
     margin : 5% auto;   
     border-radius : 30px;
     font-family: 'HallymGothic-Regular';
+    display : flex;
+    padding-top : 10px;
 `
 const MAP = styled.div`
 width: 500px;
-height: 500px;
+height: 600px;
 
-margin-top : 60px;
-margin-left : 30px;
+
 border-style: solid;
 border-width: medium;
 border-color: #D8D8D8;
 `
-
+const Mapform = styled.div`
+width: 500px;
+height: 500px;
+margin-top : 60px;
+margin-left : 30px; 
+border : 1px solid black;
+`
+const Resultform = styled.div`
+    margin-top : 60px;
+    margin-left : 30px;
+`
+//결과 날짜 도출
+const Dayform = styled.div`
+    margin-left: 30px;
+    font-size : 30px;
+    height:90px;
+    width :650px;
+    border-bottom  : 1px dashed black;
+`
+//경비 도출
+const Pay  = styled.div`
+border-bottom  : 1px dashed black;
+width : 650px;
+margin-left : 30px;
+font-size : 25px;
+`
+//로딩 폼
+const Falseform = styled.div`
+    width: 500px;
+    height: 250px;
+    text-align : center;
+    padding-top: 200px;
+`
 const TripPlanNo1 = () => {
     const [where , setwhere] = useState([]);
+    const  [Loading , setLoading] = useState(false)   
     let user = []
     let map = []
     const db = firestore.collection("자연관광").doc("대구광역시").collection("달서구");
@@ -47,7 +82,8 @@ const TripPlanNo1 = () => {
         ])))
     }, 1000);
     },[])
-    const new_script = src => { 
+    const new_script =  src => { 
+         
         return new Promise((resolve, reject) => { 
           const script = document.createElement('script'); 
           script.src = src; 
@@ -60,15 +96,17 @@ const TripPlanNo1 = () => {
           document.head.appendChild(script); 
         }); 
       };
+      try{
       useEffect(()=>{
-        setTimeout(() => {
-            
-
-        const my_script = new_script('https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=776eedc483ab8997f8c9680da89c4b03');
+        setTimeout( () => {
+            setLoading(false)    
+        const my_script =  new_script('https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=776eedc483ab8997f8c9680da89c4b03');
         my_script.then(() => { 
               console.log('script loaded!!!');  
               const kakao = window['kakao']; 
+              setLoading(true);
               kakao.maps.load(() => { 
+                
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
             mapOption = { 
                 center: new kakao.maps.LatLng(35.851743, 128.5598102), // 지도의 중심좌표
@@ -76,7 +114,7 @@ const TripPlanNo1 = () => {
             };
 
         var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
+            
         // 지도를 클릭했을때 클릭한 위치에 마커를 추가하도록 지도에 클릭이벤트를 등록합니다
         kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
             // 클릭한 위치에 마커를 표시합니다 
@@ -409,15 +447,26 @@ const TripPlanNo1 = () => {
         
             return content;
         }
-        
     })
     })
 }, 10000);
     },[where]) 
+}catch{
+    console.log("error")
+}
   
+
     return (
         <Template>
-            <MAP id='map'></MAP>
+            <Mapform>
+            {Loading ? <MAP id='map' /> : <Falseform><Spinner /></Falseform>}
+            </Mapform>
+            <Resultform>
+                <Dayform>1일차
+                </Dayform>
+                <Pay>금액 : </Pay>
+                <div></div>
+            </Resultform>
         </Template>
     )
 };
