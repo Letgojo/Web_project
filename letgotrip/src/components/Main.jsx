@@ -1,9 +1,9 @@
 import React from 'react';
 import  styled  from 'styled-components';
 import '../font/fontstyle.css';
+import '../App.css'
 const Maintext = styled.div`
     font-size : 130px;
-    margin : 10% auto;
     color : white;
     text-align : center;
     font-family: 'establishRoomNo703OTF';
@@ -13,7 +13,7 @@ const Maintext = styled.div`
 
 const Main = () => {
     return (
-        <div>
+        <div className='slider'>
             <Maintext>Wellcome Trip To Korea</Maintext>
         </div>
     );

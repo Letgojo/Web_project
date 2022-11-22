@@ -27,10 +27,10 @@ const App = () => {
   });
 
   return (
-    <div className='slider'>
+    <div>
       <Header />
       <Routes>
-      <Route path="/" element={<Main />} />
+      <Route path="/" element={<Main />}/>
       <Route path="/Login" element={<Login />}/>
       <Route path="/Login/Register" element={<Register />}/>
       <Route path="/Login/Idfine" element={<Idfind />} />

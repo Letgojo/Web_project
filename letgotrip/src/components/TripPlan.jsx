@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import {RightOutlined} from "@ant-design/icons"
 import { Link } from 'react-router-dom';
 import '../font/fontstyle.css';
-
 const Triptitle = styled.div`
     background-color : white;
     margin : 100px auto ;
@@ -57,7 +56,7 @@ const YesorNotext = styled.div`
 `
 const TripPlan = () => {
     return (
-        <>
+        <div>
             <Triptitle>여행지를 정하셨나요 ? </Triptitle>
             <Trip>
             <Link to="/TripPlan/Yes1" style={{ textDecoration:"none",color:"black"}}>
@@ -72,7 +71,7 @@ const TripPlan = () => {
             <RightOutlined />
             </TripNo></Link>
             </Trip>
-        </>
+        </div>
     );
 };
 

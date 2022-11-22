@@ -1,0 +1,7 @@
+.backimg{
+    background : url(../../public/img/main.jpeg);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    background-attachment: fixed;
+}

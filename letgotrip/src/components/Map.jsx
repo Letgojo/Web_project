@@ -459,7 +459,7 @@ const TripPlanNo1 = () => {
         <Template>
             <Mapform>
             {Loading ? <MAP id='map' /> : <Falseform><Spinner />
-            <br />잠시만 기달려 주세요.</Falseform>}
+            <br />잠시만 기다려 주세요.</Falseform>}
             </Mapform>
             <Resultform>
                 <Dayform>1일차
