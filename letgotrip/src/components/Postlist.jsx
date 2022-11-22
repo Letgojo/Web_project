@@ -12,6 +12,7 @@ const ListForm = styled.div`
     margin-bottom : 30px;
     font-family: 'HallymGothic-Regular';
     border : 1px solid black;
+    margin-left : 50px;
     font-size: 20px;
     cursor: pointer;
 `
@@ -25,6 +26,7 @@ const Image = styled.img`
     `
 const ListText = styled.div`
     margin-left : 40px;
+    width: 700px;
 `
 const TrashImage = styled.img`
     width : 20px;
@@ -83,15 +85,12 @@ const user = [];
             </ListImg>
             <ListText>
             <TitleText>
-            <div>제목 : {title}</div>
+            <div>{title}</div>
             <div>{upload}<TrashImage onClick={handleDel} src={trash} alt="휴지통" /></div>
             </TitleText>
             <Contentform>
-            <CommunityContent>
-            작성자 : {name}
-            </CommunityContent>
-            <CommunityContent>
-            내용 : {content}
+            <CommunityContent style={{fontSize:17,marginTop:40}}>
+            {content.substring(0,200)}
             </CommunityContent>
             </Contentform>
             <Chatdiv>

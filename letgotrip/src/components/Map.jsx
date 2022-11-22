@@ -98,8 +98,7 @@ const TripPlanNo1 = () => {
       };
       try{
       useEffect(()=>{
-        setTimeout( () => {
-            setLoading(false)    
+        setTimeout( () => {  
         const my_script =  new_script('https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=776eedc483ab8997f8c9680da89c4b03');
         my_script.then(() => { 
               console.log('script loaded!!!');  
@@ -430,7 +429,7 @@ const TripPlanNo1 = () => {
             carMin = '<span class="number">' + carTime % 60 + '</span>분'
         
             // 거리와 도보 시간, 자전거 시간을 가지고 HTML Content를 만들어 리턴합니다
-            var content = '<ul class="dotOverlay distanceInfo">';
+            var content = '<ul class="dotOverlaydistanceInfo">';
             content += '    <li>';
             content += '        <span class="label">총거리</span><span class="number">' + distance + '</span>m';
             content += '    </li>';
@@ -459,7 +458,8 @@ const TripPlanNo1 = () => {
     return (
         <Template>
             <Mapform>
-            {Loading ? <MAP id='map' /> : <Falseform><Spinner /></Falseform>}
+            {Loading ? <MAP id='map' /> : <Falseform><Spinner />
+            <br />잠시만 기달려 주세요.</Falseform>}
             </Mapform>
             <Resultform>
                 <Dayform>1일차

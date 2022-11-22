@@ -16,11 +16,16 @@ const Triptitle = styled.div`
     padding-top : 20px;     
     font-family: 'HallymGothic-Regular';
 `
+const Trip = styled.div`
+    display : flex;
+`
+
 const TripYes = styled.div`
     background-color : white;
     margin : 50px auto;
     margin-bottom : 0px;
-    width : 500px;
+    margin-left: 400px;
+    width : 200px;
     height : 60px;
     font-size : 30px;
     text-align : center;
@@ -29,12 +34,14 @@ const TripYes = styled.div`
     cursor : pointer; 
     display: flex;
     justify-content: space-between;
+    padding-right : 50px;
     `
 const TripNo = styled.div`
     background-color : white;
     margin : 50px auto;
     margin-bottom : 0px;
-    width : 500px;
+    margin-left : 100px;
+    width : 200px;
     height : 60px;
     font-size : 30px;
     text-align : center;
@@ -43,6 +50,7 @@ const TripNo = styled.div`
     cursor : pointer;
     display : flex;
     justify-content: space-between;
+    padding-right : 50px;
 `
 const YesorNotext = styled.div`
     margin-left 40px;
@@ -51,7 +59,9 @@ const TripPlan = () => {
     return (
         <>
             <Triptitle>여행지를 정하셨나요 ? </Triptitle>
+            <Trip>
             <Link to="/TripPlan/Yes1" style={{ textDecoration:"none",color:"black"}}>
+       
             <TripYes>
                 <YesorNotext>예</YesorNotext> 
                 <RightOutlined /> 
@@ -61,6 +71,7 @@ const TripPlan = () => {
             <YesorNotext>아니요</YesorNotext> 
             <RightOutlined />
             </TripNo></Link>
+            </Trip>
         </>
     );
 };

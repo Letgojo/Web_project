@@ -12,7 +12,7 @@ const Festival = styled.img`
     margin-right : 40px;
 `
 const PostConcent = styled.div`
-    width : 1500px;
+    width : 900px;
     height : 230px;
 `
 const PostListmap = ({url,title,content,state,first,finish}) => {

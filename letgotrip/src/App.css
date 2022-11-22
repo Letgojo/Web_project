@@ -4,5 +4,32 @@ body{
     background-position: top center;
     background-size: cover;
     background-attachment: fixed;
-    
+    animation: slide 20s infinite;
+}
+@keyframes slide{
+    25%{
+        background: url(../public/img/1.jpeg);
+        background-repeat: no-repeat;
+        background-position: top center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    50%{
+        background: url(../public/img/2.jpeg);
+        background-repeat: no-repeat;
+        background-position: top center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    75%{
+        background: url(../public/img/3.jpeg);
+        background-repeat: no-repeat;
+        background-position: top center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    100%{
+        background: url(../public/img/4.jpeg);
+        background-size: cover;
+    }
 }

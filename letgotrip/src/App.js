@@ -27,7 +27,7 @@ const App = () => {
   });
 
   return (
-    <div>
+    <div className='slider'>
       <Header />
       <Routes>
       <Route path="/" element={<Main />} />

@@ -14,6 +14,7 @@ const Template  = styled.div`
     margin : 5% auto;   
     border-radius : 30px;
     font-family: 'HallymGothic-Regular';
+    padding-bottom : 300px;
 `
 const Period  = styled.div`
     display : flex;
@@ -34,10 +35,14 @@ const Periodform = styled.div`
 `
 const PLDay = styled.input`
     margin-left : 10px;
+    margin-right : 10px;
     widht : 98px;
     height :27px; 
     border-radius : 30px;
     text-align : center;
+`
+const Wave = styled.span`
+    margin : 0px 10px;
 `
 const Local =  styled.div`
     border : 1px solid black;
@@ -61,14 +66,16 @@ const City = styled.select`
 `
 const SearchCity = styled.input`
     width :177px;
-    height : 28px;
+    height : 24px;
     border-radius: 30px;
+    margin-left: 10px;
+    margin-right:10px;
 `
 const FestivalContent = styled.div`
     margin : 30px 0px 0px 60px;
 `
 const Search = styled.div`
-    cursor : pointer;   
+    cursor : pointer; 
 `
 const CalenderTamplate = styled.div`
     width : 350px;
@@ -165,7 +172,7 @@ catch(error){
                 )  : ""}
                 {finish ? (  
                 <>
-                <span> ~ </span> 
+                <Wave> ~ </Wave> 
                 <PLDay type="test" id='LastDay' value={moment(values).format("YYYY-MM-DD")} />
                 <CalendarOutlined  style={{cursor:"pointer"}} onClick={toggleCalendar2}/>
                 </>):""}

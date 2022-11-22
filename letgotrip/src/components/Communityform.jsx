@@ -10,16 +10,18 @@ import CommunityDetail from './CommunityDetail';
 
 const Template  = styled.div`
     width : 1300px;
-    height : 1200px;
+    max-height:100%
     border : 1px solid black;
     background-color : white;
     margin : 5% auto;   
     border-radius : 30px;
     font-family: 'HallymGothic-Regular';
+    padding 20px;
 `
 const Writeform = styled.div`
     display : flex; 
     margin : 30px;
+    margin-left : 100px;
     justify-content: space-between;
     font-size : 20px;
 
@@ -31,6 +33,7 @@ const Search = styled.div`
     border-radius : 30px;
     text-align : center;
     padding-top : 10px; 
+    margin-right : 85px;
 `
 const SearchInput = styled.input`
     width : 300px;
@@ -121,7 +124,7 @@ useEffect(()=>{
     },1000)
 },[setPostList])
 
-    return (
+    return ( 
         <Template>
             <Writeform>
                 <Link to="/Community/Write" style={{ textDecoration:"none",color:"black"}}><Write>글쓰기<WriteImgage src={Writeimg} alt="글쓰기" /></Write></Link>

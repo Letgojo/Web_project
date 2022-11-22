@@ -26,9 +26,11 @@ const HeaderDiv = styled.div`
 const SectionDiv = styled.div`
     margin-top : 30px;
     margin-left : 70px;
+    width : 1200px;
 `
 const SectionHeader = styled.div`
-
+    font-size: 25px;
+    margin-bottom : 50px;
 `
 const SectionMain = styled.div`
     margin-top : 10px;
@@ -135,8 +137,8 @@ const Upload = async () => {
             <div>{State.upload}</div>
             </HeaderDiv>
             <SectionDiv>
-            <SectionHeader>제목 : {State.title}</SectionHeader>
-            <SectionMain>내용 : {State.content}</SectionMain>
+            <SectionHeader>{State.title}</SectionHeader>
+            <SectionMain>{State.content}</SectionMain>
             <Sectionimg src={State.Url} alt="사진" />
             </SectionDiv>
             <br />

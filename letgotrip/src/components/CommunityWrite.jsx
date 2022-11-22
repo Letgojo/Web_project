@@ -219,6 +219,8 @@ const CommunityWrite = () => {
                 "작성자" : sessionStorage.getItem("name"), 
                 "업로드날짜" : dateString,
                 "이미지URL" : url,
+                "좋아요":0,
+                "조회수" : 0
             })
             alert('게시물이 업로딩');
             navigate('/Community');

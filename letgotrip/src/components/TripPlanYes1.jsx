@@ -93,7 +93,8 @@
         height : 58px;
         border : 1px solid black;
         border-radius : 30px;
-        background-color : #B9D6F9;
+        background-color : #9b9b9b;
+        opacity: 0.5;
         font-size : 40px;
         text-align : center;
         cursor : pointer;
@@ -137,7 +138,7 @@
         display:flex;
         font-size:20px;
     `
-    const TimeStart = styled.div`
+    const Nexttext = styled.span`
     
     `
     const Timetext= styled.select`
@@ -294,7 +295,7 @@
                     <Threeline>
                     <Starttime>
                         <TimeSet>
-                        <TimeStart>출발시간 :</TimeStart>
+                        <div>출발시간 :</div>
                        <Timetext name="Ocolck" value={Oclock} onChange={handleTime1}>
                         {Oclocktime()}
                         </Timetext>시
@@ -303,7 +304,7 @@
                         </Timetext>분
                         </TimeSet>
                     </Starttime>
-                    <Next><Link to="/TripPlan/Yes2" style={{textDecoration:"none",color:"black"}}>Next</Link></Next>
+                    <Next><Link to="/TripPlan/Yes2" style={{textDecoration:"none",color:"black"}}><Nexttext>Next</Nexttext></Link></Next>
                     </Threeline>
                 </TripPlancalrndar>
             </>
