@@ -237,11 +237,11 @@
                 <TripPlancalrndar >
                     <Location>
                     <LocationStartorFinsh >
-                        <LocationStart type="text"  placeholder='출발지를 입력해주세요'/><SearchOutlined style={{fontSize:"30px",cursor:"pointer"}}/>
+                        <LocationStart type="text"  placeholder='출발지를 입력해주세요' list='list'/><SearchOutlined style={{fontSize:"30px",cursor:"pointer"}}/>
                     </LocationStartorFinsh>
                     <ArrowRightOutlined style={{fontSize:"100px",color:"red"}}/>
                     <LocationStartorFinsh >
-                    <LocationStart type="text"  placeholder='도착지를 입력해주세요'/><SearchOutlined style={{fontSize:"30px",cursor:"pointer"}}/>
+                    <LocationStart type="text"  placeholder='도착지를 입력해주세요' list='list'/><SearchOutlined style={{fontSize:"30px",cursor:"pointer"}}/>
                     </LocationStartorFinsh>
                     </Location>
                     <GoDay>
@@ -307,6 +307,54 @@
                     <Next><Link to="/TripPlan/Yes2" style={{textDecoration:"none",color:"black"}}><Nexttext>Next</Nexttext></Link></Next>
                     </Threeline>
                 </TripPlancalrndar>
+                <datalist id="list">
+                    <option value="대구광역시">대구광역시</option>
+                    <option value="부산광역시">부산광역시</option>
+                    <option value="울산광역시">울산광역시</option>
+                    {/* 경상남도 */}
+                    <option value="경상남도 창원시">경상남도 창원시</option>
+                    <option value="경상남도 진주시">경상남도 진주시</option>
+                    <option value="경상남도 통영시">경상남도 통영시</option>
+                    <option value="경상남도 사천시">경상남도 사천시</option>
+                    <option value="경상남도 김해시">경상남도 김해시</option>
+                    <option value="경상남도 밀양시">경상남도 밀양시</option>
+                    <option value="경상남도 거제시">경상남도 거제시</option>
+                    <option value="경상남도 양산시">경상남도 양산시</option>
+                    <option value="경상남도 의령군">경상남도 의령군</option>
+                    <option value="경상남도 함안군">경상남도 함안군</option>
+                    <option value="경상남도 창녕군">경상남도 창녕군</option>
+                    <option value="경상남도 고성군">경상남도 고성군</option>
+                    <option value="경상남도 남해군">경상남도 남해군</option>
+                    <option value="경상남도 하동군">경상남도 하동군</option>
+                    <option value="경상남도 산청군">경상남도 산청군</option>
+                    <option value="경상남도 함양군">경상남도 함양군</option>
+                    <option value="경상남도 거창군">경상남도 거창군</option>
+                    <option value="경상남도 합천군">경상남도 합천군</option>
+                    {/* 경상북도 */}
+                    <option value="경상북도 포항시">경상북도 포항시</option>
+                    <option value="경상북도 경주시">경상북도 경주시</option>
+                    <option value="경상북도 김천시">경상북도 김천시</option>
+                    <option value="경상북도 안동시">경상북도 안동시</option>
+                    <option value="경상북도 구미시">경상북도 구미시</option>
+                    <option value="경상북도 영주시">경상북도 영주시</option>
+                    <option value="경상북도 영천시">경상북도 영천시</option>
+                    <option value="경상북도 상주시">경상북도 상주시</option>
+                    <option value="경상북도 문경시">경상북도 문경시</option>
+                    <option value="경상북도 경산시">경상북도 경산시</option>
+                    <option value="경상북도 군위군">경상북도 군위군</option>
+                    <option value="경상북도 의성군">경상북도 의성군</option>
+                    <option value="경상북도 청송군">경상북도 청송군</option>
+                    <option value="경상북도 영양군">경상북도 영양군</option>
+                    <option value="경상북도 영덕군">경상북도 영덕군</option>
+                    <option value="경상북도 청도군">경상북도 청도군</option>
+                    <option value="경상북도 고령군">경상북도 고령군</option>
+                    <option value="경상북도 성주군">경상북도 성주군</option>
+                    <option value="경상북도 칠곡군">경상북도 칠곡군</option>
+                    <option value="경상북도 예천군">경상북도 예천군</option>
+                    <option value="경상북도 봉화군">경상북도 봉화군</option>
+                    <option value="경상북도 울진군">경상북도 울진군</option>
+
+                </datalist>
             </>
         );
     };
