@@ -13,6 +13,7 @@
     import minus from '../img/minus.png'
     import Checkimg from '../img/check.png'
     import '../font/fontstyle.css';
+    import '../App.css'
     const Transportation = styled.div`
         background-color : white;
         margin : 50px auto;
@@ -143,6 +144,9 @@
     `
     const Timetext= styled.select`
         margin-left : 15px
+    `
+    const Datalistform = styled.datalist`
+        height : 10px;
     `
     const TripPlanYes1 = () => {
         const [CalendarOn1 , setCalendar1] = useState(false)
@@ -307,10 +311,39 @@
                     <Next><Link to="/TripPlan/Yes2" style={{textDecoration:"none",color:"black"}}><Nexttext>Next</Nexttext></Link></Next>
                     </Threeline>
                 </TripPlancalrndar>
-                <datalist id="list">
-                    <option value="대구광역시">대구광역시</option>
-                    <option value="부산광역시">부산광역시</option>
-                    <option value="울산광역시">울산광역시</option>
+                <Datalistform id="list">
+                    {/* 대구광역시  */}
+                    <option value="대구광역시 중구">대구광역시 중구</option>
+                    <option value="대구광역시 북구">대구광역시 북구</option>
+                    <option value="대구광역시 동구">대구광역시 동구</option>
+                    <option value="대구광역시 남구">대구광역시 남구</option>
+                    <option value="대구광역시 서구">대구광역시 서구</option>
+                    <option value="대구광역시 수성구">대구광역시 수성구</option>
+                    <option value="대구광역시 달서구">대구광역시 달서구</option>
+                    <option value="대구광역시 달성군">대구광역시 달성군</option>
+                    {/* 부산광역시  */}
+                    <option value="부산광역시 중구">부산광역시 중구</option>
+                    <option value="부산광역시 서구">부산광역시 서구</option>
+                    <option value="부산광역시 동구">부산광역시 동구</option>
+                    <option value="부산광역시 영도구">부산광역시 영도구</option>
+                    <option value="부산광역시 부산진구">부산광역시 부산진구</option>
+                    <option value="부산광역시 동래구">부산광역시 동래구</option>
+                    <option value="부산광역시 남구">부산광역시 남구</option>
+                    <option value="부산광역시 북구">부산광역시 북구</option>
+                    <option value="부산광역시 해운대구">부산광역시 해운대구</option>
+                    <option value="부산광역시 사하구">부산광역시 사하구</option>
+                    <option value="부산광역시 금정구">부산광역시 금정구</option>
+                    <option value="부산광역시 강서구">부산광역시 강서구</option>
+                    <option value="부산광역시 연제구">부산광역시 연제구</option>
+                    <option value="부산광역시 수영구">부산광역시 수영구</option>
+                    <option value="부산광역시 사상구">부산광역시 사상구</option>
+                    <option value="부산광역시 기장군">부산광역시 기장군</option>
+                    {/* 울산광역시  */}
+                    <option value="울산광역시 중구">울산광역시 중구</option>
+                    <option value="울산광역시 남구">울산광역시 남구</option>
+                    <option value="울산광역시 동구">울산광역시 동구</option>
+                    <option value="울산광역시 북구">울산광역시 북구</option>
+                    <option value="울산광역시 울주군">울산광역시 울주군</option>
                     {/* 경상남도 */}
                     <option value="경상남도 창원시">경상남도 창원시</option>
                     <option value="경상남도 진주시">경상남도 진주시</option>
@@ -354,7 +387,7 @@
                     <option value="경상북도 봉화군">경상북도 봉화군</option>
                     <option value="경상북도 울진군">경상북도 울진군</option>
 
-                </datalist>
+                </Datalistform>
             </>
         );
     };

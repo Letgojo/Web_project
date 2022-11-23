@@ -138,7 +138,7 @@ const Upload = async () => {
             </HeaderDiv>
             <SectionDiv>
             <SectionHeader>{State.title}</SectionHeader>
-            <SectionMain>{State.content}</SectionMain>
+            <SectionMain>   {State.content}</SectionMain>
             <Sectionimg src={State.Url} alt="사진" />
             </SectionDiv>
             <br />
