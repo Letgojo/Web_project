@@ -13,7 +13,7 @@ body{
     background-position: top center;
     background-size: cover;
     background-attachment: fixed;
-    height: 560px;
+    height: 400px;
     padding-top: 180px;
     animation: slide 20s infinite;
 
