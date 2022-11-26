@@ -88,18 +88,18 @@ const TripPlan3 = () => {
             
             <h1>테마</h1>
             <MainContent> 
-            <Content><Contentdiv>박물관</Contentdiv><Category src={museum} alt="박물관"/></Content>
-            <Content><Contentdiv>미술관</Contentdiv><Category src={art} alt="미술관"/></Content>
-            <Content><Contentdiv>전시회</Contentdiv><Category src={exhibition} alt="전시회"/></Content>
-            <Content><Contentdiv>공연</Contentdiv><Category src={show} alt="공연"/></Content>
+            <Content><Contentdiv style={{marginTop:"10px"}}>박물관</Contentdiv><Category src={museum} alt="박물관"/></Content>
+            <Content><Contentdiv style={{marginTop:"10px"}}>미술관</Contentdiv><Category src={art} alt="미술관"/></Content>
+            <Content><Contentdiv style={{marginTop:"10px"}}>전시회</Contentdiv><Category src={exhibition} alt="전시회"/></Content>
+            <Content><Contentdiv style={{marginTop:"10px"}}>공연</Contentdiv><Category src={show} alt="공연"/></Content>
             </MainContent>
 
             <h1>맛집</h1>
             <MainContent> 
-            <Content><Contentdiv>한식</Contentdiv><Category src={koreafood} alt="한식"/></Content>
-            <Content><Contentdiv>중식</Contentdiv><Category src={chinesefood} alt="중식"/></Content>
-            <Content><Contentdiv>양식</Contentdiv><Category src={americafood} alt="양식"/></Content>
-            <Content><Contentdiv>지역음식</Contentdiv><Category src={localfood} alt="지역음식"/></Content>
+            <Content><Contentdiv style={{marginTop:"10px"}}>한식</Contentdiv><Category src={koreafood} alt="한식"/></Content>
+            <Content><Contentdiv style={{marginTop:"10px"}}>중식</Contentdiv><Category src={chinesefood} alt="중식"/></Content>
+            <Content><Contentdiv style={{marginTop:"10px"}}>양식</Contentdiv><Category src={americafood} alt="양식"/></Content>
+            <Content><Contentdiv style={{marginTop:"10px"}}>지역음식</Contentdiv><Category src={localfood} alt="지역음식"/></Content>
             </MainContent>
             <Next><Link to='/TripPlan4' style={{textDecoration:"none",color:"black"}}>Next</Link></Next>  
         </Template>

@@ -11,7 +11,7 @@ import '../font/fontstyle.css';
 import { firestore} from '../firebase.js'
 import { Link } from 'react-router-dom';
 const Template = styled.div`
-width : 1300px;
+width : 1000px;
 max-height : 100%;
 border : 1px solid black;
 background-color : white;
@@ -43,6 +43,7 @@ const CategoryType = styled.div`
     height : 50px;
     border-radius : 30px;
     display : flex;
+    margin-bottom : 40px;
 `
 const TypeRadio = styled.div`
     margin-top : 10px;
@@ -57,6 +58,7 @@ const Typeinput = styled.input`
 const CategoryDIV = styled.div`
     display : flex;
     justify-content : space-between;
+    margin-top : 40px;
 `
 const Next = styled.div`
 width : 187px;
@@ -67,29 +69,15 @@ background-color : #B9D6F9;
 font-size : 40px;
 text-align : center;
 cursor : pointer;
-margin-right : 160px;
+margin-right : 40px;
 `
 const TripPlan4 = () => {
     const [PostList, setPostList] = useState([]);
     let sessionStorage = window.sessionStorage;
-    const handleChoiceGH = () => { 
-        sessionStorage.setItem("숙소","게스트하우스")
-    }
-    const handleChoicePH = () => { 
-        sessionStorage.setItem("숙소","펜션")
-    }
-    const handleChoiceHT = () => { 
-        sessionStorage.setItem("숙소","호텔")
-    }
-    const handleChoiceMT = () => { 
-        sessionStorage.setItem("숙소","모텔")
-    }
-    const handleChoiceKH = () => { 
-        sessionStorage.setItem("숙소","한옥")
-    }
-    // sessionStorage.getItem("숙소") /숙소/호텔/부산/2022-11-10/2022-11-13
+
+    // sessionStorage.getItem("숙소") /숙소/호텔/부산/2022-11-10/2022-11-13   sessionStorage.getItem("도착지역")
     useEffect(()=>{
-    const db = firestore.collection("숙소").doc("호텔").collection("부산").doc("2022-11-10").collection("2022-11-13");
+    const db = firestore.collection("숙소").doc("호텔").collection("부산광역시 중구").doc("2022-12-1").collection("2022-12-2");
     let person = [];
     db.get().then((result)=>{
         result.forEach((allDoc)=>{
@@ -107,15 +95,6 @@ const TripPlan4 = () => {
 },[setPostList])
     return (
         <Template>
-            <CategoryConent>
-            <Category><Btnimg src={deleteBtn} alt="해당없음"/>해당없음</Category>
-            <Category onClick={handleChoiceGH}><Btnimg src={guesthouse} alt="게스트하우스"/>게스트하우스</Category>
-            <Category onClick={handleChoicePH}><Btnimg src={pension} alt="펜션"/>펜션</Category>
-            <Category onClick={handleChoiceHT}><Btnimg src={hotel} alt="호텔"/>호텔</Category>
-            <Category onClick={handleChoiceMT}><Btnimg src={motel} alt="모텔"/>모텔</Category>
-            <Category onClick={handleChoiceKH}><Btnimg src={hanok} alt="한옥"/>한옥</Category>
-            </CategoryConent>
-            <hr />
             <CategoryDIV>
             <CategoryType>
                 <TypeRadio><Typeinput type="radio" name="type" style={{width:"25px",height:"25px"}}/>인기</TypeRadio>

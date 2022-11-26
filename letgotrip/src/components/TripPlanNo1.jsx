@@ -53,6 +53,8 @@ const Trafficdiv = styled.div`
 flex-wrap: wrap;
 width : 120px; 
 margin-left : 65px;
+margin-top:10px;
+
 &:hover{
     border: 1px solid red;
 `

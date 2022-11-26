@@ -3,25 +3,42 @@ import styled from 'styled-components';
 
 const ListForm = styled.div`
     display : flex;
-    width : 1100px;
+    width : 800px;
     margin-bottom : 30px;
     font-family: 'HallymGothic-Regular';
-    border : 1px solid black;
+    border : 0.5px solid black;
     font-size: 20px;
     cursor: pointer;
+    border-radius:30px;
+    
 `
 const URlimg = styled.img`
-    height :60px;
-    widht : 60px;
+    height :250px;
+    width : 300px;
+    border-radius:30px;
+`
+const Content = styled.div`
+    margin-left : 20px;
+    margin-top : 20px;
+`
+const ContentName = styled.div`
+    font-size:25px;
+    margin-left : 20px;
+`
+const ContentMoney = styled.div`    
+    margin-top:100px;
+    margin-left : 250px;
+    font-size:35px;
 `
 const HotelList = ({name,money,Url}) => {
     return (
         <ListForm>
             <div><URlimg src={Url} alt="사진" /></div>
-            <div>
-                <div>{name}</div>
-                <div>{money}</div>
-            </div>
+            <Content>
+                <ContentName>{name}</ContentName>
+                <br />
+                <ContentMoney>{money}</ContentMoney>
+            </Content>
         </ListForm>
     );
 };

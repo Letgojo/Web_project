@@ -7,7 +7,7 @@ import '../font/fontstyle.css';
 
 const Template = styled.div`
     width: 1440px;
-    height : 130px;
+    height : 110px;
     background : white;
     display:flex;   
     flex-direction: row;    
@@ -22,7 +22,7 @@ const MainLogo1 = styled.img`
 const Logo = styled.div`
     font-size:45px;
     display:flex;
-    margin : 10px 0 0 40px;
+    margin : 0 0 0 20px;
     cursor:pointer;
     background : white;
     text-decoration : none;
@@ -34,7 +34,7 @@ const HeaderUl = styled.div`
     background : white;
 `
 const Category = styled.div`
-    margin : 48px 0 0 120px;
+    margin : 40px 0 0 130px;
     font-size:20px;
     cursor:pointer;
     background : white;
@@ -53,7 +53,7 @@ const Onlinename = styled.div`
     margin-top :  10px;
     display : flex;
     font-size:14px;
-    margin-left : 100px;
+    margin-left : 50px;
 `
 const Logout = styled.div`
     margin-left : 20px;
@@ -96,7 +96,7 @@ const Header = ({chlidren}) => {
         </HeaderUl>
         {user?(
             <>
-            <Onlinename style={{fontSize:"15px"}}>"{name}"님 환영합니다. |<Logout onClick={logout}>로그아웃</Logout></Onlinename>
+            <Onlinename style={{fontSize:"15px"}}>"{name}"님 환영합니다.<span style={{marginLeft:"10px"}}>|</span><Logout onClick={logout}>로그아웃</Logout></Onlinename>
             </>
             ):(
         <Link to="/Login"style={{textDecoration:"none",color:"black"}}><Login>로그인</Login></Link>    

@@ -1,4 +1,4 @@
-    import React,{useState} from 'react';
+    import React,{useState,useref} from 'react';
     import styled from 'styled-components';
     import {Link} from 'react-router-dom'
     import {SearchOutlined,ArrowRightOutlined} from "@ant-design/icons"
@@ -39,6 +39,7 @@
         height : 100px;
         cursor : pointer;
         margin-left: 5px;
+        margin-top : 10px;
     }   
     `
     const TripPlancalrndar = styled.div`
@@ -57,13 +58,13 @@
     const LocationStartorFinsh = styled.div`
         border : 1px solid black;
         border-radius : 30px;
-        height : 134px;
+        height : 110px;
         width :324px;
         text-align : center;
     `
     const LocationStart = styled.input`
         border : 0px;
-        margin-top : 55px;
+        margin-top : 40px;
         font-size : 23px;
     `
     const GoDay = styled.div`
@@ -135,12 +136,11 @@
     `
     const TimeSet = styled.div`
         margin-top : 20px;
-        margin-left : 40px;
+        margin-left : 30px;
         display:flex;
-        font-size:20px;
     `
     const Nexttext = styled.span`
-    
+        font-size:25px;
     `
     const Timetext= styled.select`
         margin-left : 15px
@@ -149,6 +149,7 @@
         height : 10px;
     `
     const TripPlanYes1 = () => {
+        let sessionStorage = window.sessionStorage;
         const [CalendarOn1 , setCalendar1] = useState(false)
         const [CalendarOn2 , setCalendar2] = useState(false)
         const [value, onChange3] = useState(new Date());
@@ -162,6 +163,18 @@
         const [Check1, setCheck1] = useState(false);
         const [Car, setCar]= useState(true);
         const [train ,settrain] = useState(true);
+
+        // const FinishLocation1 = document.getElementById("FinishLocation").value;
+        const hendleNext = () => { 
+            var StartLocation1 = document.getElementById("StartLocation").value;
+            var FinishLocation = document.getElementById("FinishLocation").value;
+            sessionStorage.setItem("출발날짜",value)
+            sessionStorage.setItem("도착날짜",value1)
+            sessionStorage.setItem("출발시간",Oclock)
+            sessionStorage.setItem("출발지역",StartLocation1)
+            sessionStorage.setItem("도착지역",FinishLocation)
+        }
+        
         const handleOnChange1 = (e) => {
             onChange3(e);console.log(value)
             setCalendar1((CalendarOn1) => !CalendarOn1);
@@ -230,7 +243,7 @@
                     {train ? 
                     <>
                     <Trafficdiv value={train} onClick={handleCheck1}>
-                    <Traffic src={Trainimg} alt="기차"/><TrafficSpan>대중교통</TrafficSpan></Trafficdiv>
+                    <Traffic  src={Trainimg} alt="기차" style={{marginTop:"5px"}}/><TrafficSpan>대중교통</TrafficSpan></Trafficdiv>
                     </>
                     :
                         <>
@@ -241,11 +254,11 @@
                 <TripPlancalrndar >
                     <Location>
                     <LocationStartorFinsh >
-                        <LocationStart type="text"  placeholder='출발지를 입력해주세요' list='list'/><SearchOutlined style={{fontSize:"30px",cursor:"pointer"}}/>
+                        <LocationStart type="text"  placeholder='출발지를 입력해주세요' list='list' id='StartLocation'/><SearchOutlined style={{fontSize:"30px",cursor:"pointer"}}/>
                     </LocationStartorFinsh>
                     <ArrowRightOutlined style={{fontSize:"100px",color:"red"}}/>
                     <LocationStartorFinsh >
-                    <LocationStart type="text"  placeholder='도착지를 입력해주세요' list='list'/><SearchOutlined style={{fontSize:"30px",cursor:"pointer"}}/>
+                    <LocationStart type="text"  placeholder='도착지를 입력해주세요' list='list'id='FinishLocation'/><SearchOutlined style={{fontSize:"30px",cursor:"pointer"}}/>
                     </LocationStartorFinsh>
                     </Location>
                     <GoDay>
@@ -253,7 +266,7 @@
                         <Carlenderimg src={Calenderimg} alt="출발캘린더" onClick={toggleCalendar1}/>
                         <CarlenderData>
                             <span>출발</span>
-                            <div style={{border : "1px solid black;" , width:"150px" ,marginTop:"10px"}}></div>
+                            <div style={{border : "1px solid black" , width:"150px" ,marginTop:"10px"}}></div>
                             <div>
                             {CalendarOn1 ? (
                             <CalenderTamplate>
@@ -262,7 +275,7 @@
                     )  : ""} 
                             </div>
                             {firstDay ?(
-                            <CalendarValue>{moment(value).format("YYYY년 MM월 DD일")}</CalendarValue>
+                            <CalendarValue id='FirstDay'>{moment(value).format("YYYY년 MM월 DD일")}</CalendarValue>
                             )  : ""}
                         </CarlenderData>
                     </StartorFinshDay>
@@ -299,16 +312,16 @@
                     <Threeline>
                     <Starttime>
                         <TimeSet>
-                        <div>출발시간 :</div>
+                        <div style={{fontSize:"20px"}}>출발시간 :</div>
                        <Timetext name="Ocolck" value={Oclock} onChange={handleTime1}>
                         {Oclocktime()}
-                        </Timetext>시
+                        </Timetext><span style={{fontSize:"20px",marginLeft:"5px"}}>시</span>
                         <Timetext name="" id="" value={minute} onChange={handleTime2}>
                         {minutetime()}
-                        </Timetext>분
+                        </Timetext><span style={{fontSize:"20px",marginLeft:"5px"}}>분</span>
                         </TimeSet>
                     </Starttime>
-                    <Next><Link to="/TripPlan/Yes2" style={{textDecoration:"none",color:"black"}}><Nexttext>Next</Nexttext></Link></Next>
+                    <Next onClick={hendleNext}><Link to="/TripPlan/Yes2" style={{textDecoration:"none",color:"black"}}><Nexttext>다음</Nexttext></Link></Next>
                     </Threeline>
                 </TripPlancalrndar>
                 <Datalistform id="list">
