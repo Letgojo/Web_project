@@ -5,6 +5,9 @@ import '../font/fontstyle.css';
 const Template1 = styled.div`
     display:flex;
     font-family: 'HallymGothic-Regular';
+    margin-top:40px;
+    border-bottom:1px solid black;
+    width:1100px;
 `
 const Festival = styled.img`
     width : 154px;
@@ -28,11 +31,8 @@ const PostListmap = ({url,title,content,state,first,finish}) => {
             <span>장소 : {state}</span>
             <br /><br />
             <span>날짜 : {first} ~ {finish}</span>
-            <br /><br/>
         </PostConcent>
-
         </Template1>
-        <hr />
         </>
     );
 };

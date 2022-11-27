@@ -22,7 +22,7 @@ const Period  = styled.div`
     height : 42px; 
     border : 1px solid black;
     border-radius: 30px;    
-    margin : 30px 0 0 750px;
+    margin : 30px 0 0 680px;
     padding-left : 40px; 
 `
 const Periodform = styled.div`
@@ -46,10 +46,10 @@ const Wave = styled.span`
 `
 const Local =  styled.div`
     border : 1px solid black;
-    width : 450px;
+    width : 470px;
     height : 42px;
     border-radius : 30px;
-    margin : 20px 0 0 750px;
+    margin : 20px 0 0 680px;
     padding-left : 40px; 
 `
 const Localform = styled.div`
@@ -88,6 +88,8 @@ const CalenderTamplate = styled.div`
 `
 const LengthState = styled.div`
     margin-left : 100px;
+    border-bottom:1px solid black;
+    width : 1100px
 `
 const Localfestival = () => {
     const preson = [];
@@ -199,7 +201,6 @@ catch(error){
             <FestivalContent>
                 <div>
                     <ul>
-                    <hr />
                         {postList.map((element,index) => (                     
                     <PostListmap
                         key={index}

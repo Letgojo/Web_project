@@ -22,7 +22,7 @@
         display : flex;
         border-radius : 30px;
         padding : 0 20px;
-        font-family: 'HallymGothic-Regular';
+        font-family: 'twayair';
     `
     const TrafficSpan = styled.span`
         margin : 29px;
@@ -50,6 +50,7 @@
         border-radius : 30px;
         padding : 40px;
         padding-top : 70px;
+        font-family: 'twayair';
     `
     const Location = styled.div`
         display : flex;
@@ -66,6 +67,7 @@
         border : 0px;
         margin-top : 40px;
         font-size : 23px;
+        font-family: 'twayair';
     `
     const GoDay = styled.div`
         margin-top: 50px;
@@ -91,12 +93,11 @@
         z-index : 10;
         `
     const Next = styled.div`
-        width : 187px;
+        width : 120px;
         height : 58px;
         border : 1px solid black;
         border-radius : 30px;
-        background-color : #9b9b9b;
-        opacity: 0.5;
+        background-color : #F4F5FB;
         font-size : 40px;
         text-align : center;
         cursor : pointer;
@@ -321,7 +322,7 @@
                         </Timetext><span style={{fontSize:"20px",marginLeft:"5px"}}>분</span>
                         </TimeSet>
                     </Starttime>
-                    <Next onClick={hendleNext}><Link to="/TripPlan/Yes2" style={{textDecoration:"none",color:"black"}}><Nexttext>다음</Nexttext></Link></Next>
+                    <Next onClick={hendleNext} style={{fontFamily:"twayair"}}><Link to="/TripPlan/Yes2" style={{textDecoration:"none",color:"black"}}><Nexttext>다음</Nexttext></Link></Next>
                     </Threeline>
                 </TripPlancalrndar>
                 <Datalistform id="list">

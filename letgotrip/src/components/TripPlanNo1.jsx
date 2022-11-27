@@ -19,9 +19,10 @@ margin : 50px auto;
 width : 400px;
 height : 300px; 
 border-radius : 30px;
-padding : 0 20px;
+padding : 0 10px;
 font-family: 'HallymGothic-Regular';
 text-align : center;
+padding-top : 20px;
 `
 const TripPlancalrndar = styled.div`
 background-color : white;
@@ -38,21 +39,21 @@ const Tamplate = styled.div`
     margin-top : 25px;
 `
 const Movetime = styled.div`
-    margin-top : 10px;
+    margin-top : 0px;
 `
 const TypeBtn = styled.div`
     width : 110px;
-    height : 46px;
+    height : 30px;
     border : 1px solid black;
     border-radius : 10px;
     text-align : center;
     padding-top : 10px;
-    margin-right : 23px;
+    margin-right : 31px;
 `
 const Trafficdiv = styled.div`
 flex-wrap: wrap;
 width : 120px; 
-margin-left : 65px;
+margin-left : 50px;
 margin-top:10px;
 
 &:hover{
@@ -70,13 +71,14 @@ const TrafficSpan = styled.span`
 const LocationStartorFinsh = styled.div`
         border : 1px solid black;
         border-radius : 30px;
-        height : 134px;
+        height : 110px;
         width :324px;
         text-align : center;
+        margin:0 auto;
     `
     const LocationStart = styled.input`
         border : 0px;
-        margin-top : 55px;
+        margin-top : 40px;
         font-size : 23px;
     `
     const GoDay = styled.div`
@@ -220,7 +222,7 @@ const TripPlanNo1 = () => {
             <Tamplate>
             <TypeBtn>1.5시간 미만</TypeBtn>
             <TypeBtn>1.5시간~3시간</TypeBtn>
-            <TypeBtn>3시간 이상</TypeBtn>
+            <TypeBtn style={{marginRight:"0px"}}>3시간 이상</TypeBtn>
             </Tamplate>
             <Tamplate>
             <Trafficdiv><Traffic src={Carimg} alt="자동차"/><TrafficSpan>자차</TrafficSpan></Trafficdiv><Trafficdiv>
@@ -229,7 +231,7 @@ const TripPlanNo1 = () => {
         </Transportation>
         <TripPlancalrndar>
         <LocationStartorFinsh >
-                        <LocationStart type="text"  placeholder='출발지를 입력해주세요'/><SearchOutlined style={{fontSize:"30px",cursor:"pointer"}}/>
+        <LocationStart type="text"  placeholder='출발지를 입력해주세요'/><SearchOutlined style={{fontSize:"30px",cursor:"pointer"}}/>
         </LocationStartorFinsh>
         <GoDay>
                     <StartorFinshDay>
@@ -281,14 +283,14 @@ const TripPlanNo1 = () => {
                     </GoDay>
                     <Threeline>
                     <Starttime>
-                        <TimeSet>
-                        <TimeStart>출발시간 :</TimeStart>
+                    <TimeSet>
+                        <div style={{fontSize:"20px"}}>출발시간 :</div>
                        <Timetext name="Ocolck" value={Oclock} onChange={handleTime1}>
                         {Oclocktime()}
-                        </Timetext>시
+                        </Timetext><span style={{fontSize:"20px",marginLeft:"5px"}}>시</span>
                         <Timetext name="" id="" value={minute} onChange={handleTime2}>
                         {minutetime()}
-                        </Timetext>분
+                        </Timetext><span style={{fontSize:"20px",marginLeft:"5px"}}>분</span>
                         </TimeSet>
                     </Starttime>
                     <Next><Link to="/TripPlan/Yes2" style={{textDecoration:"none",color:"black"}}>Next</Link></Next>

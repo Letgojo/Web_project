@@ -7,12 +7,12 @@ import { useNavigate } from 'react-router-dom';
 import Chat from '../img/chat.png'
 const ListForm = styled.div`
     display : flex;
-    width : 1100px;
+    width : 1110px;
     height : 352px;
     margin-bottom : 30px;
     font-family: 'HallymGothic-Regular';
     border : 1px solid black;
-    margin-left : 50px;
+    margin-left:8px
     font-size: 20px;
     cursor: pointer;
 `
@@ -45,7 +45,7 @@ const CommunityContent = styled.div`
     margin-top : 25px;
 `
 const Chatdiv = styled.div`
-    margin-top : 40px;
+    margin-top : 25px;
 `
 const Chatimg = styled.img`
     width : 20px;
