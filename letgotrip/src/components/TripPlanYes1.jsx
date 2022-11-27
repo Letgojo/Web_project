@@ -165,17 +165,16 @@
         const [Car, setCar]= useState(true);
         const [train ,settrain] = useState(true);
 
-        // const FinishLocation1 = document.getElementById("FinishLocation").value;
         const hendleNext = () => { 
             var StartLocation1 = document.getElementById("StartLocation").value;
             var FinishLocation = document.getElementById("FinishLocation").value;
-            sessionStorage.setItem("출발날짜",value)
-            sessionStorage.setItem("도착날짜",value1)
+            sessionStorage.setItem("출발날짜",moment(value).format("YYYY-MM-DD"))
+            sessionStorage.setItem("도착날짜",moment(value1).format("YYYY-MM-DD"))
             sessionStorage.setItem("출발시간",Oclock)
             sessionStorage.setItem("출발지역",StartLocation1)
             sessionStorage.setItem("도착지역",FinishLocation)
         }
-        
+        console.log(value)
         const handleOnChange1 = (e) => {
             onChange3(e);console.log(value)
             setCalendar1((CalendarOn1) => !CalendarOn1);
@@ -276,7 +275,7 @@
                     )  : ""} 
                             </div>
                             {firstDay ?(
-                            <CalendarValue id='FirstDay'>{moment(value).format("YYYY년 MM월 DD일")}</CalendarValue>
+                            <CalendarValue id='FirstDay'>{moment(value).format("YYYY년 MM월DD일")}</CalendarValue>
                             )  : ""}
                         </CarlenderData>
                     </StartorFinshDay>
@@ -293,7 +292,7 @@
                     )  : ""} 
                             </div>
                             {finish ? (
-                            <CalendarValue>{moment(value1).format("YYYY년 MM월 DD일")}</CalendarValue>
+                            <CalendarValue id='FinishDay'>{moment(value1).format("YYYY년 MM월 DD일")}</CalendarValue>
                             ): ""}
                         </CarlenderData>
                     </StartorFinshDay>

@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { firestore } from '../firebase.js'
 import '../font/fontstyle.css';
+import BusTable from './BusTable.jsx';
 const Template  = styled.div`
     width : 900px;
     height : 569px;
@@ -30,22 +32,13 @@ margin-top: 40px;
 cursor : pointer;
 `
 const TripPlanYes2 = () => {
+    let sessionStorage = window.sessionStorage;
+    const db = firestore.collection("고속버스시간표")
     return (
         <Template>
             <Transportationfrom>
             <input type="radio" name='check'/>기차 <input type="radio" name='check' />버스
-            <table border="1" style={{marginTop : "30px"}}>
-                <thead>
-                <tr>
-                    <Transportationth>출발시간</Transportationth><Transportationth>도착시간</Transportationth><Transportationth>좌석</Transportationth><Transportationth>금액</Transportationth><Transportationth>소요시간</Transportationth>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>
-                </tr>
-                </tbody>
-            </table>
+            <BusTable />
             </Transportationfrom>
             <Next><Link to="/TripPlan3" style={{textDecoration:"none",color:"black"}}>Next</Link></Next>
         </Template>
