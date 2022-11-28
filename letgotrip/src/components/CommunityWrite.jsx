@@ -188,17 +188,18 @@ const CommunityWrite = () => {
             })
         })
         var count =  user.length.toString();
-
+        try{
         let sessionStorage = window.sessionStorage;
         e.preventDefault();
         const title = document.getElementById("title").value;
         const textbox = document.getElementById("textbox").value;
         const Storage = storage;
-
+        
         var file =  document.querySelector("#input-file").files[0];
         var StorageRef = Storage.ref();
         var 경로 = StorageRef.child('image/'+file.name) //경로정하는부분
         var 업로드작업 = 경로.put(file)
+        }catch{console.log("error")}
         업로드작업.on( 'state_changed', 
         // 변화시 동작하는 함수 
         null, 
@@ -206,16 +207,17 @@ const CommunityWrite = () => {
         (error) => {
           console.error('실패사유는', error);
         }, 
+        
         // 성공시 동작하는 함수
         () => {
           업로드작업.snapshot.ref.getDownloadURL().then((url) => {
             console.log('업로드된 경로는', url);
-
+            
             const bucket = firestore.collection("게시글").doc(count);
             bucket.set({
                 "번호" : count,
                 "제목": title,
-                "내용" : textbox ,
+                "내용" : textbox,
                 "작성자" : sessionStorage.getItem("name"), 
                 "업로드날짜" : dateString,
                 "이미지URL" : url,
@@ -229,7 +231,6 @@ const CommunityWrite = () => {
     );
 
     }
-
     const addimage = e =>{
         const nowSelectImageList = e.target.files; //한번에 받은 파일리스트(object임)
         const nowImageURLList = [...Myimage]; //현재 Myimage 복사하고

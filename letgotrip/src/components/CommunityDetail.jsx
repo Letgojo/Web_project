@@ -11,7 +11,7 @@ import heartimg from '../img/heart.png'
 import binheartimg from '../img/binheart.png'
 const Template  = styled.div`
     width : 1300px;
-    height : 1200px;
+    max-height : 100%;
     border : 1px solid black;
     background-color : white;
     margin : 5% auto;   
@@ -112,7 +112,7 @@ const CommunityDetail =  () => {
         user.map((element,index)=>(
             setPostList((Postlist)=> [
                 ...Postlist,
-                {name : element.작성자, content : element.내용},
+                {name : element.작성자, content : element.내용, count : element.번호},
             ])))
         },1000)
     },[Postlist])
@@ -151,6 +151,7 @@ const Upload = async () => {
                     {PostList.map((element,index)=>(
                         <CommentsList
                             key={index}
+                            id={element.count}
                             name={element.name}
                             comment={element.content}
                         />
