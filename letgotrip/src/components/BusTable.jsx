@@ -26,17 +26,17 @@ const Line = styled.div`
 const Time = styled.div`
     color:gray;
 `
-const BusTable = () => {
+const BusTable = ({Rating,StartTime,FinishTime,money,timetaken,name}) => {
     return (
         <Template>
             <BusType>
-                고속
+                {Rating}
             </BusType>
             <TimeorMoney>
-                <div>6 : 00 -&gt; 7 : 10</div>
-                <div>10.000원</div>
+                <div>{StartTime} -&gt; {FinishTime}</div>
+                <div>{money}</div>
             </TimeorMoney>
-            <Time>1시간 10분 <span>동양고속</span></Time>
+            <Time>{timetaken} <span>{name}</span></Time>
             <Line />
         </Template>
     );
