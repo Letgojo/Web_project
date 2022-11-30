@@ -48,6 +48,7 @@ const Comments = styled.div`
 `
 const CommentSpan = styled.span`
     border-left: 1px solid black
+    cursor : pointer;
 `
 const CommentInput = styled.input`
     border : 0px;
@@ -129,6 +130,7 @@ const Upload = async () => {
                 "내용" : comment,
             })
             console.log("업로드 성공");
+    window.location.replace(`/Community/detail/${State.id}`);
 }
     return (
         <Template>

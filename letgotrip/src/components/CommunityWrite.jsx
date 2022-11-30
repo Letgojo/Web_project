@@ -188,7 +188,7 @@ const CommunityWrite = () => {
             })
         })
         var count =  user.length.toString();
-        try{
+
         let sessionStorage = window.sessionStorage;
         e.preventDefault();
         const title = document.getElementById("title").value;
@@ -199,7 +199,6 @@ const CommunityWrite = () => {
         var StorageRef = Storage.ref();
         var 경로 = StorageRef.child('image/'+file.name) //경로정하는부분
         var 업로드작업 = 경로.put(file)
-        }catch{console.log("error")}
         업로드작업.on( 'state_changed', 
         // 변화시 동작하는 함수 
         null, 

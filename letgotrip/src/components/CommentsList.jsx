@@ -37,12 +37,14 @@ const CommentsList = ({name,comment,id}) => {
     const [DeleteOn, setDelete] = useState(false)
     const location = useLocation();
     const db = firestore.collection("게시글").doc(`${location.state.id}`).collection("댓글");
-    const handleDelet = (e) => {
-        return db.doc(id).delete();
+    console.log(location)
+    const handleDelet = async (e) => {
         console.log(id , "삭제되었습니다")
         alert("삭제되었습니다.")
-        window.location.replace(`/Community/detail/${location.state.id}`)
+        await db.doc(id).delete();
+        window.location.replace(`/Community/detail/${location.state.id}`);
     }
+
     useEffect(()=>{ 
         if(sessionStorage.getItem('name') === name){
             setDelete(true)

@@ -62,7 +62,7 @@ const TripPlanNo1 = () => {
     const  [Loading , setLoading] = useState(false)   
     let user = []
     let map = []
-    const db = firestore.collection("역사관광").doc("대구광역시").collection("중구");
+    const db = firestore.collection("역사관광").doc("대구광역시").collection("달서구");
     db.get().then((result)=>{
         result.forEach((allDoc)=>{
             user.push(allDoc.data())
@@ -95,6 +95,7 @@ const TripPlanNo1 = () => {
       try{
       useEffect(()=>{
         setTimeout( () => {  
+            //카카오맵 API 실행
         const my_script =  new_script('https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=776eedc483ab8997f8c9680da89c4b03');
         my_script.then(() => { 
               console.log('script loaded!!!');  
