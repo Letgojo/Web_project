@@ -6,6 +6,10 @@ import {SearchOutlined,CalendarOutlined} from "@ant-design/icons"
 import { firestore } from '../firebase';
 import PostListmap from './PostListmap';
 import '../font/fontstyle.css';
+import { DateRange } from 'react-date-range';
+import 'react-date-range/dist/styles.css'; // main css file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+import { addDays } from "date-fns"
 const Template  = styled.div`
     width : 1300px;
     max-height : 100%;
@@ -99,6 +103,13 @@ const Localfestival = () => {
     const [CalendarOn1 , setCalendar1] = useState(false)
     const [finish , setfinish ]= useState(false);
     const [State , setState] = useState(0);
+    const [state1, setState1] = useState([
+        {
+          startDate: new Date(),
+          endDate: addDays(new Date(), 1),
+          key: 'selection'
+        }
+      ]);
     const toggleCalendar = () => {
         setCalendar1((CalendarOn1) => !CalendarOn1);    
       };
@@ -114,6 +125,9 @@ const Localfestival = () => {
     const handleOnChange2 = (e) => { 
         onChanges(e);console.log(values)
         setCalendar2((CalendarOn2)=> !CalendarOn2);
+    }
+    const handleOnDate = (e) => { 
+        if()
     }
     useEffect(()=> { 
         setTimeout(()=>{
@@ -165,14 +179,15 @@ catch(error){
         <Template>
             <Period>
                 <Periodform>
-                기간 검색 <PLDay type="test" id='firstDay' value={moment(value).format("YYYY-MM-DD")}/>
+                기간 검색 <PLDay type="test" id='firstDay' value={moment(state1.startDate).format("YYYY-MM-DD")}/>
                 <CalendarOutlined  style={{cursor:"pointer"}} onClick={toggleCalendar}/>
                 {CalendarOn1 ? (
                     <CalenderTamplate>
-                    <Calender onChange={onChange} value={value} onClickDay={handleOnChange1} />
+                    <DateRange onClick={handleOnDate} editableDateInputs={true} onChange={item => setState1([item.selection])} moveRangeOnFirstSelection={false} ranges={state1}/>
+                    {/* <Calender onChange={onChange} value={value} onClickDay={handleOnChange1} /> */}
                     </CalenderTamplate>
                 )  : ""}
-                {finish ? (  
+                {/* {finish ? (  
                 <>
                 <Wave> ~ </Wave> 
                 <PLDay type="test" id='LastDay' value={moment(values).format("YYYY-MM-DD")} />
@@ -182,7 +197,7 @@ catch(error){
                     <CalenderTamplate>
                     <Calender onChange={onChanges} value={values} onClickDay={handleOnChange2}  />
                     </CalenderTamplate>
-                )  : ""} 
+                )  : ""}  */}
                 </Periodform>
             </Period>
             <Local>

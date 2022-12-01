@@ -185,8 +185,11 @@
             sessionStorage.setItem("출발지역",StartLocation1)
             sessionStorage.setItem("도착지역",FinishLocation)
         const textbox = {
-            startday : moment(value).format("YYYY-MM-DD"),
-            finishday : moment(value1).format("YYYY-MM-DD"),
+            startday : moment(value).format("YYYY-MM-DD"),//출발날짜
+            finishday : moment(value1).format("YYYY-MM-DD"),//도착날짜
+            startTime : Oclock, //출발시간
+            startLocation : StartLocation1, //출발지역
+            finishLocation : FinishLocation, //도착지역
         }
         fetch('http://localhost:3000/TripPlan/Yes1',{
             method : "post", //통신방법
@@ -344,7 +347,6 @@
                         </TimeSet>
                     </Starttime>
                     <Next onClick={hendleNext} style={{fontFamily:"twayair"}}><Link to="/TripPlan/Yes2" style={{textDecoration:"none",color:"black"}}><Nexttext>다음</Nexttext></Link></Next>
-                    <Next >버튼</Next>
                     </Threeline>
                 </TripPlancalrndar>
                 <Datalistform id="list">
