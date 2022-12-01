@@ -14,6 +14,7 @@
     import Checkimg from '../img/check.png'
     import '../font/fontstyle.css';
     import '../App.css'
+    import axios from 'axios';
     const Transportation = styled.div`
         background-color : white;
         margin : 50px auto;
@@ -165,7 +166,17 @@
         const [Car, setCar]= useState(true);
         const [train ,settrain] = useState(true);
 
-        const hendleNext = () => { 
+
+        
+        const hendleNext =async () => { 
+            try{
+            await fetctData();
+            console.log("성공")
+        }catch{
+            console.log("에러")
+        }
+        }
+        const fetctData = async()=>{
             var StartLocation1 = document.getElementById("StartLocation").value;
             var FinishLocation = document.getElementById("FinishLocation").value;
             sessionStorage.setItem("출발날짜",moment(value).format("YYYY-MM-DD"))
@@ -173,7 +184,18 @@
             sessionStorage.setItem("출발시간",Oclock)
             sessionStorage.setItem("출발지역",StartLocation1)
             sessionStorage.setItem("도착지역",FinishLocation)
+        const textbox = {
+            startday : moment(value).format("YYYY-MM-DD"),
+            finishday : moment(value1).format("YYYY-MM-DD"),
         }
+        fetch('http://localhost:3000/TripPlan/Yes1',{
+            method : "post", //통신방법
+            headers : { 
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(textbox), //textbox라는 객체를 보냄
+        })
+}
         console.log(value)
         const handleOnChange1 = (e) => {
             onChange3(e);console.log(value)
@@ -322,6 +344,7 @@
                         </TimeSet>
                     </Starttime>
                     <Next onClick={hendleNext} style={{fontFamily:"twayair"}}><Link to="/TripPlan/Yes2" style={{textDecoration:"none",color:"black"}}><Nexttext>다음</Nexttext></Link></Next>
+                    <Next >버튼</Next>
                     </Threeline>
                 </TripPlancalrndar>
                 <Datalistform id="list">

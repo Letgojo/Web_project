@@ -17,10 +17,10 @@ const Template  = styled.div`
 const Transportationfrom = styled.div`
     margin : 40px 70px;
 `
-const Transportationth = styled.th`
-    width : 150px;
-    margin-top : 20px;
-`
+// const Transportationth = styled.th`
+//     width : 150px;
+//     margin-top : 20px;
+// `
 const Next = styled.div`
 width : 187px;
 height : 58px;
@@ -32,7 +32,13 @@ text-align : center;
 margin-top: 40px;
 cursor : pointer;
 `
+
+
+
+
+
 const TripPlanYes2 = () => {
+
     var user = [];
     const [Bus,setBus]= useState([]);
     let sessionStorage = window.sessionStorage;
