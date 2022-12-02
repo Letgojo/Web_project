@@ -40,7 +40,7 @@ const Pwd =styled.div`
 `
 const InputPwd= styled.input`
     margin-top : 10px;
-    width : 400px;
+    width : 295px;
     height : 35px;
 `
 const Name = styled.input`
@@ -90,7 +90,7 @@ const Button2 = styled.button`
     cursor : pointer;
 `
 const P = styled.p`
-    margin : 0px;
+    margin-left : 1em;
 `
 
 
@@ -225,8 +225,8 @@ const refrash = (e) => {
                     </YMD>
                     <br /> 
                     <Skip>
-                    <input type="radio"id='M'/>남
-                    <input type="radio"id='W'/>여
+                    <input type="radio"id='M'/><span style={{marginRight:"1em"}}>남</span>
+                    <input type="radio"id='W'/><span>여</span>
                     </Skip> 
                     <Skip>
                     <Telepone type="text"id='tel1' placeholder='전화번호를 입력해주세요'/>

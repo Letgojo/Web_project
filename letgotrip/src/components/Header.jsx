@@ -6,7 +6,6 @@ import { firestore } from '../firebase.js'
 import '../font/fontstyle.css';
 
 const Template = styled.div`
-    width: 1440px;
     height : 110px;
     background : white;
     display:flex;   

@@ -19,33 +19,34 @@ const IdPwdFind = styled.div`
 const IdText = styled.div`
     cursor : pointer;
     margin : 40px 0 40px 100px;
-    font-size : 25px;
+    font-size : 20px;
     border-bottom : 3px solid black;
 `
 const PWDText = styled.div`
     cursor : pointer;  
     margin : 40px 100px 40px 0px;
-    font-size : 25px; 
+    font-size : 20px; 
 `
 const Contentform = styled.div`
     margin : 50px 0 0 50px;
     font-size : 20px;  
 `
 const Name = styled.input`
-    width:440px;
+    margin-left : 1.4em;
+    width:300px;
     height : 30px;
 `
 const Year = styled.select`
 margin-left : 15px;
-    width :120px;
-    height : 30px;
+width :60px;
+height : 30px;
 `
 const Emailform = styled.div`
 margin-top : 20px;
 `
 const Email = styled.input`
     height : 30px;
-    width : 450px;
+    width:300px;    
 `
 const Okbutton = styled.button`
     width : 501px;
@@ -57,7 +58,7 @@ const Okbutton = styled.button`
     text-align : center;
     margin : 50px ;
     font-size : 30px;
-    padding : 40px 0;
+    padding : 20px 0;
 `
 const Idfind = () => {
     const [selectedYear, setSelectedYear] = useState(2000);
@@ -128,13 +129,13 @@ const Idfind = () => {
                 <p>이름 : <Name type="text" id='value_name'/></p>생년월일 :
                     <Year value={selectedYear} onChange={handleSelectYear} >
                         {year()}
-                    </Year>년 
+                    </Year><span>년 </span>
                     <Year value={selectedMonth} onChange={handleSelectMonth}>
                         {month()}
-                    </Year>월 
+                    </Year><span>월 </span>
                     <Year value={selectedDay} onChange={handleSelectDay}>
                         {day()}
-                    </Year>일 
+                    </Year><span>일 </span>
                     <Emailform>
                     이메일 : <Email type="text" placeholder='이메일을 입력해주세요' id='value_Email'/>
                     </Emailform>

@@ -86,9 +86,10 @@ const CalenderTamplate = styled.div`
     height : 258px;
     border : 1px solid black;
     background-color : white;
-    margin-top : 10px;
+    margin-top : 20em;
     z-index : 1;
     display : content;
+    position : absolute;
 `
 const LengthState = styled.div`
     margin-left : 100px;
@@ -127,7 +128,7 @@ const Localfestival = () => {
         setCalendar2((CalendarOn2)=> !CalendarOn2);
     }
     const handleOnDate = (e) => { 
-        if()
+        // if()
     }
     useEffect(()=> { 
         setTimeout(()=>{
@@ -179,15 +180,15 @@ catch(error){
         <Template>
             <Period>
                 <Periodform>
-                기간 검색 <PLDay type="test" id='firstDay' value={moment(state1.startDate).format("YYYY-MM-DD")}/>
+                기간 검색 <PLDay type="test" id='firstDay' value={moment(value).format("YYYY-MM-DD")}/>
                 <CalendarOutlined  style={{cursor:"pointer"}} onClick={toggleCalendar}/>
                 {CalendarOn1 ? (
                     <CalenderTamplate>
-                    <DateRange onClick={handleOnDate} editableDateInputs={true} onChange={item => setState1([item.selection])} moveRangeOnFirstSelection={false} ranges={state1}/>
-                    {/* <Calender onChange={onChange} value={value} onClickDay={handleOnChange1} /> */}
+                    {/* <DateRange onClick={handleOnDate} editableDateInputs={true} onChange={item => setState1([item.selection])} moveRangeOnFirstSelection={false} ranges={state1}/> */}
+                    <Calender onChange={onChange} value={value} onClickDay={handleOnChange1} />
                     </CalenderTamplate>
                 )  : ""}
-                {/* {finish ? (  
+                {finish ? (  
                 <>
                 <Wave> ~ </Wave> 
                 <PLDay type="test" id='LastDay' value={moment(values).format("YYYY-MM-DD")} />
@@ -197,7 +198,7 @@ catch(error){
                     <CalenderTamplate>
                     <Calender onChange={onChanges} value={values} onClickDay={handleOnChange2}  />
                     </CalenderTamplate>
-                )  : ""}  */}
+                )  : ""} 
                 </Periodform>
             </Period>
             <Local>
