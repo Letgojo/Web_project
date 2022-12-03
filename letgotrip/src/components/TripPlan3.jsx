@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import '../font/fontstyle.css'; 
@@ -28,7 +28,8 @@ const Template  = styled.div`
     margin : 5% auto;   
     border-radius : 30px;
     padding-left : 40px;
-    font-family: 'HallymGothic-Regular';
+    font-family: 'twayair';
+
 `
 const MainContent = styled.div`
     display : flex;
@@ -48,12 +49,19 @@ const Content = styled.div`
     font-size: 20px;
     font-family: 'HallymGothic-Regular';
     display : flex;
+    cursor: pointer;
+    :hover {
+        background-color : #006FFD;
+        opacity: 0.5;
+    }
 `
 const Contentdiv = styled.div`
     width : 130px;
+    font-weight: bold;
 `
 const Contentspan  = styled.span`
     font-size : 13px;
+    font-weight: normal;
 `
 const Category = styled.img`
     width : 72px;
@@ -71,6 +79,28 @@ margin-top: 40px;
 cursor : pointer;
 `
 const TripPlan3 = () => {
+    {/* 체험 */}
+    const [ski ,setSki] = useState(false)
+    const [hiking ,sethiking] = useState(false)
+    const [insport, setinsport]= useState(false)
+    const [tema, settema]= useState(false)
+    const [outsport, setoutsport]= useState(false)
+    const [water , setwater] = useState(false)
+    const [Diy, setdiy] = useState(false)
+
+    {/* 체험 */}
+    const [Museum ,setMuseum] = useState(false)
+    const [Art ,setArt] = useState(false)
+    const [Exhibition, setExhibition]= useState(false)
+    const [Show, setshow]= useState(false)
+
+    {/* 맛집 */}
+    const [Korea ,setKorea] = useState(false)
+    const [Chinese ,setChinese] = useState(false)
+    const [America, setAmerica]= useState(false)
+    const [Local, setLocal]= useState(false)  
+
+    
     return (
         <>
         <Template   >
