@@ -28,7 +28,7 @@ const PWDText = styled.div`
     font-size : 20px; 
 `
 const Contentform = styled.div`
-    margin : 50px 0 0 50px;
+    margin : 50px 0 0 150px;
     font-size : 20px;  
 `
 const Name = styled.input`
@@ -59,6 +59,7 @@ const Okbutton = styled.button`
     margin : 50px ;
     font-size : 30px;
     padding : 20px 0;
+    margin-left : 100px;
 `
 const Idfind = () => {
     const [selectedYear, setSelectedYear] = useState(2000);
@@ -139,8 +140,8 @@ const Idfind = () => {
                     <Emailform>
                     이메일 : <Email type="text" placeholder='이메일을 입력해주세요' id='value_Email'/>
                     </Emailform>
-                    <Okbutton text="submit" onClick={IDserch}>찾기</Okbutton>
             </Contentform>
+            <Okbutton text="submit" onClick={IDserch}>찾기</Okbutton>
         </Template>
     );
 };

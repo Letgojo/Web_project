@@ -14,7 +14,6 @@
     import Checkimg from '../img/check.png'
     import '../font/fontstyle.css';
     import '../App.css'
-    import axios from 'axios';
     const Transportation = styled.div`
         background-color : white;
         margin : 50px auto;
@@ -107,8 +106,9 @@
     width : 500px;
     height : 200px;
     background-color : white;
-    margin-top : 10px;
-    
+    position : absolute;
+    z-index : 1px;
+    margin-top : 5em
 `
     const Plusbtn = styled.img`
         width : 22px;
@@ -311,7 +311,7 @@
                             <div style={{border : "1px solid black" , width:"150px" ,marginTop:"10px"}}></div>
                             <div>
                             {CalendarOn2 ? (
-                            <CalenderTamplate>
+                            <CalenderTamplate style={{marginLeft:"1em"}}>
                             <Calender onChange={onChange1} value={value1}  onClickDay={handleOnChange2}/>
                             </CalenderTamplate>
                     )  : ""} 

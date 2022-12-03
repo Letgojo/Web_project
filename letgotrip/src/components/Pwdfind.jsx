@@ -27,16 +27,17 @@ const PWDText = styled.div`
     border-bottom : 3px solid black;
 `
 const Contentform = styled.div`
-    margin : 50px 0 0 50px;
+    margin : 20px 0 0 150px;
     font-size : 20px;  
 `
 const Name = styled.input`
-    width:440px;
+    width:300px;
     height : 30px;
+    
 `
 const Year = styled.select`
 margin-left : 15px;
-    width :120px;
+    width :60px;
     height : 30px;
 `
 const Emailform = styled.div`
@@ -44,7 +45,7 @@ margin-top : 20px;
 `
 const Email = styled.input`
     height : 30px;
-    width : 400px;
+    width : 300px;
     margin : 0px 10px 0 10px;   
 `
 const Okbutton = styled.button`
@@ -55,9 +56,10 @@ const Okbutton = styled.button`
     border-radius : 30px;
     cursor : pointer;
     text-align : center;
-    margin : 50px ;
+    margin-top : 50px ;
+    margin-left : 100px;
     font-size : 30px;
-    padding : 40px 0;
+    padding : 20px 0;
 `
 const Pwdfind = () => {
     const [selectedYear, setSelectedYear] = useState(2000);
@@ -118,7 +120,7 @@ const Pwdfind = () => {
             </IdPwdFind>
             <Contentform>
             <p>아이디 : <Name type="text" id='value_ID' /></p>
-            <p>이름 : <Name type="text" id='value_name'/></p>
+            <p>이름 : <Name type="text" id='value_name' style={{marginLeft:"1.5em"}}/></p>
             생년월일 :
                     <Year value={selectedYear} onChange={handleSelectYear}>
                         {year()}
@@ -132,8 +134,8 @@ const Pwdfind = () => {
                     <Emailform>
                     이메일 : <Email type="text" placeholder='이메일을 입력해주세요' id='value_Email'/>
                     </Emailform>
-                    <Okbutton type="submit" onClick={Click_PWD} >찾기</Okbutton>
             </Contentform>
+            <Okbutton type="submit" onClick={Click_PWD} >찾기</Okbutton>
         </Template>
     );
 };
