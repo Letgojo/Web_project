@@ -1,4 +1,4 @@
-    import React,{useState,useref} from 'react';
+    import React,{useState} from 'react';
     import styled from 'styled-components';
     import {Link} from 'react-router-dom'
     import {SearchOutlined,ArrowRightOutlined} from "@ant-design/icons"
@@ -184,12 +184,17 @@
             sessionStorage.setItem("출발시간",Oclock)
             sessionStorage.setItem("출발지역",StartLocation1)
             sessionStorage.setItem("도착지역",FinishLocation)
+            if(sessionStorage.getItem("출발날짜")===null||sessionStorage.getItem("도착날짜")===null||sessionStorage.getItem("출발지역")===null||sessionStorage.getItem("도착지역")===null){
+                alert("다시 입력해주세요.")
+                window.location.replace("/TripPlan/Yes1")
+            }
         const textbox = {
             startday : moment(value).format("YYYY-MM-DD"),//출발날짜
             finishday : moment(value1).format("YYYY-MM-DD"),//도착날짜
             startTime : Oclock, //출발시간
             startLocation : StartLocation1, //출발지역
             finishLocation : FinishLocation, //도착지역
+            people : people,
         }
         fetch('http://localhost:3000/TripPlan/Yes1',{
             method : "post", //통신방법
@@ -346,7 +351,7 @@
                         </Timetext><span style={{fontSize:"20px",marginLeft:"5px"}}>분</span>
                         </TimeSet>
                     </Starttime>
-                    <Next onClick={hendleNext} style={{fontFamily:"twayair"}}><Link to="/TripPlan/Yes2" style={{textDecoration:"none",color:"black"}}><Nexttext>다음</Nexttext></Link></Next>
+                    <Next  style={{fontFamily:"twayair"}}><Link to="/TripPlan3" style={{textDecoration:"none",color:"black"}} onClick={hendleNext}><Nexttext>다음</Nexttext></Link></Next>
                     </Threeline>
                 </TripPlancalrndar>
                 <Datalistform id="list">

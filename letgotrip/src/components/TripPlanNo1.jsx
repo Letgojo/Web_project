@@ -293,7 +293,7 @@ const TripPlanNo1 = () => {
                         </Timetext><span style={{fontSize:"20px",marginLeft:"5px"}}>분</span>
                         </TimeSet>
                     </Starttime>
-                    <Next><Link to="/TripPlan/Yes2" style={{textDecoration:"none",color:"black"}}>Next</Link></Next>
+                    <Next><Link to="/TripPlan3" style={{textDecoration:"none",color:"black"}}>Next</Link></Next>
                     </Threeline>
         </TripPlancalrndar>
         </>
