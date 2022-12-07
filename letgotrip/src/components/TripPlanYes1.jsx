@@ -184,6 +184,7 @@
             sessionStorage.setItem("출발시간",Oclock)
             sessionStorage.setItem("출발지역",StartLocation1)
             sessionStorage.setItem("도착지역",FinishLocation)
+            sessionStorage.setItem("인원",people)
             if(sessionStorage.getItem("출발날짜")===null||sessionStorage.getItem("도착날짜")===null||sessionStorage.getItem("출발지역")===null||sessionStorage.getItem("도착지역")===null){
                 alert("다시 입력해주세요.")
                 window.location.replace("/TripPlan/Yes1")

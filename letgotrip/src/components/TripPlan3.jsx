@@ -80,27 +80,65 @@ cursor : pointer;
 `
 const TripPlan3 = () => {
     let sessionStorage = window.sessionStorage;
-    {/* 체험 */}
-    const [ski ,setSki] = useState(false)
-    const [hiking ,sethiking] = useState(false)
-    const [insport, setinsport]= useState(false)
-    const [tema, settema]= useState(false)
-    const [outsport, setoutsport]= useState(false)
-    const [water , setwater] = useState(false)
-    const [Diy, setdiy] = useState(false)
+    // {/* 체험 */}
+    // const [ski ,setSki] = useState(false)
+    // const [hiking ,sethiking] = useState(false)
+    // const [insport, setinsport]= useState(false)
+    // const [tema, settema]= useState(false)
+    // const [outsport, setoutsport]= useState(false)
+    // const [water , setwater] = useState(false)
+    // const [Diy, setdiy] = useState(false)
 
-    {/* 체험 */}
-    const [Museum ,setMuseum] = useState(false)
-    const [Art ,setArt] = useState(false)
-    const [Exhibition, setExhibition]= useState(false)
-    const [Show, setshow]= useState(false)
+    // {/* 체험 */}
+    // const [Museum ,setMuseum] = useState(false)
+    // const [Art ,setArt] = useState(false)
+    // const [Exhibition, setExhibition]= useState(false)
+    // const [Show, setshow]= useState(false)
 
-    {/* 맛집 */}
-    const [Korea ,setKorea] = useState(false)
-    const [Chinese ,setChinese] = useState(false)
-    const [America, setAmerica]= useState(false)
-    const [Local, setLocal]= useState(false)  
-
+    // {/* 맛집 */}
+    // const [Korea ,setKorea] = useState(false)
+    // const [Chinese ,setChinese] = useState(false)
+    // const [America, setAmerica]= useState(false)
+    // const [Local, setLocal]= useState(false)  
+    const hendleNext =async () => { 
+        try{
+        await fetctData();
+        console.log("성공")
+    }catch{
+        console.log("에러")
+    }
+    }
+    const fetctData = async()=>{
+        const StartDay =  sessionStorage.getItem("출발날짜")
+        const FinishDay = sessionStorage.getItem("도착날짜")
+        const StartTime = sessionStorage.getItem("출발시간")
+        const StartLocation = sessionStorage.getItem("출발지역")
+        const finishLocation = sessionStorage.getItem("도착지역")
+        // const Hotelname = sessionStorage.getItem("호텔이름")
+        const people = sessionStorage.getItem("인원")
+        const experience = sessionStorage.getItem("체험")
+        const theme = sessionStorage.getItem("테마")
+        const eat = sessionStorage.getItem("맛집")
+    const textbox = {
+        startday : StartDay,//출발날짜
+        finishday : FinishDay,//도착날짜
+        startTime : StartTime, //출발시간
+        startLocation : StartLocation, //출발지역
+        finishLocation : finishLocation, //도착지역
+        // hotelname : Hotelname,
+        people : people,
+        Experience : experience, 
+        Theme : theme,
+        Eat: eat,
+    }
+    fetch('http://localhost:3000/TripPlan3',{
+        method : "post", //통신방법
+        headers : { 
+            "content-type": "application/json",
+        },
+        body: JSON.stringify(textbox), //textbox라는 객체를 보냄
+    })
+    }
     
     return (
         <>
@@ -132,7 +170,7 @@ const TripPlan3 = () => {
             <Content onClick={()=>{sessionStorage.setItem("맛집","양식")}}><Contentdiv style={{marginTop:"10px"}}>양식</Contentdiv><Category src={americafood} alt="양식"/></Content>
             <Content onClick={()=>{sessionStorage.setItem("맛집","지역음식")}}><Contentdiv style={{marginTop:"10px"}}>지역음식</Contentdiv><Category src={localfood} alt="지역음식"/></Content>
             </MainContent>
-            <Next><Link to='/TripPlan4' style={{textDecoration:"none",color:"black"}}>Next</Link></Next>  
+            <Next onClick={hendleNext}><Link to='/TripPlan4' style={{textDecoration:"none",color:"black"}}>Next</Link></Next>  
         </Template>
         </>
     );

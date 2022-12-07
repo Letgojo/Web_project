@@ -93,6 +93,7 @@ const TripPlan4 = () => {
         ])))
     },1000)
 },[setPostList])
+
     return (
         <Template>
             <CategoryDIV>

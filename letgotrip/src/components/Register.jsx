@@ -16,7 +16,7 @@ const TemplateLogin  = styled.div`
 
 /* 아이디, 아이디 중복  */
 const ID = styled.div`
-    margin : 40px 0 0 130px;
+    margin : 40px 0 0 160px;
     text-align : center;
     display:flex;  
 `
@@ -36,7 +36,7 @@ const Overlap = styled.button`
 `
 const Pwd =styled.div`
     display:block;
-    margin : 5px 0 0 130px;
+    margin : 5px 0 0 160px;
 `
 const InputPwd= styled.input`
     margin-top : 10px;
@@ -44,12 +44,12 @@ const InputPwd= styled.input`
     height : 35px;
 `
 const Name = styled.input`
-    margin : 15px 0 0 130px;
+    margin : 15px 0 0 160px;
     width : 295px;
     height : 35px;
 `
 const YMD = styled.div`
-margin : 20px 0 0 120px;
+margin : 20px 0 0 150px;
 width : 400px;
 height : 35px;
 `
@@ -58,7 +58,7 @@ const Year = styled.select`
     margin-top : 10px;
 `
 const Skip = styled.div`
-    margin :15px 0 0 130px;
+    margin :15px 0 0 160px;
 `
 const Telepone = styled.input`
     width:300px;

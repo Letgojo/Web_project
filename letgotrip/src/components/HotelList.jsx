@@ -31,8 +31,12 @@ const ContentMoney = styled.div`
     font-size:35px;
 `
 const HotelList = ({name,money,Url}) => {
+    let sessionStorage = window.sessionStorage;
+    const handleHotel = (e) => { 
+        sessionStorage.setItem("호텔이름", name);
+    }
     return (
-        <ListForm>
+        <ListForm onClick={handleHotel}>
             <div><URlimg src={Url} alt="사진" /></div>
             <Content>
                 <ContentName>{name}</ContentName>
