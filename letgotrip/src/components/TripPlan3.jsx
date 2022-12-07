@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState ,useEffect} from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import '../font/fontstyle.css'; 
@@ -36,25 +36,7 @@ const MainContent = styled.div`
     flex-wrap: wrap;
     margin-bottom    : 100px;
 `
-const Content = styled.div`
-    width : 220px;
-    height : 80px;
-    border : 1px solid black;
-    border-radius : 30px;
-    background-color : #E7E7E7;
-    margin-left : 20px;
-    margin-top : 30px;
-    text-align: center;
-    padding-top : 28px;
-    font-size: 20px;
-    font-family: 'HallymGothic-Regular';
-    display : flex;
-    cursor: pointer;
-    :hover {
-        background-color : #006FFD;
-        opacity: 0.5;
-    }
-`
+
 const Contentdiv = styled.div`
     width : 130px;
     font-weight: bold;
@@ -78,7 +60,69 @@ text-align : center;
 margin-top: 40px;
 cursor : pointer;
 `
+const Content1 = styled.div`
+width : 220px;
+height : 80px;
+border : 1px solid black;
+border-radius : 30px;
+background-color : '#006FFD';
+margin-left : 20px;
+margin-top : 30px;
+text-align: center;
+padding-top : 28px;
+font-size: 20px;
+font-family: 'HallymGothic-Regular';
+display : flex;
+cursor: pointer;
+:hover {
+    background-color : #006FFD;
+    opacity: 0.5;
+}
+`
+//테마
+const Content2 = styled.div`
+width : 220px;
+height : 80px;
+border : 1px solid black;
+border-radius : 30px;
+background-color : '#006FFD';
+margin-left : 20px;
+margin-top : 30px;
+text-align: center;
+padding-top : 28px;
+font-size: 20px;
+font-family: 'HallymGothic-Regular';
+display : flex;
+cursor: pointer;
+:hover {
+background-color : #006FFD;
+opacity: 0.5;
+}
+`
+//맛집
+const Content3 = styled.div`
+width : 220px;
+height : 80px;
+border : 1px solid black;
+border-radius : 30px;
+background-color : '#006FFD';
+margin-left : 20px;
+margin-top : 30px;
+text-align: center;
+padding-top : 28px;
+font-size: 20px;
+font-family: 'HallymGothic-Regular';
+display : flex;
+cursor: pointer;
+:hover {
+background-color : #006FFD;
+opacity: 0.5;
+}
+`
 const TripPlan3 = () => {
+    const [color, setcolor] = useState("스키");
+    const [color1, setcolor1] = useState("박물관");
+    const [color2, setcolor2] = useState("한식");
     let sessionStorage = window.sessionStorage;
     // {/* 체험 */}
     // const [ski ,setSki] = useState(false)
@@ -100,6 +144,8 @@ const TripPlan3 = () => {
     // const [Chinese ,setChinese] = useState(false)
     // const [America, setAmerica]= useState(false)
     // const [Local, setLocal]= useState(false)  
+        //체험
+
     const hendleNext =async () => { 
         try{
         await fetctData();
@@ -139,36 +185,86 @@ const TripPlan3 = () => {
         body: JSON.stringify(textbox), //textbox라는 객체를 보냄
     })
     }
+
     
+    const onClick = (e) => {
+        const {
+        currentTarget: { id },
+        } = e;
+        sessionStorage.setItem("체험",id)
+        setcolor(id);
+};
+    const onClick1 = (e) => {
+        const {
+        currentTarget: { id },
+        } = e;
+        sessionStorage.setItem("테마",id)
+        setcolor1(id);
+    };
+    const onClick2 = (e) => {
+        const {
+        currentTarget: { id },
+        } = e;
+        sessionStorage.setItem("맛집",id)
+        setcolor2(id);
+    };
+useEffect(() => {
+    const allBtnArr = ["스키", "등산", "키즈",'실내스포츠','테마파크','실외스포츠','수상레포츠','공예/DIY'];
+    const nonTargetedBtnArr = allBtnArr.filter((item) => item !== color);
+    document.getElementById(color).style.backgroundColor = "#006FFD";
+    nonTargetedBtnArr.map((item) => {
+    document.getElementById(item).style.backgroundColor = "#E7E7E7";
+    return null;
+    });
+}, [color]);
+useEffect(() => {
+    const allBtnArr2 = ['박물관','미술관','전시회','공연'];
+    const nonTargetedBtnArr1 = allBtnArr2.filter((item1) => item1 !== color1);
+    document.getElementById(color1).style.backgroundColor = "#006FFD";
+    nonTargetedBtnArr1.map((item1) => {
+    document.getElementById(item1).style.backgroundColor = "#E7E7E7";
+    return null;
+    });
+}, [color1]);   
+useEffect(() => {
+    const allBtnArr3 = ['한식','중식','양식','지역음식'];
+    const nonTargetedBtnArr2 = allBtnArr3.filter((item2) => item2 !== color2);
+    document.getElementById(color2).style.backgroundColor = "#006FFD";
+    nonTargetedBtnArr2.map((item2) => {
+    document.getElementById(item2).style.backgroundColor = "#E7E7E7";
+    return null;
+    });
+}, [color2]);   
+
     return (
         <>
         <Template   >
             <h1>체험</h1>
             <MainContent>                       
-            <Content onClick={()=>{sessionStorage.setItem("체험","스키")}}><Contentdiv>스키<br /><Contentspan>스키장, 눈썰매</Contentspan></Contentdiv><Category src={Skiimg} alt="스키"/></Content>
-            <Content onClick={()=>{sessionStorage.setItem("체험","등산")}}><Contentdiv>등산</Contentdiv><Category src={hikingimg} alt="등산"/></Content>
-            <Content onClick={()=>{sessionStorage.setItem("체험","키즈")}}><Contentdiv>키즈<br /><Contentspan>키즈카페, 키즈체험관</Contentspan></Contentdiv><Category src={Kides} alt="키즈"/></Content>
-            <Content onClick={()=>{sessionStorage.setItem("체험","실내스포츠")}}><Contentdiv>실내스포츠<br /><Contentspan>사격, 롤러스케이트, 클라이밍</Contentspan></Contentdiv><Category src={Skater} alt="실내스포츠" /></Content>
-            <Content onClick={()=>{sessionStorage.setItem("체험","테마파크")}}><Contentdiv>테마파크<br /><Contentspan>놀이동산,아쿠아리움,동물원</Contentspan></Contentdiv><Category src={park} alt="테마파크" /></Content>
-            <Content onClick={()=>{sessionStorage.setItem("체험","실외스포츠")}}><Contentdiv>실외스포츠<br /><Contentspan>패러글라이딩, 짚라인/번지점프</Contentspan></Contentdiv><Category src={paragliding} alt="실외스포츠" /></Content>
-            <Content onClick={()=>{sessionStorage.setItem("체험","수상레포츠")}}><Contentdiv>수상레포츠<br /><Contentspan>빠지,스노쿨링,스파/온천</Contentspan></Contentdiv><Category src={watersport} alt="수상스포츠" /></Content>
-            <Content onClick={()=>{sessionStorage.setItem("체험","공예/DIY")}}><Contentdiv>공예/DIY<br /><Contentspan>액세서리,캔슬,도자기</Contentspan></Contentdiv><Category src={diy} alt="공예" /></Content>
+            <Content1  id='스키' onClick={onClick}><Contentdiv>스키<br /><Contentspan>스키장, 눈썰매</Contentspan></Contentdiv><Category src={Skiimg} alt="스키"/></Content1>
+            <Content1  id='등산' onClick={onClick}><Contentdiv>등산</Contentdiv><Category src={hikingimg} alt="등산"/></Content1>
+            <Content1  id='키즈' onClick={onClick}><Contentdiv>키즈<br /><Contentspan>키즈카페, 키즈체험관</Contentspan></Contentdiv><Category src={Kides} alt="키즈"/></Content1>
+            <Content1  id='실내스포츠' onClick={onClick}><Contentdiv>실내스포츠<br /><Contentspan>사격, 롤러스케이트, 클라이밍</Contentspan></Contentdiv><Category src={Skater} alt="실내스포츠" /></Content1>
+            <Content1  id='테마파크' onClick={onClick}><Contentdiv>테마파크<br /><Contentspan>놀이동산,아쿠아리움,동물원</Contentspan></Contentdiv><Category src={park} alt="테마파크" /></Content1>
+            <Content1  id='실외스포츠' onClick={onClick}><Contentdiv>실외스포츠<br /><Contentspan>패러글라이딩, 짚라인/번지점프</Contentspan></Contentdiv><Category src={paragliding} alt="실외스포츠" /></Content1>
+            <Content1  id='수상레포츠' onClick={onClick}><Contentdiv>수상레포츠<br /><Contentspan>빠지,스노쿨링,스파/온천</Contentspan></Contentdiv><Category src={watersport} alt="수상스포츠" /></Content1>
+            <Content1  id='공예/DIY' onClick={onClick}><Contentdiv>공예/DIY<br /><Contentspan>액세서리,캔슬,도자기</Contentspan></Contentdiv><Category src={diy} alt="공예" /></Content1>
             </MainContent>
             
             <h1>테마</h1>
             <MainContent> 
-            <Content onClick={()=>{sessionStorage.setItem("테마","박물관")}}><Contentdiv style={{marginTop:"10px"}}>박물관</Contentdiv><Category src={museum} alt="박물관"/></Content>
-            <Content onClick={()=>{sessionStorage.setItem("테마","미술관")}}><Contentdiv style={{marginTop:"10px"}}>미술관</Contentdiv><Category src={art} alt="미술관"/></Content>
-            <Content onClick={()=>{sessionStorage.setItem("테마","전시회")}}><Contentdiv style={{marginTop:"10px"}}>전시회</Contentdiv><Category src={exhibition} alt="전시회"/></Content>
-            <Content onClick={()=>{sessionStorage.setItem("테마","공연")}}><Contentdiv style={{marginTop:"10px"}}>공연</Contentdiv><Category src={show} alt="공연"/></Content>
+            <Content2 id='박물관' onClick={onClick1}><Contentdiv style={{marginTop:"10px"}}>박물관</Contentdiv><Category src={museum} alt="박물관"/></Content2>
+            <Content2 id='미술관' onClick={onClick1}><Contentdiv style={{marginTop:"10px"}}>미술관</Contentdiv><Category src={art} alt="미술관"/></Content2>
+            <Content2 id='전시회' onClick={onClick1}><Contentdiv style={{marginTop:"10px"}}>전시회</Contentdiv><Category src={exhibition} alt="전시회"/></Content2>
+            <Content2 id='공연' onClick={onClick1}><Contentdiv style={{marginTop:"10px"}}>공연</Contentdiv><Category src={show} alt="공연"/></Content2>
             </MainContent>
 
             <h1>맛집</h1>
             <MainContent> 
-            <Content onClick={()=>{sessionStorage.setItem("맛집","한식")}}><Contentdiv style={{marginTop:"10px"}}>한식</Contentdiv><Category src={koreafood} alt="한식"/></Content>
-            <Content onClick={()=>{sessionStorage.setItem("맛집","중식")}}><Contentdiv style={{marginTop:"10px"}}>중식</Contentdiv><Category src={chinesefood} alt="중식"/></Content>
-            <Content onClick={()=>{sessionStorage.setItem("맛집","양식")}}><Contentdiv style={{marginTop:"10px"}}>양식</Contentdiv><Category src={americafood} alt="양식"/></Content>
-            <Content onClick={()=>{sessionStorage.setItem("맛집","지역음식")}}><Contentdiv style={{marginTop:"10px"}}>지역음식</Contentdiv><Category src={localfood} alt="지역음식"/></Content>
+            <Content3 id='한식' onClick={onClick2}><Contentdiv style={{marginTop:"10px"}}>한식</Contentdiv><Category src={koreafood} alt="한식"/></Content3>
+            <Content3 id='중식' onClick={onClick2}><Contentdiv style={{marginTop:"10px"}}>중식</Contentdiv><Category src={chinesefood} alt="중식"/></Content3>
+            <Content3 id='양식' onClick={onClick2}><Contentdiv style={{marginTop:"10px"}}>양식</Contentdiv><Category src={americafood} alt="양식"/></Content3>
+            <Content3 id='지역음식' onClick={onClick2}><Contentdiv style={{marginTop:"10px"}}>지역음식</Contentdiv><Category src={localfood} alt="지역음식"/></Content3>
             </MainContent>
             <Next onClick={hendleNext}><Link to='/TripPlan4' style={{textDecoration:"none",color:"black"}}>Next</Link></Next>  
         </Template>

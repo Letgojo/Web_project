@@ -185,6 +185,7 @@
             sessionStorage.setItem("출발지역",StartLocation1)
             sessionStorage.setItem("도착지역",FinishLocation)
             sessionStorage.setItem("인원",people)
+            const tran = sessionStorage.getItem("교통수단")
             if(sessionStorage.getItem("출발날짜")===null||sessionStorage.getItem("도착날짜")===null||sessionStorage.getItem("출발지역")===null||sessionStorage.getItem("도착지역")===null){
                 alert("다시 입력해주세요.")
                 window.location.replace("/TripPlan/Yes1")
@@ -195,7 +196,8 @@
             startTime : Oclock, //출발시간
             startLocation : StartLocation1, //출발지역
             finishLocation : FinishLocation, //도착지역
-            people : people,
+            people : people, // 인원
+            Tran : tran, //교통수단  
         }
         fetch('http://localhost:3000/TripPlan/Yes1',{
             method : "post", //통신방법
@@ -251,10 +253,12 @@
         const handleCheck = () => {
             setCar((Car) => !Car)
             setCheck((Check) => !Check);
+            sessionStorage.setItem("교통수단","자차")
         }
         const handleCheck1 = () =>{
             settrain((train) => !train)
             setCheck1((Check1) => !Check1);
+            sessionStorage.setItem("교통수단","대중교통")
         }
     
         return (

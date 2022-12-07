@@ -20,12 +20,18 @@ app.post('/TripPlan/Yes1',(req,res)=>{
   const starttime = req.body.startTime; //출발시간
   const startlocation = req.body.startLocation; //출발지역
   const finishlocation = req.body.finishLocation; //도착지역
+  const Trans = req.body.Tran;
+  const people = req.body.people; //인원
   
+  console.log("출발지와 도착지")
   console.log("출발날짜",startday);
   console.log("도착날짜",finishday);
   console.log("출발시간",starttime);
   console.log("출발지역",startlocation);
   console.log("도착지역",finishlocation);
+  console.log("인원",people)
+  console.log("교통수단",Trans)
+  console.log("=========================================")
 })
 
 // startday : StartDay,//출발날짜
@@ -50,6 +56,9 @@ app.post('/TripPlan3',(req,res)=>{
   const Theme = req.body.Theme;//테마 
   const Eat = req.body.Eat// 맛집
 
+
+
+  console.log("카테고리 데이터전달")
   console.log("출발날짜",startday);
   console.log("도착날짜",finishday);
   console.log("출발시간",starttime);
@@ -59,6 +68,7 @@ app.post('/TripPlan3',(req,res)=>{
   console.log("체험",experience);
   console.log("테마",Theme);
   console.log("맛집",Eat)
+  console.log("=========================================")
 })
 
 

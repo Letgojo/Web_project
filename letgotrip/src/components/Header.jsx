@@ -84,9 +84,21 @@ const Header = ({chlidren}) => {
             window.location.replace("/")
         }
     }
+    const handleLogo = ()=>{ 
+        sessionStorage.removeItem("출발날짜")
+        sessionStorage.removeItem("도착날짜")
+        sessionStorage.removeItem("출발시간")
+        sessionStorage.removeItem("출발지역")
+        sessionStorage.removeItem("도착지역")
+        sessionStorage.removeItem("인원")
+        sessionStorage.removeItem("체험")
+        sessionStorage.removeItem("테마")
+        sessionStorage.removeItem("맛집")
+        sessionStorage.removeItem("호텔이름")
+    }
     return (
         <Template>
-        <Link to="/"style={{ textDecoration:"none",color:"black"}}><Logo><MainLogo1 src={MainLogo} alt="Logo" /></Logo></Link>
+        <Link to="/"style={{ textDecoration:"none",color:"black"}} onClick={handleLogo}><Logo><MainLogo1 src={MainLogo} alt="Logo" /></Logo></Link>
         <HeaderUl>
             <Link to="/TripPlan" style={{textDecoration:"none",color:"black"}} onClick={handleSelect}><Category>여행계획</Category></Link>
             <Link to="Rcord" style={{textDecoration:"none",color:"black"}} onClick={handleSelect}><Category>기록</Category></Link> 
