@@ -104,7 +104,7 @@ const TripPlan4 = () => {
         <Template>
             <CategoryDIV>
             <CategoryType>
-                <TypeRadio><Typeinput type="radio" name="type" style={{width:"25px",height:"25px"}} onClick={onhandleHotel} />인기</TypeRadio>
+                <TypeRadio><Typeinput type="radio" name="type" style={{width:"25px",height:"25px"}} />인기</TypeRadio>
                 <TypeRadio><Typeinput type="radio" name="type" style={{width:"25px",height:"25px"}}/>가격</TypeRadio>
                 <TypeRadio><Typeinput type="radio" name="type" style={{width:"25px",height:"25px"}}/>특가</TypeRadio>
             </CategoryType>

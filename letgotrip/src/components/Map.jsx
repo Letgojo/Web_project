@@ -56,13 +56,22 @@ const Falseform = styled.div`
     text-align : center;
     padding-top: 200px;
 `
+const DayUl = styled.ul`
+    display:flex;
+    justify-content : space-between;
+`
+const Plan = styled.div`
+
+`
 const TripPlanNo1 = () => {
+    let sessionStorage = window.sessionStorage;
     let point = [] 
     const [where , setwhere] = useState([]);
-    const  [Loading , setLoading] = useState(false)   
+    const  [Loading , setLoading] = useState(false) 
+    const [post,setpost] = useState([]);  
     let user = []
     let map = []
-    const db = firestore.collection("역사관광").doc("대구광역시").collection("달서구");
+    const db = firestore.collection("먹거리").doc("부산").collection("영도구");
     db.get().then((result)=>{
         result.forEach((allDoc)=>{
             user.push(allDoc.data())
@@ -73,10 +82,28 @@ const TripPlanNo1 = () => {
     user.map((element)=>(
         setwhere((where)=> [
             ...where,
-            {w:element.위도, y:element.경도,name:element.관광지명}
+            {w:element.위도, y:element.경도,name:element.음식종류}
         ])))
     }, 1000);
-    },[])
+    },[]);
+
+    const db1 = firestore.collection("회원관리").doc("kim").collection('2022-12-09-1')
+    let person = [];
+    db1.get().then((result)=>{
+        result.forEach((allDoc)=>{
+            person.push(allDoc.data())
+        })
+  })
+  useEffect(()=>{
+    setTimeout(() => {
+person.map((element)=>(
+    setpost((post)=> [
+        ...post,
+        {cafename:element.카페이름,}
+    ])))
+}, 1000);
+},[]);
+
 
     const new_script =  src => { 
         console.log(point)
@@ -111,11 +138,11 @@ const TripPlanNo1 = () => {
 
         var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
             
-        // 지도를 클릭했을때 클릭한 위치에 마커를 추가하도록 지도에 클릭이벤트를 등록합니다
-        kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
-            // 클릭한 위치에 마커를 표시합니다 
-            addMarker(mouseEvent.latLng);             
-        });
+        // // 지도를 클릭했을때 클릭한 위치에 마커를 추가하도록 지도에 클릭이벤트를 등록합니다
+        // kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
+        //     // 클릭한 위치에 마커를 표시합니다 
+        //     addMarker(mouseEvent.latLng);             
+        // });
 
         // 지도에 표시된 마커 객체를 가지고 있을 배열입니다
         var markers = [];
@@ -230,10 +257,17 @@ const TripPlanNo1 = () => {
             <br />잠시만 기다려 주세요.</Falseform>}
             </Mapform>
             <Resultform>
-                <Dayform>1일차
+                <Dayform>
+                    <DayUl>
+                    <li>1일차</li>
+                    <li>2일차</li>
+                    <li>3일차</li>
+                    </DayUl>
                 </Dayform>
                 <Pay>금액 : </Pay>
-                <div></div>
+                <Plan>
+
+                </Plan>
             </Resultform>
         </Template>
     )

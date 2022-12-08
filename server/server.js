@@ -55,7 +55,7 @@ app.post('/TripPlan3',(req,res)=>{
   const experience = req.body.Experience;//체험
   const Theme = req.body.Theme;//테마 
   const Eat = req.body.Eat// 맛집
-
+  const car = req.body.car//교통수단
 
 
   console.log("카테고리 데이터전달")
@@ -67,7 +67,8 @@ app.post('/TripPlan3',(req,res)=>{
   console.log("인원",people);
   console.log("체험",experience);
   console.log("테마",Theme);
-  console.log("맛집",Eat)
+  console.log("맛집",Eat);
+  console.log("교통수단",car);
   console.log("=========================================")
 })
 

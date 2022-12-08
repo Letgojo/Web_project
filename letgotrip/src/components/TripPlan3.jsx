@@ -142,6 +142,7 @@ const TripPlan3 = () => {
         const experience = sessionStorage.getItem("체험")
         const theme = sessionStorage.getItem("테마")
         const eat = sessionStorage.getItem("맛집")
+        const car = sessionStorage.getItem("교통수단")
     const textbox = {
         startday : StartDay,//출발날짜
         finishday : FinishDay,//도착날짜
@@ -152,6 +153,7 @@ const TripPlan3 = () => {
         Experience : experience, 
         Theme : theme,
         Eat: eat,
+        car : car,
     }
     fetch('http://localhost:3000/TripPlan3',{
         method : "post", //통신방법
