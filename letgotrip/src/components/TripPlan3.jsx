@@ -124,28 +124,6 @@ const TripPlan3 = () => {
     const [color1, setcolor1] = useState("박물관");
     const [color2, setcolor2] = useState("한식");
     let sessionStorage = window.sessionStorage;
-    // {/* 체험 */}
-    // const [ski ,setSki] = useState(false)
-    // const [hiking ,sethiking] = useState(false)
-    // const [insport, setinsport]= useState(false)
-    // const [tema, settema]= useState(false)
-    // const [outsport, setoutsport]= useState(false)
-    // const [water , setwater] = useState(false)
-    // const [Diy, setdiy] = useState(false)
-
-    // {/* 체험 */}
-    // const [Museum ,setMuseum] = useState(false)
-    // const [Art ,setArt] = useState(false)
-    // const [Exhibition, setExhibition]= useState(false)
-    // const [Show, setshow]= useState(false)
-
-    // {/* 맛집 */}
-    // const [Korea ,setKorea] = useState(false)
-    // const [Chinese ,setChinese] = useState(false)
-    // const [America, setAmerica]= useState(false)
-    // const [Local, setLocal]= useState(false)  
-        //체험
-
     const hendleNext =async () => { 
         try{
         await fetctData();
@@ -160,7 +138,6 @@ const TripPlan3 = () => {
         const StartTime = sessionStorage.getItem("출발시간")
         const StartLocation = sessionStorage.getItem("출발지역")
         const finishLocation = sessionStorage.getItem("도착지역")
-        // const Hotelname = sessionStorage.getItem("호텔이름")
         const people = sessionStorage.getItem("인원")
         const experience = sessionStorage.getItem("체험")
         const theme = sessionStorage.getItem("테마")
@@ -171,7 +148,6 @@ const TripPlan3 = () => {
         startTime : StartTime, //출발시간
         startLocation : StartLocation, //출발지역
         finishLocation : finishLocation, //도착지역
-        // hotelname : Hotelname,
         people : people,
         Experience : experience, 
         Theme : theme,
@@ -185,8 +161,6 @@ const TripPlan3 = () => {
         body: JSON.stringify(textbox), //textbox라는 객체를 보냄
     })
     }
-
-    
     const onClick = (e) => {
         const {
         currentTarget: { id },
@@ -266,7 +240,7 @@ useEffect(() => {
             <Content3 id='양식' onClick={onClick2}><Contentdiv style={{marginTop:"10px"}}>양식</Contentdiv><Category src={americafood} alt="양식"/></Content3>
             <Content3 id='지역음식' onClick={onClick2}><Contentdiv style={{marginTop:"10px"}}>지역음식</Contentdiv><Category src={localfood} alt="지역음식"/></Content3>
             </MainContent>
-            <Next onClick={hendleNext}><Link to='/TripPlan4' style={{textDecoration:"none",color:"black"}}>Next</Link></Next>  
+            <Next onClick={hendleNext}><Link to='/TripPlan/yes2' style={{textDecoration:"none",color:"black"}}>Next</Link></Next>  
         </Template>
         </>
     );

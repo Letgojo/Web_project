@@ -77,7 +77,7 @@ const TripPlan4 = () => {
 
     // sessionStorage.getItem("숙소") /숙소/호텔/부산/2022-11-10/2022-11-13   sessionStorage.getItem("도착지역")
     useEffect(()=>{
-    const db = firestore.collection("숙소").doc("호텔").collection("부산광역시 중구").doc("2022-12-1").collection("2022-12-2");
+    const db = firestore.collection("숙소").doc("호텔").collection("부산광역시 중구").doc("2022-12-3").collection("2022-12-4");
     let person = [];
     db.get().then((result)=>{
         result.forEach((allDoc)=>{
@@ -85,8 +85,14 @@ const TripPlan4 = () => {
         })
   })
   setTimeout(()=>{
-    console.log(PostList)
-    person.map((element)=>(
+    let pensByColors = person.sort((a,b) => {
+        if(a.금액 > b.금액) return 1;
+        if(a.금액 < b.금액) return -1;
+        return 0;
+      });
+      
+    console.log(pensByColors);
+    pensByColors.map((element)=>(
         setPostList((PostList)=> [
             ...PostList,
             {name:element.숙박업체, money:element.금액,Url:element.사진url}
@@ -98,7 +104,7 @@ const TripPlan4 = () => {
         <Template>
             <CategoryDIV>
             <CategoryType>
-                <TypeRadio><Typeinput type="radio" name="type" style={{width:"25px",height:"25px"}}/>인기</TypeRadio>
+                <TypeRadio><Typeinput type="radio" name="type" style={{width:"25px",height:"25px"}} onClick={onhandleHotel} />인기</TypeRadio>
                 <TypeRadio><Typeinput type="radio" name="type" style={{width:"25px",height:"25px"}}/>가격</TypeRadio>
                 <TypeRadio><Typeinput type="radio" name="type" style={{width:"25px",height:"25px"}}/>특가</TypeRadio>
             </CategoryType>

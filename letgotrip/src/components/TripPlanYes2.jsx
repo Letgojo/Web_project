@@ -54,12 +54,12 @@ const TripPlanYes2 = () => {
     }}
     useEffect(()=>{
         setTimeout(()=>{
-            user.map((element)=>{
+            user.map((element)=>(
             setBus((Bus)=>[
                 ...Bus,
                 {Rating:element.등급,StartTime:element.출발시간,finishTime:element.도착시간,money:element.성인요금,timetaken:element.소요시간,name:element.고속사},
             ])
-        })
+            ))
         },1000)
     },[])
     return (
@@ -79,7 +79,7 @@ const TripPlanYes2 = () => {
             ))}
             
             </Transportationfrom>
-            <Next><Link to="/TripPlan3" style={{textDecoration:"none",color:"black"}}>Next</Link></Next>
+            <Next><Link to="/TripPlan4" style={{textDecoration:"none",color:"black"}}>Next</Link></Next>
         </Template>
     );
 };
