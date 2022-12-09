@@ -74,10 +74,14 @@ margin-right : 40px;
 const TripPlan4 = () => {
     const [PostList, setPostList] = useState([]);
     let sessionStorage = window.sessionStorage;
-
+    let Location = sessionStorage.getItem("도착지역").replace(/(\s*)/g, "");
+    let start = sessionStorage.getItem("출발날짜");
+    let finish = sessionStorage.getItem("도착날짜");
     // sessionStorage.getItem("숙소") /숙소/호텔/부산/2022-11-10/2022-11-13   sessionStorage.getItem("도착지역")
+    console.log(Location)
     useEffect(()=>{
-    const db = firestore.collection("숙소").doc("호텔").collection("부산광역시 중구").doc("2022-12-3").collection("2022-12-4");
+
+    const db = firestore.collection("숙소").doc("호텔").collection(Location).doc(start).collection(finish);
     let person = [];
     db.get().then((result)=>{
         result.forEach((allDoc)=>{
@@ -104,7 +108,7 @@ const TripPlan4 = () => {
         <Template>
             <CategoryDIV>
             <CategoryType>
-                <TypeRadio><Typeinput type="radio" name="type" style={{width:"25px",height:"25px"}} />인기</TypeRadio>
+                <TypeRadio><Typeinput type="radio" name="type" style={{width:"25px",height:"25px"}}  />인기</TypeRadio>
                 <TypeRadio><Typeinput type="radio" name="type" style={{width:"25px",height:"25px"}}/>가격</TypeRadio>
                 <TypeRadio><Typeinput type="radio" name="type" style={{width:"25px",height:"25px"}}/>특가</TypeRadio>
             </CategoryType>

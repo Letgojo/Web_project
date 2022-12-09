@@ -63,6 +63,9 @@ const DayUl = styled.ul`
 const Plan = styled.div`
 
 `
+const PlanList = styled.li`
+    font-size : 40px;
+`
 const TripPlanNo1 = () => {
     let sessionStorage = window.sessionStorage;
     let point = [] 
@@ -77,17 +80,9 @@ const TripPlanNo1 = () => {
             user.push(allDoc.data())
         })
     })
-    useEffect(()=>{
-        setTimeout(() => {
-    user.map((element)=>(
-        setwhere((where)=> [
-            ...where,
-            {w:element.위도, y:element.경도,name:element.음식종류}
-        ])))
-    }, 1000);
-    },[]);
 
-    const db1 = firestore.collection("회원관리").doc("kim").collection('2022-12-09-1')
+
+    const db1 = firestore.collection("회원관리").doc("kim").collection('2022-12-10-1')
     let person = [];
     db1.get().then((result)=>{
         result.forEach((allDoc)=>{
@@ -99,8 +94,27 @@ const TripPlanNo1 = () => {
 person.map((element)=>(
     setpost((post)=> [
         ...post,
-        {cafename:element.카페이름,}
-    ])))
+        {   
+            cafename:element.카페이름,lunchname : element.점심이름,tripname : element.관광지이름,dinnername : element.저녁이름,Day: element.날짜
+        }
+    ])
+    
+    ))
+}, 3000);
+},[post]);
+useEffect(()=>{
+    setTimeout(() => {
+person.map((element)=>(
+    setwhere((where)=> [
+        ...where,
+        {
+         lunchw:element.점심위도, lunchy:element.점심경도,lunchname:element.점심이름,
+         cafew:element.카페위도, cafey:element.카페경도,cafename:element.카페이름,
+         dinnerw:element.저녁위도, dinnery:element.저녁경도,dinnername:element.저녁이름,
+         tripw:element.관광지위도, tripy:element.관광지경도,tripname:element.관광지이름,
+        }
+    ],
+)))
 }, 1000);
 },[]);
 
@@ -117,7 +131,7 @@ person.map((element)=>(
             reject(e); 
           }); 
           document.head.appendChild(script); 
-        }); 
+        });  
       };
       try{
       useEffect(()=>{
@@ -132,7 +146,7 @@ person.map((element)=>(
                 
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
             mapOption = { 
-                center: new kakao.maps.LatLng(35.851743, 128.5598102), // 지도의 중심좌표
+                center: new kakao.maps.LatLng(35.0907614, 129.0768095), // 지도의 중심좌표
                 level: 8 // 지도의 확대 레벨
             };
 
@@ -149,7 +163,10 @@ person.map((element)=>(
 
         // 마커 하나를 지도위에 표시합니다 
         where.map((element)=>(
-            addMarker(new kakao.maps.LatLng(element.w,element.y))
+            addMarker(new kakao.maps.LatLng(element.lunchw,element.lunchy)),
+            addMarker(new kakao.maps.LatLng(element.cafew,element.cafey)),
+            addMarker(new kakao.maps.LatLng(element.tripw,element.tripy)),
+            addMarker(new kakao.maps.LatLng(element.dinnerw,element.dinnery))
             ))
         console.log("위도경도 결과",where)
     //     {Postlist.map((element,index) => (                     
@@ -193,7 +210,10 @@ person.map((element)=>(
         }
         var linePath = [
             where.map((element)=>(
-                new kakao.maps.LatLng(element.w, element.y)
+                new kakao.maps.LatLng(element.lunchw,element.lunchy),
+                new kakao.maps.LatLng(element.cafew,element.cafey),
+                new kakao.maps.LatLng(element.tripw,element.tripy),
+                new kakao.maps.LatLng(element.dinnerw,element.dinnery)
                 ))
         ];
         var polyline = new kakao.maps.Polyline({
@@ -205,11 +225,28 @@ person.map((element)=>(
         });
         // 지도에 선을 표시합니다 
     polyline.setMap(map);  
-    where.map((element)=>{
+    where.map((element,index)=>{
     var marker = new kakao.maps.Marker({
         map: map, 
-        position: new kakao.maps.LatLng(element.w, element.y)
+        position : 
+        new kakao.maps.LatLng(element.lunchw,element.lunchy),
     });
+    var marker1 = new kakao.maps.Marker({
+        map: map, 
+        position : 
+        new kakao.maps.LatLng(element.cafew,element.cafey),
+    });
+    var marker2 = new kakao.maps.Marker({
+        map: map, 
+        position : 
+        new kakao.maps.LatLng(element.tripw,element.tripy),
+    });
+    var marker3 = new kakao.maps.Marker({
+        map: map, 
+        position : 
+        new kakao.maps.LatLng(element.dinnerw,element.dinnery),
+    });
+
 
     // 커스텀 오버레이에 표시할 컨텐츠 입니다
     // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
@@ -217,11 +254,35 @@ person.map((element)=>(
     var content = '<div class="wrap">' + 
                 '    <div class="info">' + 
                 '        <div class="title" style="padding :5px; background-color: white; margin-bottom: 110px; border-radius:30px; border:1px solid black;">' + 
-                `            ${element.name}` + 
+                `            ${element.lunchname}` + 
                 '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
                 '        </div>' + 
                 '    </div>' +    
                 '</div>';
+    var content1 = '<div class="wrap">' + 
+    '    <div class="info">' + 
+    '        <div class="title" style="padding :5px; background-color: white; margin-bottom: 110px; border-radius:30px; border:1px solid black;">' + 
+    `            ${element.cafename}` + 
+    '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+    '        </div>' + 
+    '    </div>' +    
+    '</div>';
+    var content2 = '<div class="wrap">' + 
+    '    <div class="info">' + 
+    '        <div class="title" style="padding :5px; background-color: white; margin-bottom: 110px; border-radius:30px; border:1px solid black;">' + 
+    `            ${element.tripname}` + 
+    '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+    '        </div>' + 
+    '    </div>' +    
+    '</div>';
+    var content3 = '<div class="wrap">' + 
+    '    <div class="info">' + 
+    '        <div class="title" style="padding :5px; background-color: white; margin-bottom: 110px; border-radius:30px; border:1px solid black;">' + 
+    `            ${element.dinnername}` + 
+    '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+    '        </div>' + 
+    '    </div>' +    
+    '</div>';            
     
     // 마커 위에 커스텀오버레이를 표시합니다
     // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
@@ -230,10 +291,28 @@ person.map((element)=>(
         map: map,
         position: marker.getPosition()       
     });
+    var overlay1 = new kakao.maps.CustomOverlay({
+        content: content1,
+        map: map,
+        position: marker1.getPosition()       
+    });
+    var overlay2 = new kakao.maps.CustomOverlay({
+        content: content2,
+        map: map,
+        position: marker2.getPosition()       
+    });
+    var overlay3 = new kakao.maps.CustomOverlay({
+        content: content3,
+        map: map,
+        position: marker3.getPosition()       
+    });
     
     // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
     kakao.maps.event.addListener(marker, 'click', function() {
         overlay.setMap(map);
+        overlay1.setMap(map);
+        overlay2.setMap(map);
+        overlay3.setMap(map);
     });
     
     // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
@@ -248,7 +327,7 @@ person.map((element)=>(
 }catch{
     console.log("error")
 }
-  
+
 
     return (
         <Template>
@@ -266,7 +345,16 @@ person.map((element)=>(
                 </Dayform>
                 <Pay>금액 : </Pay>
                 <Plan>
-
+                    <ul>
+                        {post.map((element)=>(
+                        <PlanList>
+                            {element.점심이름}
+                            {element.카페이름}
+                            {element.관광지이름}
+                            {element.저녁이름}
+                        </PlanList>
+                    ))}
+                    </ul>
                 </Plan>
             </Resultform>
         </Template>
