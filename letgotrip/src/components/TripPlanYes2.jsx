@@ -11,8 +11,9 @@ const Template  = styled.div`
     background-color : white;
     margin : 5% auto;   
     border-radius : 30px;
-    font-family: 'HallymGothic-Regular'; 
-       
+    font-family: 'twayair';
+    padding-top : 40px;
+    padding-bottom : 10px;
 `
 const Transportationfrom = styled.div`
     margin : 40px 70px;
@@ -29,11 +30,25 @@ border-radius : 30px;
 background-color : #B9D6F9;
 font-size : 40px;
 text-align : center;
-margin-top: 40px;
+align-items: center;
 cursor : pointer;
+margin-left : 600px;
+margin-bottom : 100px;
 `
-
-
+const UP = styled.div`
+    margin-left : 20px;
+`
+const DOWN = styled.div`
+    margin-right : 20px;
+`
+const Currnetpage = styled.div`
+`
+const Page = styled.div`
+    display : flex;
+    margin-left :50%;
+    font-size : 35px;
+    margin-top : 20px;
+`
 
 
 
@@ -41,6 +56,8 @@ const TripPlanYes2 = () => {
 
     var user = [];
     const [Bus,setBus]= useState([]);
+    const [page,setPage] = useState(1);
+    const [subpage,setsubpage] = useState(0);
     let sessionStorage = window.sessionStorage;
     if(sessionStorage.getItem("출발지역")==="대구광역시 중구"||"대구광역시 북구"||"대구광역시 서구"||"대구광역시 달서구"){
         if(sessionStorage.getItem("도착지역")==="부산광역시 금정구"||"부산광역시 해운대구"){
@@ -61,11 +78,20 @@ const TripPlanYes2 = () => {
             ))
         },1000)
     },[])
+    const handleup =()=>{
+        setPage(page+1);
+        setsubpage(subpage+5)
+    }
+    const handledown = () => { 
+        setPage(page>1?page-1:page);
+        setsubpage(subpage>0?subpage-5:subpage)
+    }
     return (
         <Template>
             <Transportationfrom>
-            <input type="radio" name='check'/>기차 <input type="radio" name='check' />버스
+            {/* <input type="radio" name='check'/>기차 <input type="radio" name='check' />버스 */}
             {Bus.map((element,index)=>(
+                subpage<=index&& index<5*page ?
                 <BusTable
                     key={index}
                     Rating={element.Rating}
@@ -81,10 +107,15 @@ const TripPlanYes2 = () => {
                     finishw={element.finishw}
                     finishy={element.finishy}
                 />
+                : " "
             ))}
-            
+            <Page>
+            <DOWN  onClick={handledown}> {'<'} </DOWN>
+            <Currnetpage>{page}</Currnetpage>
+            <UP  onClick={handleup}> {' >'} </UP>
+            </Page>
+            <Next><Link to="/TripPlan4" style={{textDecoration:"none",color:"black"}}>다음</Link></Next>
             </Transportationfrom>
-            <Next><Link to="/TripPlan4" style={{textDecoration:"none",color:"black"}}>Next</Link></Next>
         </Template>
     );
 };

@@ -71,8 +71,10 @@ const Plan = styled.div`
 
 `
 const PlanList = styled.div`
-    display : flex;
+    display : grid;
     margin-left : 30px;
+    grid-template-columns : 50px 300px;
+    grid-template-rows:  50px; 50px; 50px 50px;
 `
 const PlanListText = styled.li`
     font-size : 20px;
@@ -109,6 +111,7 @@ const TripPlanNo1 = () => {
             user.push(allDoc.data())
         })
     })
+    const by = sessionStorage.getItem("교통수단")
     const startLocation  = sessionStorage.getItem("버스출발지")
     const finishLocation = sessionStorage.getItem("버스도착지")
     const hotel = sessionStorage.getItem("호텔이름")
@@ -134,7 +137,7 @@ person.map((element,index)=>(
     setpost((post)=> [
         ...post,
         {   
-            num: index,cafename:element.카페이름,lunchname : element.점심이름,tripname : element.관광지이름,dinnername : element.저녁이름,Day: element.날짜
+            num: index,cafename:element.카페이름,lunchname : element.점심이름,tripname : element.관광지이름,dinnername : element.저녁이름,Day: element.출발지역
         }
     ]),
     setwhere((where)=> [
@@ -447,7 +450,10 @@ person.map((element,index)=>(
                         <PlanList> 
                         <PlanListimg>
                         <Planimg><Img src={start} alt="시작" /></Planimg>
+                        {by === "자차" ?
+                        " " :
                         <Planimg><Img src={bus} alt="버스" /></Planimg>
+}
                         <Planimg><Img src={lunch} alt="점심" /></Planimg>
                         <Planimg><Img src={cafe} alt="카페" /></Planimg>
                         <Planimg><Img src={hiking} alt="등산" /></Planimg>
@@ -455,8 +461,14 @@ person.map((element,index)=>(
                         <Planimg><Img src={hotelimg} alt="호텔" /></Planimg>
                         </PlanListimg> 
                         <PlanListText>
+                            {by==="자차" ? 
+                            <PlandoList>{element.Day}</PlandoList>
+                            :
+                            <>
                             <PlandoList>{startLocation}</PlandoList>
                             <PlandoList>{finishLocation}</PlandoList>
+                            </>
+                        }
                             <PlandoList>{element.lunchname}</PlandoList>
                             <PlandoList>{element.cafename}</PlandoList>
                             <PlandoList>{element.tripname}</PlandoList>
@@ -491,7 +503,7 @@ person.map((element,index)=>(
                         </PlanListText>
                         </PlanList>
                         : ""
-                                    ))}
+                        ))}
                     </ul>
                 :" "
                 }
@@ -504,15 +516,25 @@ person.map((element,index)=>(
                     <Planimg><Img src={hotelimg} alt="호텔" /></Planimg>
                     <Planimg><Img src={lunch} alt="점심" /></Planimg>
                     <Planimg><Img src={cafe} alt="카페" /></Planimg>
+                    {by === "자차" ? 
+                    " ":
                     <Planimg><Img src={bus} alt="버스" /></Planimg>
+                }
                     <Planimg><Img src={finish} alt="도착" /></Planimg>
+
                     </PlanListimg> 
                     <PlanListText>
                         <PlandoList>{hotel}</PlandoList>
                         <PlandoList>{element.lunchname}</PlandoList>
                         <PlandoList>{element.cafename}</PlandoList>
+                        {by === "자차" ?  
+                         <PlandoList>{element.Day}</PlandoList>
+                        :
+                        <>
                         <PlandoList>{finishLocation}</PlandoList>
                         <PlandoList>{startLocation}</PlandoList>
+                        </>
+                    }
                     </PlanListText>
                     </PlanList>
                      : ""

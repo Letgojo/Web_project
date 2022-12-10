@@ -21,25 +21,30 @@ import localfood from '../img/category/localfood.png'
 import chinesefood from '../img/category/chinesefood.png'
 
 const Template  = styled.div`
-    width : 1300px;
+    width : 1000px;
     height : 1200px;
     border : 1px solid black;
     background-color : white;
     margin : 5% auto;   
     border-radius : 30px;
-    padding-left : 40px;
+    padding-left : 10px;
     font-family: 'twayair';
 
 `
 const MainContent = styled.div`
-    display : flex;
+    display : grid;
     flex-wrap: wrap;
-    margin-bottom    : 100px;
+    margin-bottom  : 100px;
+    margin-left : 0px;
+    grid-template-columns : 500px 500px;
+    grid-template-rows : 150px 150px;
+
 `
 
 const Contentdiv = styled.div`
-    width : 130px;
+    width : 200px;
     font-weight: bold;
+    margin-left :100px;
 `
 const Contentspan  = styled.span`
     font-size : 13px;
@@ -48,6 +53,7 @@ const Contentspan  = styled.span`
 const Category = styled.img`
     width : 72px;
     height : 62px;  
+    margin-left :50px;
 `
 const Next = styled.div`
 width : 187px;
@@ -61,7 +67,7 @@ margin-top: 40px;
 cursor : pointer;
 `
 const Content1 = styled.div`
-width : 220px;
+width : 450px;
 height : 80px;
 border : 1px solid black;
 border-radius : 30px;
@@ -79,29 +85,10 @@ cursor: pointer;
     opacity: 0.5;
 }
 `
-//테마
-const Content2 = styled.div`
-width : 220px;
-height : 80px;
-border : 1px solid black;
-border-radius : 30px;
-background-color : '#006FFD';
-margin-left : 20px;
-margin-top : 30px;
-text-align: center;
-padding-top : 28px;
-font-size: 20px;
-font-family: 'HallymGothic-Regular';
-display : flex;
-cursor: pointer;
-:hover {
-background-color : #006FFD;
-opacity: 0.5;
-}
-`
+
 //맛집
 const Content3 = styled.div`
-width : 220px;
+width : 450px;
 height : 80px;
 border : 1px solid black;
 border-radius : 30px;
@@ -121,7 +108,6 @@ opacity: 0.5;
 `
 const TripPlan3 = () => {
     const [color, setcolor] = useState("스키");
-    const [color1, setcolor1] = useState("박물관");
     const [color2, setcolor2] = useState("한식");
     let sessionStorage = window.sessionStorage;
     const hendleNext =async () => { 
@@ -139,9 +125,8 @@ const TripPlan3 = () => {
         const StartLocation = sessionStorage.getItem("출발지역")
         const finishLocation = sessionStorage.getItem("도착지역")
         const people = sessionStorage.getItem("인원")
-        const experience = sessionStorage.getItem("체험")
-        const theme = sessionStorage.getItem("테마")
-        const eat = sessionStorage.getItem("맛집")
+        const experience = sessionStorage.getItem("관광")
+        const eat = sessionStorage.getItem("음식")
         const car = sessionStorage.getItem("교통수단")
     const textbox = {
         startday : StartDay,//출발날짜
@@ -151,7 +136,6 @@ const TripPlan3 = () => {
         finishLocation : finishLocation, //도착지역
         people : people,
         Experience : experience, 
-        Theme : theme,
         Eat: eat,
         car : car,
     }
@@ -167,34 +151,26 @@ const TripPlan3 = () => {
         const {
         currentTarget: { id },
         } = e;
-        sessionStorage.setItem("체험",id)
+        sessionStorage.setItem("관광",id)
         setcolor(id);
 };
     const onClick2 = (e) => {
         const {
         currentTarget: { id },
         } = e;
-        sessionStorage.setItem("맛집",id)
+        sessionStorage.setItem("음식",id)
         setcolor2(id);
     };
-useEffect(() => {
-    const allBtnArr = ["스키", "등산", "키즈",'실내스포츠','테마파크','실외스포츠','수상레포츠','공예/DIY', '박물관','미술관','전시회','공연'];
-    const nonTargetedBtnArr = allBtnArr.filter((item) => item !== color);
-    document.getElementById(color).style.backgroundColor = "#006FFD";
-    nonTargetedBtnArr.map((item) => {
-    document.getElementById(item).style.backgroundColor = "#E7E7E7";
-    return null;
-    });
-}, [color]);
 // useEffect(() => {
-//     const allBtnArr2 = ['박물관','미술관','전시회','공연'];
-//     const nonTargetedBtnArr1 = allBtnArr2.filter((item1) => item1 !== color1);
-//     document.getElementById(color1).style.backgroundColor = "#006FFD";
-//     nonTargetedBtnArr1.map((item1) => {
-//     document.getElementById(item1).style.backgroundColor = "#E7E7E7";
+//     const allBtnArr = ["스키", "등산", "키즈",'실내스포츠','테마파크','실외스포츠','수상레포츠','공예/DIY', '박물관','미술관','전시회','공연'];
+//     const nonTargetedBtnArr = allBtnArr.filter((item) => item !== color);
+//     document.getElementById(color).style.backgroundColor = "#006FFD";
+//     nonTargetedBtnArr.map((item) => {
+//     document.getElementById(item).style.backgroundColor = "#E7E7E7";
 //     return null;
 //     });
-// }, [color1]);   
+// }, [color]);
+
 useEffect(() => {
     const allBtnArr3 = ['한식','중식','양식','지역음식'];
     const nonTargetedBtnArr2 = allBtnArr3.filter((item2) => item2 !== color2);
@@ -208,27 +184,16 @@ useEffect(() => {
     return (
         <>
         <Template   >
-            <h1>체험</h1>
+            <h1>관광</h1>
             <MainContent>                       
-            <Content1  id='스키' onClick={onClick}><Contentdiv>스키<br /><Contentspan>스키장, 눈썰매</Contentspan></Contentdiv><Category src={Skiimg} alt="스키"/></Content1>
-            <Content1  id='등산' onClick={onClick}><Contentdiv>등산</Contentdiv><Category src={hikingimg} alt="등산"/></Content1>
-            <Content1  id='키즈' onClick={onClick}><Contentdiv>키즈<br /><Contentspan>키즈카페, 키즈체험관</Contentspan></Contentdiv><Category src={Kides} alt="키즈"/></Content1>
-            <Content1  id='실내스포츠' onClick={onClick}><Contentdiv>실내스포츠<br /><Contentspan>사격, 롤러스케이트, 클라이밍</Contentspan></Contentdiv><Category src={Skater} alt="실내스포츠" /></Content1>
-            <Content1  id='테마파크' onClick={onClick}><Contentdiv>테마파크<br /><Contentspan>놀이동산,아쿠아리움,동물원</Contentspan></Contentdiv><Category src={park} alt="테마파크" /></Content1>
-            <Content1  id='실외스포츠' onClick={onClick}><Contentdiv>실외스포츠<br /><Contentspan>패러글라이딩, 짚라인/번지점프</Contentspan></Contentdiv><Category src={paragliding} alt="실외스포츠" /></Content1>
-            <Content1  id='수상레포츠' onClick={onClick}><Contentdiv>수상레포츠<br /><Contentspan>빠지,스노쿨링,스파/온천</Contentspan></Contentdiv><Category src={watersport} alt="수상스포츠" /></Content1>
-            <Content1  id='공예/DIY' onClick={onClick}><Contentdiv>공예/DIY<br /><Contentspan>액세서리,캔슬,도자기</Contentspan></Contentdiv><Category src={diy} alt="공예" /></Content1>
-            </MainContent>
-            
-            <h1>테마</h1>
-            <MainContent> 
-            <Content2 id='박물관' onClick={onClick}><Contentdiv style={{marginTop:"10px"}}>박물관</Contentdiv><Category src={museum} alt="박물관"/></Content2>
-            <Content2 id='미술관' onClick={onClick}><Contentdiv style={{marginTop:"10px"}}>미술관</Contentdiv><Category src={art} alt="미술관"/></Content2>
-            <Content2 id='전시회' onClick={onClick}><Contentdiv style={{marginTop:"10px"}}>전시회</Contentdiv><Category src={exhibition} alt="전시회"/></Content2>
-            <Content2 id='공연' onClick={onClick}><Contentdiv style={{marginTop:"10px"}}>공연</Contentdiv><Category src={show} alt="공연"/></Content2>
+            <Content1  id='레저스포츠' onClick={onClick}><Contentdiv>레저스포츠<br /><Contentspan>골프, 인라인, 사격,  요트</Contentspan></Contentdiv><Category src={Skiimg} alt="스키"/></Content1>
+            <Content1  id='문화관광' onClick={onClick}><Contentdiv>문화관광<br /><Contentspan>공원, 미술관, 박물관, 영화관</Contentspan></Contentdiv><Category src={hikingimg} alt="등산"/></Content1>
+            <Content1  id='역사관광' onClick={onClick}><Contentdiv>역사관광<br /><Contentspan>사원, 종교</Contentspan></Contentdiv><Category src={Kides} alt="키즈"/></Content1>
+            <Content1  id='자연관광' onClick={onClick}><Contentdiv>자연관광<br /><Contentspan>휴양림, 저수지, 해수욕장</Contentspan></Contentdiv><Category src={Skater} alt="실내스포츠" /></Content1>
+            <Content1  id='체험관광' onClick={onClick}><Contentdiv>체험관광<br /><Contentspan>체험장,  온천</Contentspan></Contentdiv><Category src={park} alt="테마파크" /></Content1>
             </MainContent>
 
-            <h1>맛집</h1>
+            <h1>음식</h1>
             <MainContent> 
             <Content3 id='한식' onClick={onClick2}><Contentdiv style={{marginTop:"10px"}}>한식</Contentdiv><Category src={koreafood} alt="한식"/></Content3>
             <Content3 id='중식' onClick={onClick2}><Contentdiv style={{marginTop:"10px"}}>중식</Contentdiv><Category src={chinesefood} alt="중식"/></Content3>

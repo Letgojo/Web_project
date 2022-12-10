@@ -37,7 +37,6 @@ const BusTable = ({start,finish,Rating,StartTime,FinishTime,money,timetaken,name
         sessionStorage.setItem("버스출발지경도",starty)
         sessionStorage.setItem("버스도착지위도",finishw)
         sessionStorage.setItem("버스도착지경도",finishy)
-        console.log(startw)
     }
     return (
         <Template onClick={handleBus}>

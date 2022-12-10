@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import styled from 'styled-components';
 import { firestore } from '../firebase.js'
 
@@ -35,7 +35,7 @@ const ResultDay = () => {
             person.push(allDoc.data())
         })
   })
-  console.log(person)
+console.log()
     return (
         <Resultform>
         <Dayform>
