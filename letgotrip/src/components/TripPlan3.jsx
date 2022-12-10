@@ -170,13 +170,6 @@ const TripPlan3 = () => {
         sessionStorage.setItem("체험",id)
         setcolor(id);
 };
-    const onClick1 = (e) => {
-        const {
-        currentTarget: { id },
-        } = e;
-        sessionStorage.setItem("테마",id)
-        setcolor1(id);
-    };
     const onClick2 = (e) => {
         const {
         currentTarget: { id },
@@ -185,7 +178,7 @@ const TripPlan3 = () => {
         setcolor2(id);
     };
 useEffect(() => {
-    const allBtnArr = ["스키", "등산", "키즈",'실내스포츠','테마파크','실외스포츠','수상레포츠','공예/DIY'];
+    const allBtnArr = ["스키", "등산", "키즈",'실내스포츠','테마파크','실외스포츠','수상레포츠','공예/DIY', '박물관','미술관','전시회','공연'];
     const nonTargetedBtnArr = allBtnArr.filter((item) => item !== color);
     document.getElementById(color).style.backgroundColor = "#006FFD";
     nonTargetedBtnArr.map((item) => {
@@ -193,15 +186,15 @@ useEffect(() => {
     return null;
     });
 }, [color]);
-useEffect(() => {
-    const allBtnArr2 = ['박물관','미술관','전시회','공연'];
-    const nonTargetedBtnArr1 = allBtnArr2.filter((item1) => item1 !== color1);
-    document.getElementById(color1).style.backgroundColor = "#006FFD";
-    nonTargetedBtnArr1.map((item1) => {
-    document.getElementById(item1).style.backgroundColor = "#E7E7E7";
-    return null;
-    });
-}, [color1]);   
+// useEffect(() => {
+//     const allBtnArr2 = ['박물관','미술관','전시회','공연'];
+//     const nonTargetedBtnArr1 = allBtnArr2.filter((item1) => item1 !== color1);
+//     document.getElementById(color1).style.backgroundColor = "#006FFD";
+//     nonTargetedBtnArr1.map((item1) => {
+//     document.getElementById(item1).style.backgroundColor = "#E7E7E7";
+//     return null;
+//     });
+// }, [color1]);   
 useEffect(() => {
     const allBtnArr3 = ['한식','중식','양식','지역음식'];
     const nonTargetedBtnArr2 = allBtnArr3.filter((item2) => item2 !== color2);
@@ -229,10 +222,10 @@ useEffect(() => {
             
             <h1>테마</h1>
             <MainContent> 
-            <Content2 id='박물관' onClick={onClick1}><Contentdiv style={{marginTop:"10px"}}>박물관</Contentdiv><Category src={museum} alt="박물관"/></Content2>
-            <Content2 id='미술관' onClick={onClick1}><Contentdiv style={{marginTop:"10px"}}>미술관</Contentdiv><Category src={art} alt="미술관"/></Content2>
-            <Content2 id='전시회' onClick={onClick1}><Contentdiv style={{marginTop:"10px"}}>전시회</Contentdiv><Category src={exhibition} alt="전시회"/></Content2>
-            <Content2 id='공연' onClick={onClick1}><Contentdiv style={{marginTop:"10px"}}>공연</Contentdiv><Category src={show} alt="공연"/></Content2>
+            <Content2 id='박물관' onClick={onClick}><Contentdiv style={{marginTop:"10px"}}>박물관</Contentdiv><Category src={museum} alt="박물관"/></Content2>
+            <Content2 id='미술관' onClick={onClick}><Contentdiv style={{marginTop:"10px"}}>미술관</Contentdiv><Category src={art} alt="미술관"/></Content2>
+            <Content2 id='전시회' onClick={onClick}><Contentdiv style={{marginTop:"10px"}}>전시회</Contentdiv><Category src={exhibition} alt="전시회"/></Content2>
+            <Content2 id='공연' onClick={onClick}><Contentdiv style={{marginTop:"10px"}}>공연</Contentdiv><Category src={show} alt="공연"/></Content2>
             </MainContent>
 
             <h1>맛집</h1>

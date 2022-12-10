@@ -5,6 +5,7 @@ const Template = styled.div`
     font-size:15px;
     font-family: 'twayair';
     width:700px;
+    cursor: pointer;
 `
 const BusType = styled.div`
     margin-top:20px;
@@ -26,9 +27,20 @@ const Line = styled.div`
 const Time = styled.div`
     color:gray;
 `
-const BusTable = ({Rating,StartTime,FinishTime,money,timetaken,name}) => {
+const BusTable = ({start,finish,Rating,StartTime,FinishTime,money,timetaken,name,startw,starty,finishw,finishy}) => {
+    let sessionStorage = window.sessionStorage;
+    
+    const handleBus = () => { 
+        sessionStorage.setItem("버스출발지",start)
+        sessionStorage.setItem("버스도착지",finish)
+        sessionStorage.setItem("버스출발지위도",startw)
+        sessionStorage.setItem("버스출발지경도",starty)
+        sessionStorage.setItem("버스도착지위도",finishw)
+        sessionStorage.setItem("버스도착지경도",finishy)
+        console.log(startw)
+    }
     return (
-        <Template>
+        <Template onClick={handleBus}>
             <BusType>
                 {Rating}
             </BusType>

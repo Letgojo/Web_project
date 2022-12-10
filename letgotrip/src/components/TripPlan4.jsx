@@ -86,6 +86,7 @@ const TripPlan4 = () => {
     db.get().then((result)=>{
         result.forEach((allDoc)=>{
             person.push(allDoc.data())
+            console.log(person)
         })
   })
   setTimeout(()=>{
@@ -99,7 +100,7 @@ const TripPlan4 = () => {
     pensByColors.map((element)=>(
         setPostList((PostList)=> [
             ...PostList,
-            {name:element.숙박업체, money:element.금액,Url:element.사진url}
+            {name:element.숙박업체, money:element.금액,Url:element.사진url, w:element.위도, y:element.경도}
         ])))
     },1000)
 },[setPostList])
@@ -122,8 +123,10 @@ const TripPlan4 = () => {
                             name={element.name}
                             money={element.money}
                             Url={element.Url}
+                            W = {element.w}
+                            Y = {element.y}
                         />
-                        ))}
+                        ))} 
                         
                 </ul>
             </div>

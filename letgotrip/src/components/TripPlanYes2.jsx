@@ -43,12 +43,11 @@ const TripPlanYes2 = () => {
     const [Bus,setBus]= useState([]);
     let sessionStorage = window.sessionStorage;
     if(sessionStorage.getItem("출발지역")==="대구광역시 중구"||"대구광역시 북구"||"대구광역시 서구"||"대구광역시 달서구"){
-        if(sessionStorage.getItem("도착지역")==="부산광역시 금정구"){
-            const db = firestore.collection("고속버스시간표").doc(sessionStorage.getItem("출발날짜")).collection("출발지").doc("동대구고속버스터미널").collection("도착지")
+        if(sessionStorage.getItem("도착지역")==="부산광역시 금정구"||"부산광역시 해운대구"){
+            const db = firestore.collection("고속버스시간표2").doc(sessionStorage.getItem("출발날짜")).collection("출발지").doc("동대구고속버스터미널").collection("도착지")
             db.doc("부산고속버스터미널").collection("출발시간").get().then((result)=>{
                 result.forEach((allDoc)=>{
                     user.push(allDoc.data())
-                    console.log(user)
                 })
         })
     }}
@@ -57,7 +56,7 @@ const TripPlanYes2 = () => {
             user.map((element)=>(
             setBus((Bus)=>[
                 ...Bus,
-                {Rating:element.등급,StartTime:element.출발시간,finishTime:element.도착시간,money:element.성인요금,timetaken:element.소요시간,name:element.고속사},
+                {Rating:element.등급,StartTime:element.출발시간,finishTime:element.도착시간,money:element.성인요금,timetaken:element.소요시간,name:element.고속사,start:element.출발지,finish:element.도착지,startw:element.출발지위도,starty:element.출발지경도,finishw:element.도착지위도,finishy:element.도착지경도},
             ])
             ))
         },1000)
@@ -75,6 +74,12 @@ const TripPlanYes2 = () => {
                     money={element.money}
                     timetaken={element.timetaken}
                     name={element.name}
+                    start={element.start}
+                    finish={element.finish}
+                    startw={element.startw}
+                    starty={element.starty}
+                    finishw={element.finishw}
+                    finishy={element.finishy}
                 />
             ))}
             

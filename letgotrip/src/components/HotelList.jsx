@@ -30,10 +30,13 @@ const ContentMoney = styled.div`
     margin-left : 250px;
     font-size:35px;
 `
-const HotelList = ({name,money,Url}) => {
+const HotelList = ({name,money,Url,W,Y}) => {
     let sessionStorage = window.sessionStorage;
     const handleHotel = (e) => { 
         sessionStorage.setItem("호텔이름", name);
+        sessionStorage.setItem("호텔위도",W);
+        sessionStorage.setItem("호텔경도",Y);
+        console.log(W,Y)
     }
     return (
         <ListForm onClick={handleHotel}>
