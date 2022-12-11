@@ -28,7 +28,7 @@ const Template  = styled.div`
     margin : 5% auto;   
     border-radius : 30px;
     padding-left : 10px;
-    font-family: 'twayair';
+    font-family: 'twayair'; 
 
 `
 const MainContent = styled.div`
@@ -71,7 +71,7 @@ width : 450px;
 height : 80px;
 border : 1px solid black;
 border-radius : 30px;
-background-color : '#006FFD';
+background-color : white;
 margin-left : 20px;
 margin-top : 30px;
 text-align: center;
@@ -107,7 +107,7 @@ opacity: 0.5;
 }
 `
 const TripPlan3 = () => {
-    const [color, setcolor] = useState("스키");
+    const [color, setcolor] = useState("레저스포츠");
     const [color2, setcolor2] = useState("한식");
     let sessionStorage = window.sessionStorage;
     const hendleNext =async () => { 
@@ -150,8 +150,8 @@ const TripPlan3 = () => {
     const onClick = (e) => {
         const {
         currentTarget: { id },
-        } = e;
-        sessionStorage.setItem("관광",id)
+        } = e;  
+        !sessionStorage.getItem("관광")?sessionStorage.setItem("관광",id)(document.getElementById(id).style.backgroundColor = "#006FFD" ):!sessionStorage.getItem("관광1")?sessionStorage.setItem("관광1",id)((document.getElementById(id).style.backgroundColor = "#006FFD" )): console.log("2가지만 선택가능합니다.");
         setcolor(id);
 };
     const onClick2 = (e) => {
@@ -161,6 +161,14 @@ const TripPlan3 = () => {
         sessionStorage.setItem("음식",id)
         setcolor2(id);
     };
+    const onDoubleClick = (e) => { 
+        const {
+            currentTarget : {id},
+        }= e;
+        sessionStorage.getItem("관광")===id ? sessionStorage.removeItem("관광")(document.getElementById(id).style.backgroundColor = "white"): console.log("삭제실패");
+        sessionStorage.getItem("관광1")===id ? sessionStorage.removeItem("관광1")(document.getElementById(id).style.backgroundColor = "white"): console.log("삭제실패");
+        
+    }
 // useEffect(() => {
 //     const allBtnArr = ["스키", "등산", "키즈",'실내스포츠','테마파크','실외스포츠','수상레포츠','공예/DIY', '박물관','미술관','전시회','공연'];
 //     const nonTargetedBtnArr = allBtnArr.filter((item) => item !== color);
@@ -176,7 +184,7 @@ useEffect(() => {
     const nonTargetedBtnArr2 = allBtnArr3.filter((item2) => item2 !== color2);
     document.getElementById(color2).style.backgroundColor = "#006FFD";
     nonTargetedBtnArr2.map((item2) => {
-    document.getElementById(item2).style.backgroundColor = "#E7E7E7";
+    document.getElementById(item2).style.backgroundColor = "white";
     return null;
     });
 }, [color2]);   
@@ -186,11 +194,11 @@ useEffect(() => {
         <Template   >
             <h1>관광</h1>
             <MainContent>                       
-            <Content1  id='레저스포츠' onClick={onClick}><Contentdiv>레저스포츠<br /><Contentspan>골프, 인라인, 사격,  요트</Contentspan></Contentdiv><Category src={Skiimg} alt="스키"/></Content1>
-            <Content1  id='문화관광' onClick={onClick}><Contentdiv>문화관광<br /><Contentspan>공원, 미술관, 박물관, 영화관</Contentspan></Contentdiv><Category src={hikingimg} alt="등산"/></Content1>
-            <Content1  id='역사관광' onClick={onClick}><Contentdiv>역사관광<br /><Contentspan>사원, 종교</Contentspan></Contentdiv><Category src={Kides} alt="키즈"/></Content1>
-            <Content1  id='자연관광' onClick={onClick}><Contentdiv>자연관광<br /><Contentspan>휴양림, 저수지, 해수욕장</Contentspan></Contentdiv><Category src={Skater} alt="실내스포츠" /></Content1>
-            <Content1  id='체험관광' onClick={onClick}><Contentdiv>체험관광<br /><Contentspan>체험장,  온천</Contentspan></Contentdiv><Category src={park} alt="테마파크" /></Content1>
+            <Content1  id='레저스포츠' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>레저스포츠<br /><Contentspan>골프, 인라인, 사격,  요트</Contentspan></Contentdiv><Category src={Skiimg} alt="스키"/></Content1>
+            <Content1  id='문화관광' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>문화관광<br /><Contentspan>공원, 미술관, 박물관, 영화관</Contentspan></Contentdiv><Category src={hikingimg} alt="등산"/></Content1>
+            <Content1  id='역사관광' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>역사관광<br /><Contentspan>사원, 종교</Contentspan></Contentdiv><Category src={Kides} alt="키즈"/></Content1>
+            <Content1  id='자연관광' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>자연관광<br /><Contentspan>휴양림, 저수지, 해수욕장</Contentspan></Contentdiv><Category src={Skater} alt="실내스포츠" /></Content1>
+            <Content1  id='체험관광' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>체험관광<br /><Contentspan>체험장,  온천</Contentspan></Contentdiv><Category src={park} alt="테마파크" /></Content1>
             </MainContent>
 
             <h1>음식</h1>
