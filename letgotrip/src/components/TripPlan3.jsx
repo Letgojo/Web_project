@@ -110,6 +110,7 @@ const TripPlan3 = () => {
     const [color, setcolor] = useState("레저스포츠");
     const [color2, setcolor2] = useState("한식");
     let sessionStorage = window.sessionStorage;
+    const by = sessionStorage.getItem("교통수단")
     const hendleNext =async () => { 
         try{
         await fetctData();
@@ -126,8 +127,10 @@ const TripPlan3 = () => {
         const finishLocation = sessionStorage.getItem("도착지역")
         const people = sessionStorage.getItem("인원")
         const experience = sessionStorage.getItem("관광")
+        const experience1 = sessionStorage.getItem("관광1")
         const eat = sessionStorage.getItem("음식")
         const car = sessionStorage.getItem("교통수단")
+        const id = sessionStorage.getItem("loginId")
     const textbox = {
         startday : StartDay,//출발날짜
         finishday : FinishDay,//도착날짜
@@ -136,8 +139,10 @@ const TripPlan3 = () => {
         finishLocation : finishLocation, //도착지역
         people : people,
         Experience : experience, 
+        Experience1 : experience1, 
         Eat: eat,
         car : car,
+        id : id,
     }
     fetch('http://localhost:3000/TripPlan3',{
         method : "post", //통신방법
@@ -208,7 +213,7 @@ useEffect(() => {
             <Content3 id='양식' onClick={onClick2}><Contentdiv style={{marginTop:"10px"}}>양식</Contentdiv><Category src={americafood} alt="양식"/></Content3>
             <Content3 id='지역음식' onClick={onClick2}><Contentdiv style={{marginTop:"10px"}}>지역음식</Contentdiv><Category src={localfood} alt="지역음식"/></Content3>
             </MainContent>
-            <Next onClick={hendleNext}><Link to='/TripPlan/yes2' style={{textDecoration:"none",color:"black"}}>Next</Link></Next>  
+            <Next onClick={hendleNext}>{by==="자차"? <Link to='/TripPlan4' style={{textDecoration:"none",color:"black"}}>Next</Link> :<Link to='/TripPlan/yes2' style={{textDecoration:"none",color:"black"}}>Next</Link>}</Next>  
         </Template>
         </>
     );

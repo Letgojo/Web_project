@@ -27,9 +27,10 @@ const Line = styled.div`
 const Time = styled.div`
     color:gray;
 `
-const BusTable = ({start,finish,Rating,StartTime,FinishTime,money,timetaken,name,startw,starty,finishw,finishy}) => {
+const BusTable = ({distance,start,finish,Rating,StartTime,FinishTime,money,timetaken,name,startw,starty,finishw,finishy}) => {
     let sessionStorage = window.sessionStorage;
-    
+    money=money.split(",").join().substr(0,money.indexOf("원"))
+
     const handleBus = () => { 
         sessionStorage.setItem("버스출발지",start)
         sessionStorage.setItem("버스도착지",finish)
@@ -37,6 +38,12 @@ const BusTable = ({start,finish,Rating,StartTime,FinishTime,money,timetaken,name
         sessionStorage.setItem("버스출발지경도",starty)
         sessionStorage.setItem("버스도착지위도",finishw)
         sessionStorage.setItem("버스도착지경도",finishy)
+        sessionStorage.setItem("버스통행료",money)
+        sessionStorage.setItem("버스출발시간",StartTime)
+        sessionStorage.setItem("버스도착시간",FinishTime)
+        sessionStorage.setItem("소요시간",timetaken)
+        sessionStorage.setItem("거리",distance) 
+        sessionStorage.setItem("금액",money) 
     }
     return (
         <Template onClick={handleBus}>

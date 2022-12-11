@@ -91,11 +91,35 @@ const Header = ({chlidren}) => {
         sessionStorage.removeItem("출발지역")
         sessionStorage.removeItem("도착지역")
         sessionStorage.removeItem("인원")
-        sessionStorage.removeItem("체험")
-        sessionStorage.removeItem("테마")
-        sessionStorage.removeItem("맛집")
+        sessionStorage.removeItem("관광")
+        sessionStorage.removeItem("관광1")
+        sessionStorage.removeItem("음식")
         sessionStorage.removeItem("호텔이름")
+        sessionStorage.removeItem("호텔위도")
+        sessionStorage.removeItem("호텔경도")
+        sessionStorage.removeItem("버스출발지")
+        sessionStorage.removeItem("버스도착지")
+        sessionStorage.removeItem("버스출발지위도")
+        sessionStorage.removeItem("버스출발지경도")
+        sessionStorage.removeItem("버스도착지위도")
+        sessionStorage.removeItem("버스도착지경도")
+        sessionStorage.removeItem("교통수단")
     }
+// 음식	한식	
+// 버스출발지위도	35.8777	
+// 버스도착지경도	129.0953	
+// 호텔경도	129.059592	
+// 교통수단	자차	
+// 버스도착지위도	35.2846	
+// name	전병규	
+// 관광1	역사관광	
+// 버스출발지	동대구고속버스터미널	
+// loginId	lovaoi777	
+// 관광	자연관광	
+// 버스도착지	부산고속버스터미널	
+// 호텔위도	35.0980223	
+// 버스출발지경도	128.6298	
+
     return (
         <Template>
         <Link to="/"style={{ textDecoration:"none",color:"black"}} onClick={handleLogo}><Logo><MainLogo1 src={MainLogo} alt="Logo" /></Logo></Link>

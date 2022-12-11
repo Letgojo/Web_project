@@ -53,10 +53,12 @@ app.post('/TripPlan3',(req,res)=>{
   const finishlocation = req.body.finishLocation; //도착지역
   const people = req.body.people; //인원
   const experience = req.body.Experience;//체험
+  const experience1 = req.body.Experience1;//체험
   const Theme = req.body.Theme;//테마 
   const Eat = req.body.Eat// 맛집
   const car = req.body.car//교통수단
-
+  const id = req.body.id //userID
+  
 
   console.log("카테고리 데이터전달")
   console.log("출발날짜",startday);
@@ -65,10 +67,11 @@ app.post('/TripPlan3',(req,res)=>{
   console.log("출발지역",startlocation);
   console.log("도착지역",finishlocation);
   console.log("인원",people);
-  console.log("체험",experience);
-  console.log("테마",Theme);
-  console.log("맛집",Eat);
+  console.log("관광1",experience);
+  console.log("관광2",experience1);
+  console.log("음식",Eat);
   console.log("교통수단",car);
+  
   console.log("=========================================")
 })
 

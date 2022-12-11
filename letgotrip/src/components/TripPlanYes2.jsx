@@ -73,7 +73,7 @@ const TripPlanYes2 = () => {
             user.map((element)=>(
             setBus((Bus)=>[
                 ...Bus,
-                {Rating:element.등급,StartTime:element.출발시간,finishTime:element.도착시간,money:element.성인요금,timetaken:element.소요시간,name:element.고속사,start:element.출발지,finish:element.도착지,startw:element.출발지위도,starty:element.출발지경도,finishw:element.도착지위도,finishy:element.도착지경도},
+                {Rating:element.등급,StartTime:element.출발시간,finishTime:element.도착시간,money:element.성인요금,timetaken:element.소요시간,name:element.고속사,start:element.출발지,finish:element.도착지,startw:element.출발지위도,starty:element.출발지경도,finishw:element.도착지위도,finishy:element.도착지경도,distance:element.거리},
             ])
             ))
         },1000)
@@ -106,6 +106,7 @@ const TripPlanYes2 = () => {
                     starty={element.starty}
                     finishw={element.finishw}
                     finishy={element.finishy}
+                    distance={element.distance}
                 />
                 : " "
             ))}

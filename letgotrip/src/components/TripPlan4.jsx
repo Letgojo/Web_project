@@ -100,7 +100,7 @@ const TripPlan4 = () => {
     pensByColors.map((element)=>(
         setPostList((PostList)=> [
             ...PostList,
-            {name:element.숙박업체, money:element.금액,Url:element.사진url, w:element.위도, y:element.경도}
+            {name:element.숙박업체, money:element.금액,Url:element.사진url, w:element.위도, y:element.경도,hotelurl:element.호텔url}
         ])))
     },1000)
 },[setPostList])
@@ -125,6 +125,7 @@ const TripPlan4 = () => {
                             Url={element.Url}
                             W = {element.w}
                             Y = {element.y}
+                            hotelurl = {element.hotelurl}
                         />
                         ))} 
                         

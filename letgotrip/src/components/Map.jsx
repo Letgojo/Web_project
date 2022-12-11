@@ -9,10 +9,12 @@ import lunch from '../img/lunch.png'
 import hiking from '../img/hiking.png'
 import hotelimg from '../img/hotel.png'
 import finish from '../img/finish.png'
+import carimg from '../img/carimg.png'
+import reservationimg from '../img/reservation.png'
 import { useCallback } from 'react';
 const Template  = styled.div`
     width : 1300px;
-    height : 700px;
+    maw-height : 100%
     border : 1px solid black;
     background-color : white;
     margin : 5% auto;   
@@ -38,14 +40,13 @@ margin-left : 30px;
 border : 1px solid black;
 `
 const Resultform = styled.div`
-    margin-top : 60px;
+    margin-top : 30px;
     margin-left : 30px;
 `
 //결과 날짜 도출
 const Dayform = styled.div`
     margin-left: 30px;
     font-size : 30px;
-    height:90px;
     width :650px;
     border-bottom  : 1px dashed black;
 `
@@ -71,30 +72,44 @@ const Plan = styled.div`
 
 `
 const PlanList = styled.div`
-    display : grid;
+    display : flex;
     margin-left : 30px;
-    grid-template-columns : 50px 300px;
-    grid-template-rows:  50px; 50px; 50px 50px;
+    margin-bottom : 25px;
+
 `
 const PlanListText = styled.li`
     font-size : 20px;
     padding-left: 30px;
+    margin-bottom : 25px;   
 `
 const PlanListimg = styled.li`
     display :block
 `
 const PlandoList = styled.div`
-    margin-bottom : 35px;
+    margin-bottom : 30px;
+`
+const PlandoList1 = styled.div`
+    margin-bottom : 40px;
+`
+const PlandoList2 = styled.div`
+    margin-bottom : 47px;
 `
 const Img = styled.img`
-    width : 30px;
-    height : 30px;
+    width : 50px;
+    height : 50px;
 `
 const Planimg =styled.div`
-margin-bottom : 25px;   
+    margin-bottom : 25px;
 `
+const PlanText = styled.span`
+    font-size :10px;
+` 
 const DayLi = styled.li`
     cursor : pointer;
+`
+const Reservation =  styled.img`
+    width : 25px;
+    hight : 25px;
 `
 const TripPlanNo1 = () => {
     let sessionStorage = window.sessionStorage;
@@ -114,6 +129,7 @@ const TripPlanNo1 = () => {
     const by = sessionStorage.getItem("교통수단")
     const startLocation  = sessionStorage.getItem("버스출발지")
     const finishLocation = sessionStorage.getItem("버스도착지")
+    var busmoney = sessionStorage.getItem("버스통행료")
     const hotel = sessionStorage.getItem("호텔이름")
     const hotelw = sessionStorage.getItem("호텔위도")
     const hotely = sessionStorage.getItem("호텔경도")
@@ -121,28 +137,43 @@ const TripPlanNo1 = () => {
     const busStarty = sessionStorage.getItem("버스출발지경도")
     const busFinishw = sessionStorage.getItem("버스도착지위도")
     const busFinishy = sessionStorage.getItem("버스도착지경도")
+    const hotelmoney = sessionStorage.getItem("호텔숙박료")
+    const link =sessionStorage.getItem("호텔링크")
+    const StartTime = sessionStorage.getItem("버스출발시간")
+    const FinishTime = sessionStorage.getItem("버스도착시간")
+    const timetaken  =sessionStorage.getItem("소요시간")
+    const distance  =sessionStorage.getItem("거리") 
+    const money  =sessionStorage.getItem("금액") 
 
 
-    const db1 = firestore.collection("회원관리").doc("kim").collection('2022-12-10-1')
+
+
+
+
+    const db1 = firestore.collection("회원관리").doc("kim").collection('2022-12-11')
     let person = [];
     db1.get().then((result)=>{
         result.forEach((allDoc)=>{
             person.push(allDoc.data())
+            console.log(person)
         })
   })
+//   by==="자차"?consol e.log(person[0].통행료): console.log("error");
 
+  let resultmoney =  parseInt(hotelmoney.replace(",",""))
   useEffect(()=>{
     setTimeout(() => {
 person.map((element,index)=>(
     setpost((post)=> [
         ...post,
         {   
-            num: index,cafename:element.카페이름,lunchname : element.점심이름,tripname : element.관광지이름,dinnername : element.저녁이름,Day: element.출발지역
+            num: index,cafename:element.카페이름,lunchname : element.점심이름,tripname : element.관광지이름,dinnername : element.저녁이름,Day: element.출발지역,distance:element.거리,type:element.맛집,tema : element.테마,lostTime : element.소요시간
         }
     ]),
     setwhere((where)=> [
         ...where,
         {
+         money : element.통행료,
          lunchw:element.점심위도, lunchy:element.점심경도,lunchname:element.점심이름,
          cafew:element.카페위도, cafey:element.카페경도,cafename:element.카페이름,
          dinnerw:element.저녁위도, dinnery:element.저녁경도,dinnername:element.저녁이름,
@@ -434,14 +465,19 @@ person.map((element,index)=>(
             <br />잠시만 기다려 주세요.</Falseform>}
             </Mapform>
             <Resultform>
+
+                <>
                 <Dayform>
                     <DayUl>
                     {where.map((element,index)=>(
                         <DayLi onClick={ () => {setpage(index+1)}}>{index+1}일차</DayLi>
-                    ))}
+                        ))}
                     </DayUl>
-                </Dayform>
-                <Pay>금액 : </Pay>
+                </Dayform>  
+                </>
+                {where.map((element,index)=>(
+                index===0&&by === "자차" ?<Pay> 금액 : {resultmoney +parseInt(element.money)}원</Pay> :index===0&&by === "대중교통" ? <Pay>금액 : {resultmoney + parseInt(busmoney.replace(",",""))}원 </Pay> : " "
+                ))}
                 <Plan>
                     {page === 1 ?
                     <ul>
@@ -449,10 +485,13 @@ person.map((element,index)=>(
                         index === 0 ? 
                         <PlanList> 
                         <PlanListimg>
-                        <Planimg><Img src={start} alt="시작" /></Planimg>
                         {by === "자차" ?
-                        " " :
+                        <Planimg><Img src={carimg} alt="시작" /></Planimg>
+                        :
+                        <>
+                        <Planimg><Img src={start} alt="시작" /></Planimg>
                         <Planimg><Img src={bus} alt="버스" /></Planimg>
+                        </>
 }
                         <Planimg><Img src={lunch} alt="점심" /></Planimg>
                         <Planimg><Img src={cafe} alt="카페" /></Planimg>
@@ -462,18 +501,18 @@ person.map((element,index)=>(
                         </PlanListimg> 
                         <PlanListText>
                             {by==="자차" ? 
-                            <PlandoList>{element.Day}</PlandoList>
+                            <PlandoList>{element.Day}<br /><PlanText>거리 : {element.distance} 소요시간 : {element.lostTime}</PlanText></PlandoList>
                             :
                             <>
-                            <PlandoList>{startLocation}</PlandoList>
-                            <PlandoList>{finishLocation}</PlandoList>
+                            <PlandoList>{startLocation}<br /><PlanText>출발시간 : {StartTime} 거리 : {distance} 소요시간 : {timetaken} </PlanText></PlandoList>
+                            <PlandoList>{finishLocation}<br /><PlanText>도착시간 : {FinishTime} 금액 : {money}</PlanText></PlandoList>
                             </>
                         }
-                            <PlandoList>{element.lunchname}</PlandoList>
-                            <PlandoList>{element.cafename}</PlandoList>
-                            <PlandoList>{element.tripname}</PlandoList>
-                            <PlandoList>{element.dinnername}</PlandoList>
-                            <PlandoList>{hotel}</PlandoList>
+                            <PlandoList>{element.lunchname}<br /><PlanText>{element.type}</PlanText></PlandoList>
+                            <PlandoList>{element.cafename}<br /><PlanText></PlanText></PlandoList>
+                            <PlandoList>{element.tripname}<br /><PlanText>관광 : {element.tema}</PlanText></PlandoList>
+                            <PlandoList>{element.dinnername}<br /><PlanText>{element.type}</PlanText></PlandoList>
+                            <PlandoList>{hotel}<br /><PlanText><a href={link} target="_blank"><Reservation src={reservationimg} alt="예약" /></a><span>예약시 왼쪽 클릭</span> </PlanText></PlandoList>
                         </PlanListText>
                         </PlanList>
                          : ""
@@ -494,12 +533,12 @@ person.map((element,index)=>(
                         <Planimg><Img src={hotelimg} alt="호텔" /></Planimg>
                         </PlanListimg> 
                         <PlanListText>
-                        <PlandoList>{hotel}</PlandoList>
-                            <PlandoList>{element.lunchname}</PlandoList>
-                            <PlandoList>{element.cafename}</PlandoList>
-                            <PlandoList>{element.tripname}</PlandoList>
-                            <PlandoList>{element.dinnername}</PlandoList>
-                            <PlandoList>{hotel}</PlandoList>
+                            <PlandoList1>{hotel}<br/></PlandoList1>
+                            <PlandoList1>{element.lunchname}<br /><PlanText>{element.type}</PlanText></PlandoList1>
+                            <PlandoList1>{element.cafename}<br /><PlanText></PlanText></PlandoList1>
+                            <PlandoList1>{element.tripname}<br /><PlanText>관광 : {element.tema}</PlanText></PlandoList1>
+                            <PlandoList1>{element.dinnername}<br /><PlanText>{element.type}</PlanText></PlandoList1>
+                            <PlandoList1>{hotel}</PlandoList1>
                         </PlanListText>
                         </PlanList>
                         : ""
@@ -524,15 +563,15 @@ person.map((element,index)=>(
 
                     </PlanListimg> 
                     <PlanListText>
-                        <PlandoList>{hotel}</PlandoList>
-                        <PlandoList>{element.lunchname}</PlandoList>
-                        <PlandoList>{element.cafename}</PlandoList>
+                        <PlandoList2>{hotel}</PlandoList2>
+                        <PlandoList2>{element.lunchname}<br /><PlanText>{element.type}</PlanText></PlandoList2>
+                            <PlandoList2>{element.cafename}<br /><PlanText></PlanText></PlandoList2>
                         {by === "자차" ?  
-                         <PlandoList>{element.Day}</PlandoList>
+                         <PlandoList2>{element.Day}</PlandoList2>
                         :
                         <>
-                        <PlandoList>{finishLocation}</PlandoList>
-                        <PlandoList>{startLocation}</PlandoList>
+                        <PlandoList2>{finishLocation}</PlandoList2>
+                        <PlandoList2>{startLocation}</PlandoList2>
                         </>
                     }
                     </PlanListText>

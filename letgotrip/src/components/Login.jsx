@@ -114,7 +114,7 @@ const Login = () => {
             <Btntext>로그인</Btntext>   
         </LoginBtn>
         </form>
-        { JSON.stringify(sessionStorage) }
+
         </TemplateLogin>
     );
 };

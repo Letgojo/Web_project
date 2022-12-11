@@ -30,14 +30,17 @@ const ContentMoney = styled.div`
     margin-left : 250px;
     font-size:35px;
 `
-const HotelList = ({name,money,Url,W,Y}) => {
+const HotelList = ({name,money,Url,W,Y , hotelurl}) => {
     let sessionStorage = window.sessionStorage;
+    money=money.split(",").join().substr(1,1000);
     const handleHotel = (e) => { 
         sessionStorage.setItem("호텔이름", name);
         sessionStorage.setItem("호텔위도",W);
         sessionStorage.setItem("호텔경도",Y);
-        console.log(W,Y)
-    }
+        sessionStorage.setItem("호텔숙박료",money)
+        sessionStorage.setItem("호텔링크",hotelurl)
+        console.log(hotelurl)
+    }   
     return (
         <ListForm onClick={handleHotel}>
             <div><URlimg src={Url} alt="사진" /></div>
