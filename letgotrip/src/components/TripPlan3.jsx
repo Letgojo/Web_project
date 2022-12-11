@@ -2,19 +2,11 @@ import React,{useState ,useEffect} from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import '../font/fontstyle.css'; 
-import Skiimg from '../img/category/ski.png'
-import hikingimg from '../img/category/hiking.png'
-import Kides from '../img/category/kids.png'
-import Skater from '../img/category/skater.png'
-import park from '../img/category/themepark.png'
-import paragliding from '../img/category/paragliding.png'
-import watersport from '../img/category/watersport.png'
-import diy from '../img/category/diy.png'
-import art from '../img/category/art-museum.png'
-import exhibition from '../img/category/exhibition.png'
-import museum from '../img/category/museum.png'
-import show from '../img/category/show.png'
-import americafood from '../img/category/americafood.png'
+import Leisuresports from '../img/category/Leisuresports.png'
+import culture from '../img/category/culture.png'
+import history from '../img/category/history.png'
+import sea from '../img/category/sea.png'
+import nature from '../img/category/nature.png'
 import japanfood from '../img/category/japanfood.png'
 import koreafood from '../img/category/koreafood.png'
 import localfood from '../img/category/localfood.png'
@@ -185,7 +177,7 @@ const TripPlan3 = () => {
 // }, [color]);
 
 useEffect(() => {
-    const allBtnArr3 = ['한식','중식','양식','지역음식'];
+    const allBtnArr3 = ['한식','중식','일식','세계음식'];
     const nonTargetedBtnArr2 = allBtnArr3.filter((item2) => item2 !== color2);
     document.getElementById(color2).style.backgroundColor = "#006FFD";
     nonTargetedBtnArr2.map((item2) => {
@@ -199,19 +191,19 @@ useEffect(() => {
         <Template   >
             <h1>관광</h1>
             <MainContent>                       
-            <Content1  id='레저스포츠' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>레저스포츠<br /><Contentspan>골프, 인라인, 사격,  요트</Contentspan></Contentdiv><Category src={Skiimg} alt="스키"/></Content1>
-            <Content1  id='문화관광' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>문화관광<br /><Contentspan>공원, 미술관, 박물관, 영화관</Contentspan></Contentdiv><Category src={hikingimg} alt="등산"/></Content1>
-            <Content1  id='역사관광' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>역사관광<br /><Contentspan>사원, 종교</Contentspan></Contentdiv><Category src={Kides} alt="키즈"/></Content1>
-            <Content1  id='자연관광' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>자연관광<br /><Contentspan>휴양림, 저수지, 해수욕장</Contentspan></Contentdiv><Category src={Skater} alt="실내스포츠" /></Content1>
-            <Content1  id='체험관광' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>체험관광<br /><Contentspan>체험장,  온천</Contentspan></Contentdiv><Category src={park} alt="테마파크" /></Content1>
+            <Content1  id='레저스포츠' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>레저스포츠<br /><Contentspan>골프, 인라인, 사격,  요트</Contentspan></Contentdiv><Category src={Leisuresports} alt="스키"/></Content1>
+            <Content1  id='문화관광' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>문화관광<br /><Contentspan>공원, 미술관, 박물관, 영화관</Contentspan></Contentdiv><Category src={history} alt="등산"/></Content1>
+            <Content1  id='역사관광' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>역사관광<br /><Contentspan>사원, 종교</Contentspan></Contentdiv><Category src={culture} alt="키즈"/></Content1>
+            <Content1  id='자연관광' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>자연관광<br /><Contentspan>휴양림, 저수지, 해수욕장</Contentspan></Contentdiv><Category src={sea} alt="실내스포츠" /></Content1>
+            <Content1  id='체험관광' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>체험관광<br /><Contentspan>체험장,  온천</Contentspan></Contentdiv><Category src={nature} alt="테마파크" /></Content1>
             </MainContent>
 
             <h1>음식</h1>
             <MainContent> 
             <Content3 id='한식' onClick={onClick2}><Contentdiv style={{marginTop:"10px"}}>한식</Contentdiv><Category src={koreafood} alt="한식"/></Content3>
             <Content3 id='중식' onClick={onClick2}><Contentdiv style={{marginTop:"10px"}}>중식</Contentdiv><Category src={chinesefood} alt="중식"/></Content3>
-            <Content3 id='양식' onClick={onClick2}><Contentdiv style={{marginTop:"10px"}}>양식</Contentdiv><Category src={americafood} alt="양식"/></Content3>
-            <Content3 id='지역음식' onClick={onClick2}><Contentdiv style={{marginTop:"10px"}}>지역음식</Contentdiv><Category src={localfood} alt="지역음식"/></Content3>
+            <Content3 id='일식' onClick={onClick2}><Contentdiv style={{marginTop:"10px"}}>일식</Contentdiv><Category src={japanfood} alt="일식"/></Content3>
+            <Content3 id='세계음식' onClick={onClick2}><Contentdiv style={{marginTop:"10px"}}>세계음식</Contentdiv><Category src={localfood} alt="세계음식"/></Content3>
             </MainContent>
             <Next onClick={hendleNext}>{by==="자차"? <Link to='/TripPlan4' style={{textDecoration:"none",color:"black"}}>Next</Link> :<Link to='/TripPlan/yes2' style={{textDecoration:"none",color:"black"}}>Next</Link>}</Next>  
         </Template>
