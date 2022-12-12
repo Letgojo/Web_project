@@ -6,6 +6,10 @@ const Template = styled.div`
     font-family: 'twayair';
     width:700px;
     cursor: pointer;
+    :hover {
+        background-color : #006FFD;
+        opacity: 0.5;
+        }
 `
 const BusType = styled.div`
     margin-top:20px;

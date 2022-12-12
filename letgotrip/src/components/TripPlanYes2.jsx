@@ -23,17 +23,15 @@ const Transportationfrom = styled.div`
 //     margin-top : 20px;
 // `
 const Next = styled.div`
-width : 187px;
+width : 120px;
 height : 58px;
 border : 1px solid black;
 border-radius : 30px;
-background-color : #B9D6F9;
+background-color : #F4F5FB;
 font-size : 40px;
 text-align : center;
-align-items: center;
 cursor : pointer;
-margin-left : 600px;
-margin-bottom : 100px;
+margin-left : 650px;
 `
 const UP = styled.div`
     margin-left : 20px;
@@ -45,11 +43,13 @@ const Currnetpage = styled.div`
 `
 const Page = styled.div`
     display : flex;
-    margin-left :50%;
+    margin-left :300px;
     font-size : 35px;
     margin-top : 20px;
 `
-
+const Nexttext = styled.span`
+font-size:25px;
+`
 
 
 const TripPlanYes2 = () => {
@@ -115,7 +115,7 @@ const TripPlanYes2 = () => {
             <Currnetpage>{page}</Currnetpage>
             <UP  onClick={handleup}> {' >'} </UP>
             </Page>
-            <Next><Link to="/TripPlan4" style={{textDecoration:"none",color:"black"}}>다음</Link></Next>
+            <Next><Link to="/TripPlan4" style={{textDecoration:"none",color:"black"}}><Nexttext>다음</Nexttext></Link></Next>
             </Transportationfrom>
         </Template>
     );

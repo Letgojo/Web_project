@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import '../font/fontstyle.css';
 const Triptitle = styled.div`
     background-color : white;
-    margin : 100px auto ;
+    margin : 300px auto ;
     margin-bottom : 0px;
     width : 500px;
     height : 60px;
@@ -23,7 +23,7 @@ const TripYes = styled.div`
     background-color : white;
     margin : 50px auto;
     margin-bottom : 0px;
-    margin-left: 400px;
+    margin-left: 630px;
     width : 200px;
     height : 60px;
     font-size : 30px;

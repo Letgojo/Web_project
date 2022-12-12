@@ -48,14 +48,13 @@ const Category = styled.img`
     margin-left :50px;
 `
 const Next = styled.div`
-width : 187px;
+width : 120px;
 height : 58px;
 border : 1px solid black;
 border-radius : 30px;
-background-color : #B9D6F9;
+background-color : #F4F5FB;
 font-size : 40px;
 text-align : center;
-margin-top: 40px;
 cursor : pointer;
 `
 const Content1 = styled.div`
@@ -76,6 +75,9 @@ cursor: pointer;
     background-color : #006FFD;
     opacity: 0.5;
 }
+`
+const Nexttext = styled.span`
+font-size:25px;
 `
 
 //맛집
@@ -103,6 +105,10 @@ const TripPlan3 = () => {
     const [color2, setcolor2] = useState("한식");
     let sessionStorage = window.sessionStorage;
     const by = sessionStorage.getItem("교통수단")
+    const experience2 = sessionStorage.getItem("관광")
+    const experience3 = sessionStorage.getItem("관광1")
+    sessionStorage.setItem("음식","한식")
+    const eat1 = sessionStorage.getItem("음식")
     const hendleNext =async () => { 
         try{
         await fetctData();
@@ -194,7 +200,7 @@ useEffect(() => {
             <Content1  id='레저스포츠' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>레저스포츠<br /><Contentspan>골프, 인라인, 사격,  요트</Contentspan></Contentdiv><Category src={Leisuresports} alt="스키"/></Content1>
             <Content1  id='문화관광' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>문화관광<br /><Contentspan>공원, 미술관, 박물관, 영화관</Contentspan></Contentdiv><Category src={history} alt="등산"/></Content1>
             <Content1  id='역사관광' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>역사관광<br /><Contentspan>사원, 종교</Contentspan></Contentdiv><Category src={culture} alt="키즈"/></Content1>
-            <Content1  id='자연관광' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>자연관광<br /><Contentspan>휴양림, 저수지, 해수욕장</Contentspan></Contentdiv><Category src={sea} alt="실내스포츠" /></Content1>
+            <Content1  id='자연관광' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>자연관광<br /><Contentspan>휴양림, 저수지, 해수욕장</Contentspan></Contentdiv><Category src={sea   } alt="실내스포츠" /></Content1>
             <Content1  id='체험관광' onClick={onClick} onDoubleClick={onDoubleClick}><Contentdiv>체험관광<br /><Contentspan>체험장,  온천</Contentspan></Contentdiv><Category src={nature} alt="테마파크" /></Content1>
             </MainContent>
 
@@ -205,7 +211,9 @@ useEffect(() => {
             <Content3 id='일식' onClick={onClick2}><Contentdiv style={{marginTop:"10px"}}>일식</Contentdiv><Category src={japanfood} alt="일식"/></Content3>
             <Content3 id='세계음식' onClick={onClick2}><Contentdiv style={{marginTop:"10px"}}>세계음식</Contentdiv><Category src={localfood} alt="세계음식"/></Content3>
             </MainContent>
-            <Next onClick={hendleNext}>{by==="자차"? <Link to='/TripPlan4' style={{textDecoration:"none",color:"black"}}>Next</Link> :<Link to='/TripPlan/yes2' style={{textDecoration:"none",color:"black"}}>Next</Link>}</Next>  
+            {experience2 && experience3 && eat1 ? 
+            <Next onClick={hendleNext}>{by==="자차"? <Link to='/TripPlan4' style={{textDecoration:"none",color:"black"}}><Nexttext>다음</Nexttext></Link> :<Link to='/TripPlan/yes2' style={{textDecoration:"none",color:"black"}}><Nexttext>다음</Nexttext></Link>}</Next>  
+         : " "}
         </Template>
         </>
     );

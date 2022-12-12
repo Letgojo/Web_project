@@ -18,7 +18,7 @@ background-color : white;
 margin : 5% auto;   
 border-radius : 30px;
 padding-left : 40px;
-font-family: 'HallymGothic-Regular';
+font-family: 'twayair';
 `
 const Btnimg = styled.img`
     width : 90px;
@@ -61,15 +61,18 @@ const CategoryDIV = styled.div`
     margin-top : 40px;
 `
 const Next = styled.div`
-width : 187px;
+width : 120px;
 height : 58px;
 border : 1px solid black;
 border-radius : 30px;
-background-color : #B9D6F9;
+background-color : #F4F5FB;
 font-size : 40px;
 text-align : center;
 cursor : pointer;
-margin-right : 40px;
+margin-left : 650px;
+`
+const Nexttext = styled.span`
+font-size:25px;
 `
 const TripPlan4 = () => {
     const [PostList, setPostList] = useState([]);
@@ -108,12 +111,7 @@ const TripPlan4 = () => {
     return (
         <Template>
             <CategoryDIV>
-            <CategoryType>
-                <TypeRadio><Typeinput type="radio" name="type" style={{width:"25px",height:"25px"}}  />인기</TypeRadio>
-                <TypeRadio><Typeinput type="radio" name="type" style={{width:"25px",height:"25px"}}/>가격</TypeRadio>
-                <TypeRadio><Typeinput type="radio" name="type" style={{width:"25px",height:"25px"}}/>특가</TypeRadio>
-            </CategoryType>
-            <Next><Link to="/Map" style={{textDecoration:"none",color:"black"}}>Next</Link></Next>
+            <Next><Link to="/Map" style={{textDecoration:"none",color:"black"}}><Nexttext>다음</Nexttext></Link></Next>
             </CategoryDIV>
             <div>
                 <ul> 
@@ -131,7 +129,6 @@ const TripPlan4 = () => {
                         
                 </ul>
             </div>
-
         </Template>
     );
 };

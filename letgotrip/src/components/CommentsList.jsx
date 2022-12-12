@@ -23,7 +23,6 @@ const Namediv = styled.div`
 const CommentDiv = styled.div`
     margin-top : 10px;
     margin-left : 20px;
-
 `
 const Line = styled.div`
     margin-top : 20px;

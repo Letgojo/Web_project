@@ -22,7 +22,7 @@ const Template  = styled.div`
 `
 const Period  = styled.div`
     display : flex;
-    width : 470px;
+    width : 520px;
     height : 42px; 
     border : 1px solid black;
     border-radius: 30px;    
@@ -50,7 +50,7 @@ const Wave = styled.span`
 `
 const Local =  styled.div`
     border : 1px solid black;
-    width : 470px;
+    width : 520px;
     height : 42px;
     border-radius : 30px;
     margin : 20px 0 0 680px;

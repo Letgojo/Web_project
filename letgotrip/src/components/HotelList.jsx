@@ -47,7 +47,7 @@ const HotelList = ({name,money,Url,W,Y , hotelurl}) => {
             <Content>
                 <ContentName>{name}</ContentName>
                 <br />
-                <ContentMoney>{money}</ContentMoney>
+                <ContentMoney>{money}원</ContentMoney>
             </Content>
         </ListForm>
     );

@@ -25,7 +25,7 @@ const Template  = styled.div`
 `
 const MAP = styled.div`
 width: 500px;
-height: 600px;
+height: 700px;
 
 
 border-style: solid;
@@ -37,7 +37,7 @@ width: 500px;
 height: 500px;
 margin-top : 60px;
 margin-left : 30px; 
-border : 1px solid black;
+
 `
 const Resultform = styled.div`
     margin-top : 30px;
@@ -67,6 +67,7 @@ const Falseform = styled.div`
 const DayUl = styled.ul`
     display:flex;
     justify-content : space-between;
+    width : 200px;
 `
 const Plan = styled.div`
 
@@ -117,6 +118,7 @@ const TripPlanNo1 = () => {
     const [page, setpage] = useState(1)
     const [where , setwhere] = useState([]);
     const  [Loading , setLoading] = useState(false) 
+    const  [loadingtext, setloadingtext] = useState(false)
     const [post,setpost] = useState([]);  
     let user = []
     let map = []
@@ -144,13 +146,15 @@ const TripPlanNo1 = () => {
     const timetaken  =sessionStorage.getItem("소요시간")
     const distance  =sessionStorage.getItem("거리") 
     const money  =sessionStorage.getItem("금액") 
+    const userid = sessionStorage.getItem("loginId")
+    const start = sessionStorage.getItem("출발날짜")
+    const finish = sessionStorage.getItem("도착날짜")
+    const day = start+"-"+finish
 
 
 
 
-
-
-    const db1 = firestore.collection("회원관리").doc("kim").collection('2022-12-11')
+    const db1 = firestore.collection("회원관리").doc(userid).collection(day)
     let person = [];
     db1.get().then((result)=>{
         result.forEach((allDoc)=>{
@@ -167,7 +171,7 @@ person.map((element,index)=>(
     setpost((post)=> [
         ...post,
         {   
-            num: index,cafename:element.카페이름,lunchname : element.점심이름,tripname : element.관광지이름,dinnername : element.저녁이름,Day: element.출발지역,distance:element.거리,type:element.맛집,tema : element.테마,lostTime : element.소요시간
+            num: index,cafename:element.카페이름,lunchname : element.점심이름,tripname : element.관광지이름,dinnername : element.저녁이름,Day: element.출발지역,distance:element.거리,type:element.맛집,tema : element.테마,lostTime : element.소요시간,dinnerType : element.저녁종류,lunchType : element.점심종류,cafeType:element.카페종류
         }
     ]),
     setwhere((where)=> [
@@ -465,7 +469,6 @@ person.map((element,index)=>(
             <br />잠시만 기다려 주세요.</Falseform>}
             </Mapform>
             <Resultform>
-
                 <>
                 <Dayform>
                     <DayUl>
@@ -508,10 +511,10 @@ person.map((element,index)=>(
                             <PlandoList>{finishLocation}<br /><PlanText>도착시간 : {FinishTime} 금액 : {money}</PlanText></PlandoList>
                             </>
                         }
-                            <PlandoList>{element.lunchname}<br /><PlanText>{element.type}</PlanText></PlandoList>
-                            <PlandoList>{element.cafename}<br /><PlanText></PlanText></PlandoList>
+                            <PlandoList>{element.lunchname}<br /><PlanText>{element.lunchType}</PlanText></PlandoList>
+                            <PlandoList>{element.cafename}<br /><PlanText></PlanText>{element.cafeType}</PlandoList>
                             <PlandoList>{element.tripname}<br /><PlanText>관광 : {element.tema}</PlanText></PlandoList>
-                            <PlandoList>{element.dinnername}<br /><PlanText>{element.type}</PlanText></PlandoList>
+                            <PlandoList>{element.dinnername}<br /><PlanText>{element.dinnerType}</PlanText></PlandoList>
                             <PlandoList>{hotel}<br /><PlanText><a href={link} target="_blank"><Reservation src={reservationimg} alt="예약" /></a><span>예약시 왼쪽 클릭</span> </PlanText></PlandoList>
                         </PlanListText>
                         </PlanList>
@@ -534,10 +537,10 @@ person.map((element,index)=>(
                         </PlanListimg> 
                         <PlanListText>
                             <PlandoList1>{hotel}<br/></PlandoList1>
-                            <PlandoList1>{element.lunchname}<br /><PlanText>{element.type}</PlanText></PlandoList1>
-                            <PlandoList1>{element.cafename}<br /><PlanText></PlanText></PlandoList1>
+                            <PlandoList1>{element.lunchname}<br /><PlanText>{element.lunchType}</PlanText></PlandoList1>
+                            <PlandoList1>{element.cafename}<br /><PlanText>{element.cafeType}</PlanText></PlandoList1>
                             <PlandoList1>{element.tripname}<br /><PlanText>관광 : {element.tema}</PlanText></PlandoList1>
-                            <PlandoList1>{element.dinnername}<br /><PlanText>{element.type}</PlanText></PlandoList1>
+                            <PlandoList1>{element.dinnername}<br /><PlanText>{element.dinnerType}</PlanText></PlandoList1>
                             <PlandoList1>{hotel}</PlandoList1>
                         </PlanListText>
                         </PlanList>
@@ -564,8 +567,8 @@ person.map((element,index)=>(
                     </PlanListimg> 
                     <PlanListText>
                         <PlandoList2>{hotel}</PlandoList2>
-                        <PlandoList2>{element.lunchname}<br /><PlanText>{element.type}</PlanText></PlandoList2>
-                            <PlandoList2>{element.cafename}<br /><PlanText></PlanText></PlandoList2>
+                        <PlandoList2>{element.lunchname}<br /><PlanText>{element.lunchType}</PlanText></PlandoList2>
+                            <PlandoList2>{element.cafename}<br /><PlanText>{element.cafeType}</PlanText></PlandoList2>
                         {by === "자차" ?  
                          <PlandoList2>{element.Day}</PlandoList2>
                         :
@@ -581,6 +584,7 @@ person.map((element,index)=>(
                 </ul>
                   :""}
                 </Plan>
+                
             </Resultform>
         </Template>
     )

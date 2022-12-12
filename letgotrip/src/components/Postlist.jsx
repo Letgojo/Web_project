@@ -15,6 +15,7 @@ const ListForm = styled.div`
     margin-left:8px
     font-size: 20px;
     cursor: pointer;
+    margin-left : 50px;
 `
 const ListImg = styled.div`
     width :282px;
